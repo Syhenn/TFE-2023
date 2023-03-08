@@ -1,4 +1,4 @@
-﻿namespace APITEst.Models;
+﻿namespace API.Models;
 
 public class User
 {

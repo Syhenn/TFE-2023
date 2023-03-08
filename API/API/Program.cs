@@ -1,6 +1,5 @@
-using APITEst.Data;
-using APITEst.Models;
-using APITEst.Services;
+using API.Data;
+using API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +9,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer((builder.Configuration.GetConnectionString("DatabaseConnection"))));
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ILangageService, LangageService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -1,7 +1,7 @@
-﻿using APITEst.Models;
+﻿using API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace APITEst.Data;
+namespace API.Data;
 
 public class ApplicationDbContext :DbContext
 {
@@ -11,7 +11,8 @@ public class ApplicationDbContext :DbContext
     }
 
     public DbSet<User> Users { get; set; }
-    
+    public DbSet<Langage> Langages { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>().HasKey(u => u.Id);

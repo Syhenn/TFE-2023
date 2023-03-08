@@ -1,4 +1,4 @@
-﻿namespace APITEst.DTO;
+﻿namespace API.DTO;
 
 public class UserDto
 {

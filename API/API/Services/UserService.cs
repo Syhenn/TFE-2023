@@ -1,10 +1,10 @@
-﻿using APITEst.Data;
-using APITEst.DTO;
-using APITEst.Models;
+﻿using API.Data;
+using API.DTO;
+using API.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
-namespace APITEst.Services;
+namespace API.Services;
 
 public class UserService : IUserService
 {

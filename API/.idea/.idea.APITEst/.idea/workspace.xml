@@ -7,7 +7,7 @@
     <projectFile profileName="IIS Express">Data/Data.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56a8a49b-2658-4fea-9831-c3589ca33c72" name="Changes" comment="first commit">
+    <list default="true" id="56a8a49b-2658-4fea-9831-c3589ca33c72" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/.idea.API/.idea/.name" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API.sln" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Controllers/UserController.cs" afterDir="false" />
@@ -320,6 +320,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/API/Controllers/UserController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/API/DTO/UserDto.cs" root0="FORCE_HIGHLIGHTING" />
@@ -331,6 +334,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectId" id="2MjcGceMCM9hk9Jbsd25CBdBRbu" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -423,7 +427,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678284340979</updated>
-      <workItem from="1678284341273" duration="3730000" />
+      <workItem from="1678284341273" duration="4013000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1678289259516</created>
@@ -438,6 +442,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

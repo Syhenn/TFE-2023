@@ -78,6 +78,50 @@ namespace APITEst.Migrations
 
                     b.ToTable("Users");
                 });
+
+            modelBuilder.Entity("API.Models.UserLangage", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LangageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "LangageId");
+
+                    b.HasIndex("LangageId");
+
+                    b.ToTable("UserLangage");
+                });
+
+            modelBuilder.Entity("API.Models.UserLangage", b =>
+                {
+                    b.HasOne("API.Models.Langage", "Langage")
+                        .WithMany("UserLangages")
+                        .HasForeignKey("LangageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.User", "User")
+                        .WithMany("UserLangages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Langage");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("API.Models.Langage", b =>
+                {
+                    b.Navigation("UserLangages");
+                });
+
+            modelBuilder.Entity("API.Models.User", b =>
+                {
+                    b.Navigation("UserLangages");
+                });
 #pragma warning restore 612, 618
         }
     }

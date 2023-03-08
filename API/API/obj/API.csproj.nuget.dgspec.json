@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Henquin\\RiderProjects\\CodinTime\\APITEst\\API\\API.csproj": {}
+    "C:\\Users\\Henquin\\RiderProjects\\CodinTime\\API\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Henquin\\RiderProjects\\CodinTime\\APITEst\\API\\API.csproj": {
+    "C:\\Users\\Henquin\\RiderProjects\\CodinTime\\API\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Henquin\\RiderProjects\\CodinTime\\APITEst\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Henquin\\RiderProjects\\CodinTime\\API\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Henquin\\RiderProjects\\CodinTime\\APITEst\\API\\API.csproj",
+        "projectPath": "C:\\Users\\Henquin\\RiderProjects\\CodinTime\\API\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Henquin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Henquin\\RiderProjects\\CodinTime\\APITEst\\API\\obj\\",
+        "outputPath": "C:\\Users\\Henquin\\RiderProjects\\CodinTime\\API\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,6 +45,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.14, )"
@@ -91,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

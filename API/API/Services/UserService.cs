@@ -1,6 +1,7 @@
 ﻿using APITEst.Data;
 using APITEst.DTO;
 using APITEst.Models;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace APITEst.Services;
@@ -8,30 +9,34 @@ namespace APITEst.Services;
 public class UserService : IUserService
 {
     private readonly ApplicationDbContext _context;
+    private readonly IMapper _mapper;
 
-    public UserService(ApplicationDbContext context)
+    public UserService(ApplicationDbContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     public async Task<List<UserDto>> GetUsersAsync()
     {
         var users = await _context.Users.ToListAsync();
-        return users.Select(u => new UserDto { Id = u.Id, Name = u.Name }).ToList();
+        return users.Select(u => _mapper.Map<UserDto>(u)).ToList();
     }
 
     public async Task<UserDto> GetUserAsync(int userId)
     {
         var user = await _context.Users.FindAsync(userId);
-        return user != null ? new UserDto { Id = user.Id, Name = user.Name } : null;
+        var userDto = _mapper.Map<UserDto>(user);
+        return userDto;
     }
 
     public async Task<UserDto> CreateUserAsync(UserDto userDto)
     {
-        var user = new User { Name = userDto.Name };
+        
+        var user = _mapper.Map<User>(userDto);
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
-        return new UserDto { Id = user.Id, Name = user.Name };
+        return _mapper.Map<UserDto>(user);
     }
 
     public async Task<UserDto> UpdateUserAsync(int userId, UserDto userDto)
@@ -39,9 +44,8 @@ public class UserService : IUserService
         var user = await _context.Users.FindAsync(userId);
         if (user != null)
         {
-            user.Name = userDto.Name;
             await _context.SaveChangesAsync();
-            return new UserDto { Id = user.Id, Name = user.Name };
+            return _mapper.Map<UserDto>(user);
         }
         return null;
     }

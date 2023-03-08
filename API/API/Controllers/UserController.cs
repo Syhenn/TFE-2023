@@ -1,8 +1,8 @@
-﻿using APITEst.DTO;
-using APITEst.Services;
+﻿using API.DTO;
+using API.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace APITEst.Controllers;
+namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]

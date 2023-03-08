@@ -1,6 +1,6 @@
-﻿using APITEst.DTO;
+﻿using API.DTO;
 
-namespace APITEst.Services;
+namespace API.Services;
 
 public interface IUserService
 {

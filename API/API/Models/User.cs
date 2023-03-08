@@ -1,4 +1,4 @@
-﻿namespace APITEst.Models;
+﻿namespace API.Models;
 
 public class User
 {
@@ -9,5 +9,7 @@ public class User
     public string Email { get; set; }
     public string Password { get; set; }
     public string Age { get; set; }
+    
+    public ICollection<UserLangage> UserLangages { get; set; }
 
 }

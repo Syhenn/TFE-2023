@@ -30,6 +30,7 @@ public class UserController : ControllerBase
         {
             return NotFound();
         }
+
         return Ok(user);
     }
 
@@ -48,6 +49,7 @@ public class UserController : ControllerBase
         {
             return NotFound();
         }
+
         return Ok(updatedUser);
     }
 
@@ -56,5 +58,19 @@ public class UserController : ControllerBase
     {
         await _userService.DeleteUserAsync(userId);
         return NoContent();
+    }
+
+    [HttpGet("{userId}/langages")]
+    public async Task<ActionResult<IEnumerable<LangageDto>>> GetLangagesByUserId(int userId)
+    {
+        var user = await _userService.GetUserAsync(userId);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        var langages = await _userService.GetLangagesByUserAsync(user);
+        return Ok(langages);
+
     }
 }

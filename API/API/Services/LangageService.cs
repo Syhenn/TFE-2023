@@ -57,4 +57,19 @@ public class LangageService: ILangageService
             await _context.SaveChangesAsync();
         }
     }
+
+    public async Task<List<UserDto>> GetUserByLangageAsync(LangageDto langageDto)
+    {
+        var langage = await _context.Langages.Include(l => l.UserLangages)
+            .ThenInclude(ul => ul.Langage)
+            .FirstOrDefaultAsync(u => u.Id == langageDto.Id);
+        if (langage == null)
+        {
+            return null;
+        }
+
+        var langages = langage.UserLangages.Select(ul => ul.Langage).ToList();
+        return _mapper.Map<List<UserDto>>(langages);
+    }
+    
 }

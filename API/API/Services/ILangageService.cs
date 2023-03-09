@@ -9,4 +9,5 @@ public interface ILangageService
     Task<LangageDto> CreateLangageAsync(LangageDto langageDto);
     Task<LangageDto> UpdateLangageAsync(int langageId, LangageDto langageDto);
     Task DeleteLangageAsync(int langageId);
+    Task<List<UserDto>> GetUserByLangageAsync(LangageDto langageDto);
 }

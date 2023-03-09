@@ -54,5 +54,18 @@ public class LangageController : ControllerBase
         await _langageService.DeleteLangageAsync(langageId);
         return NoContent();
     }
+    [HttpGet("{userId}/langages")]
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetUserByLangageId(int userId)
+    {
+        var user = await _langageService.GetLangageAsync(userId);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        var langages = await _langageService.GetUserByLangageAsync(user);
+        return Ok(langages);
+
+    }
 
 }

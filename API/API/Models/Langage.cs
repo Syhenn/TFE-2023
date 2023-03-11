@@ -7,4 +7,6 @@ public class Langage
     public string Description { get; set; }
     
     public ICollection<UserLangage> UserLangages { get; set; }
+    public string CourseId { get; set; }
+    public Course Course { get; set; }
 }

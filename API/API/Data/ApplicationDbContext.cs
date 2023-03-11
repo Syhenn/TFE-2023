@@ -29,6 +29,10 @@ public class ApplicationDbContext :DbContext
             .HasOne(ul => ul.Langage)
             .WithMany(l => l.UserLangages)
             .HasForeignKey(ul => ul.LangageId);
+        modelBuilder.Entity<Langage>()
+            .HasOne(l => l.Course)
+            .WithOne(c => c.Langage)
+            .HasForeignKey<Course>(c => c.LangageId);
     }
     
 }

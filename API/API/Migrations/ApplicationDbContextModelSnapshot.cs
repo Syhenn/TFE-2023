@@ -21,6 +21,41 @@ namespace APITEst.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("API.Models.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DifficultyLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LangageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LangageId")
+                        .IsUnique();
+
+                    b.ToTable("Course");
+                });
+
             modelBuilder.Entity("API.Models.Langage", b =>
                 {
                     b.Property<int>("Id")
@@ -28,6 +63,10 @@ namespace APITEst.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CourseId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -94,6 +133,17 @@ namespace APITEst.Migrations
                     b.ToTable("UserLangage");
                 });
 
+            modelBuilder.Entity("API.Models.Course", b =>
+                {
+                    b.HasOne("API.Models.Langage", "Langage")
+                        .WithOne("Course")
+                        .HasForeignKey("API.Models.Course", "LangageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Langage");
+                });
+
             modelBuilder.Entity("API.Models.UserLangage", b =>
                 {
                     b.HasOne("API.Models.Langage", "Langage")
@@ -115,6 +165,9 @@ namespace APITEst.Migrations
 
             modelBuilder.Entity("API.Models.Langage", b =>
                 {
+                    b.Navigation("Course")
+                        .IsRequired();
+
                     b.Navigation("UserLangages");
                 });
 

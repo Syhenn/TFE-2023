@@ -1,9 +1,10 @@
 ﻿using API.DTO;
 using API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class UserController : ControllerBase
@@ -72,5 +73,16 @@ public class UserController : ControllerBase
         var langages = await _userService.GetLangagesByUserAsync(user);
         return Ok(langages);
 
+    }
+    [HttpPost("login")]
+    public async Task<ActionResult<string>> LoginAsync(string email, string password)
+    {
+        var user = await _userService.AuthenticateAsync(email, password);
+        if (user == null)
+        {
+            return Unauthorized();
+        }
+        var token = JwtHelper.GenerateJwtToken(user.Id.ToString(), user.Email);
+        return Ok(token);
     }
 }

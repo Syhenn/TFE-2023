@@ -11,5 +11,5 @@ public interface IUserService
     Task<UserDto> UpdateUserAsync(int userId, UserDto userDto);
     Task DeleteUserAsync(int userId);
     Task<List<LangageDto>> GetLangagesByUserAsync(UserDto userDto);
-    Task<UserDto> AuthenticateAsync(string email, string password);
+    Task<UserDto> Authenticate(string email, string password);
 }

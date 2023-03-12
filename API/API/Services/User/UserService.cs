@@ -71,13 +71,14 @@ public class UserService : IUserService
         var langages = user.UserLangages.Select(ul => ul.Langage).ToList();
         return _mapper.Map<List<LangageDto>>(langages);
     }
-    public async Task<UserDto> AuthenticateAsync(string email, string password)
+    public async Task<UserDto> Authenticate(string email, string password)
     {
-        var user = await _context.Users.SingleOrDefaultAsync(x => x.Email == email);
+        var user = await _context.Set<User>().SingleOrDefaultAsync(x => x.Email == email);
         if (user == null)
         {
             return null;
         }
-        return BCrypt.Net.BCrypt.HashPassword(password) == user.Password ? _mapper.Map<UserDto>(user) : null;
+        
+        return BCrypt.Net.BCrypt.Verify(password, user.Password) ? _mapper.Map<UserDto>(user) : null;
     }
 }

@@ -24,7 +24,7 @@ const Register = () => {
         age
       });
 
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

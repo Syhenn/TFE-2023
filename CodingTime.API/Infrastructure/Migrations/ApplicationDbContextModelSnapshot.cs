@@ -97,13 +97,13 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Application.Entities.UserLanguage", b =>
                 {
                     b.HasOne("Application.Entities.Language", "Langage")
-                        .WithMany()
+                        .WithMany("UserLanguages")
                         .HasForeignKey("LangageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Application.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("UserLanguages")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -111,6 +111,16 @@ namespace Infrastructure.Migrations
                     b.Navigation("Langage");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Application.Entities.Language", b =>
+                {
+                    b.Navigation("UserLanguages");
+                });
+
+            modelBuilder.Entity("Application.Entities.User", b =>
+                {
+                    b.Navigation("UserLanguages");
                 });
 #pragma warning restore 612, 618
         }

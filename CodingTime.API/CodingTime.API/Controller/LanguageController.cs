@@ -7,7 +7,7 @@ namespace CodingTime.API.Controller;
 
 [ApiController]
 [Route("[Controller]")]
-public class LanguageController
+public class LanguageController : ControllerBase
 {
     private readonly IMediator _mediator;
 
@@ -15,11 +15,28 @@ public class LanguageController
     {
         _mediator = mediator;
     }
-
-    [HttpPost]
-    public async Task<ActionResult<Language>> CreateLangage(Language langage)
+    [HttpGet]
+    public async Task<ActionResult<User>> GetLanguages()
     {
-        var resultCommand = await _mediator.Send(new CreateLanguageCommand(langage));
+        var commandResult = await _mediator.Send(new GetLanguageCommand(), new CancellationToken());
+        return Ok(commandResult);
+    }    
+    [HttpGet("{languageId}")]
+    public async Task<ActionResult<User>> GetLanguage(int  languageId)
+    {
+        var commandResult = await _mediator.Send(new GetLanguageByIdCommand(languageId), new CancellationToken());
+        return Ok(commandResult);
+    }
+    [HttpPost]
+    public async Task<ActionResult<Language>> CreateLanguage(Language language)
+    {
+        var resultCommand = await _mediator.Send(new CreateLanguageCommand(language));
         return resultCommand;
+    }
+    [HttpPut]
+    public async Task<ActionResult<Language>> DeleteLanguage(Language language)
+    {
+        var commandResult = await _mediator.Send(new DeleteLanguageCommand(language), new CancellationToken());
+        return Ok(commandResult);
     }
 }

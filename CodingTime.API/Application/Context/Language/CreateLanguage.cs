@@ -7,16 +7,16 @@ public record CreateLanguageCommand(Entities.Language Language) : IRequest<Entit
 
 public class CreateLanguageHandler : IRequestHandler<CreateLanguageCommand, Entities.Language>
 {
-    private readonly ILanguageRepositories _languageRepositories;
+    private readonly ILanguageRepository _languageRepository;
 
-    public CreateLanguageHandler(ILanguageRepositories languageRepositories)
+    public CreateLanguageHandler(ILanguageRepository languageRepository)
     {
-        _languageRepositories = languageRepositories;
+        _languageRepository = languageRepository;
     }
 
     public async Task<Entities.Language> Handle(CreateLanguageCommand command, CancellationToken cancellationToken)
     {
-        var resultCreate = await _languageRepositories.CreateLanguageAsync(command.Language);
+        var resultCreate = await _languageRepository.CreateLanguageAsync(command.Language);
         return resultCreate;
     }
 }

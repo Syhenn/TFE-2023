@@ -7,16 +7,16 @@ public record DeleteLanguageCommand(Entities.Language Language) : IRequest<Entit
 
 public class DeleteLanguageHandler : IRequestHandler<DeleteLanguageCommand, Entities.Language>
 {
-    private readonly ILanguageRepositories _languageRepositories;
+    private readonly ILanguageRepository _languageRepository;
 
-    public DeleteLanguageHandler(ILanguageRepositories languageRepositories)
+    public DeleteLanguageHandler(ILanguageRepository languageRepository)
     {
-        _languageRepositories = languageRepositories;
+        _languageRepository = languageRepository;
     }
 
     public async Task<Entities.Language> Handle(DeleteLanguageCommand command, CancellationToken cancellationToken)
     {
-        var resultCreate = await _languageRepositories.DeleteLanguageAsync(command.Language);
+        var resultCreate = await _languageRepository.DeleteLanguageAsync(command.Language);
         return resultCreate;
     }
 }

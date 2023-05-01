@@ -19,14 +19,14 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<UserLanguage>()
             .HasKey(ul => new { ul.UserId, ul.LangageId });
 
-        // modelBuilder.Entity<UserLanguage>()
-        //     .HasOne(ul => ul.User)
-        //     .WithMany(u => u.UserLanguages)
-        //     .HasForeignKey(ul => ul.UserId);
-        //
-        // modelBuilder.Entity<UserLanguage>()
-        //     .HasOne(ul => ul.Langage)
-        //     .WithMany(l => l.UserLanguages)
-        //     .HasForeignKey(ul => ul.LangageId);
+        modelBuilder.Entity<UserLanguage>()
+            .HasOne(ul => ul.User)
+            .WithMany(u => u.UserLanguages)
+            .HasForeignKey(ul => ul.UserId);
+        
+        modelBuilder.Entity<UserLanguage>()
+            .HasOne(ul => ul.Langage)
+            .WithMany(l => l.UserLanguages)
+            .HasForeignKey(ul => ul.LangageId);
     }
 }

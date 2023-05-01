@@ -1,4 +1,6 @@
-﻿namespace Application.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace Application.Entities;
 
 public class User
 {
@@ -9,5 +11,6 @@ public class User
     public string Email { get; set; }
     public string Password { get; set; }
     public string Age { get; set; }
-    // public List<UserLanguage>? UserLanguages { get; set; }
+
+    [JsonIgnore] public ICollection<UserLanguage> UserLanguages { get; set; } = new List<UserLanguage>();
 }

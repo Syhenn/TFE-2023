@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_01-05-23_20_10_[Changes]" date="1682964635783" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/shelf/Uncommitted_changes_before_Update_at_01-05-23_20_10_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 01-05-23 20:10 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="CodingTime.API/obj/Debug/net6.0/CodingTime.API.RazorAssemblyInfo.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/shelf/Uncommitted_changes_before_Update_at_01-05-23_20_10_[Changes]/CodingTime.API.RazorAssemblyInfo.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="CodingTime.API/obj/Debug/net6.0/CodingTime.API.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/shelf/Uncommitted_changes_before_Update_at_01-05-23_20_10_[Changes]/CodingTime.API.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="CodingTime.API/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/shelf/Uncommitted_changes_before_Update_at_01-05-23_20_10_[Changes]/project.nuget.cache" />
+  </binary>
+</changelist>

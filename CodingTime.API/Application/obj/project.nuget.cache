@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/rBeYUVGNtu2AHU01172jJRM/Az6MMvSXTe5PTCsNcwOex/jmihZ+MDImELC8SwYVX4XbIOAUM6u9hWxMlNtFg==",
+  "dgSpecHash": "knYymNpktIkbaunXuGkz+z2jFn9lX/d+S9DLw4kR1ChmmSrPWE5/FCbyTa+QfQkZdk7t6j1agpLt2X33g+a/ow==",
   "success": true,
   "projectFilePath": "C:\\Users\\sylva\\Desktop\\CodinTime\\TFE-2023\\CodingTime.API\\Application\\Application.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\sylva\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\mediatr\\7.0.0\\mediatr.7.0.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\7.0.0\\mediatr.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\sylva\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.16\\microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.0\\microsoft.data.sqlclient.5.1.0.nupkg.sha512",

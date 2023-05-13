@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BoceZiPCHYkYVxXETAhv7Y43zwE/Ble3LEaJkIyAQEswp6Kot14uJjrOoALUrckoEp39Y3ji8FYEQK2fWMVvLQ==",
+  "dgSpecHash": "bk0EoRV6qDgE6p4AZqjUwg/AEEZOzjtU03+p/3ShOO3xodR0SFVZG7PrHlFykJSlT0Wtycwv8NdoqeGwfr39LQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\sylva\\Desktop\\CodinTime\\TFE-2023\\CodingTime.API\\CodingTime.API\\CodingTime.API.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\sylva\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.16\\microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",

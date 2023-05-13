@@ -1,6 +1,10 @@
-﻿namespace Domain.Enum;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class UserRole
+namespace Domain.Enum;
+
+public enum UserRole
 {
-    
+    Student,
+    Teacher,
+    Administrator
 }

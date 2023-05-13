@@ -15,3 +15,5 @@ C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\Infrastructure\obj\Debu
 C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\Infrastructure\obj\Debug\net6.0\ref\Infrastructure.dll
 C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\Infrastructure\bin\Debug\net6.0\Infrastructure.runtimeconfig.json
 C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\Infrastructure\obj\Debug\net6.0\Infrastructure.genruntimeconfig.cache
+C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\Infrastructure\bin\Debug\net6.0\Domain.dll
+C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\Infrastructure\bin\Debug\net6.0\Domain.pdb

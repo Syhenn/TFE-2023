@@ -93,3 +93,8 @@ C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\CodingTime.API\bin\Debu
 C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\CodingTime.API\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\CodingTime.API\obj\Debug\net6.0\CodingTime.API.RazorAssemblyInfo.cache
 C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\CodingTime.API\obj\Debug\net6.0\CodingTime.API.RazorAssemblyInfo.cs
+C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\CodingTime.API\bin\Debug\net6.0\Domain.dll
+C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\CodingTime.API\bin\Debug\net6.0\Domain.pdb
+C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\CodingTime.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\CodingTime.API\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\CodingTime.API\bin\Debug\net6.0\OneOf.dll

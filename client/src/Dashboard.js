@@ -8,7 +8,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     if (!token) {
       navigate("/login");
       return;
@@ -18,25 +17,24 @@ const Dashboard = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get("/User");
+        const response = await axios.get("https://localhost:7227/User/current-user");
         setUserData(response.data);
       } catch (error) {
         console.error(error);
+        navigate("/login");
       }
     };
     fetchData();
   }, []);
 
+  if (userData === null) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div style={{ backgroundColor: "black", color: "white" }}>
-      {userData ? (
-        <div>
-          <h2>Welcome {userData.Name}</h2>
-          <p>Email: {userData.Email}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div>
+      <h1>Welcome, {userData.name}</h1>
+      <p>Email: {userData.email}</p>
     </div>
   );
 };

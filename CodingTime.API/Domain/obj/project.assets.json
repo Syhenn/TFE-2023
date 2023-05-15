@@ -81,6 +81,25 @@
           "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.16": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.10.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -1153,6 +1172,21 @@
         "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll",
         "mediatr.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
         "mediatr.extensions.microsoft.dependencyinjection.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.16": {
+      "sha512": "T4AkjPXOYDqDnfb8PRRHNbB2ozLg9J7CsRZ+jH1MfQGshkFosdwja9c4+QVbKm+1qeLPxul+3weSz+DEvFkA5w==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/6.0.16",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -2924,6 +2958,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "MediatR.Extensions.Microsoft.DependencyInjection >= 7.0.0",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.16",
       "Microsoft.EntityFrameworkCore >= 8.0.0-preview.3.23174.2",
       "Microsoft.EntityFrameworkCore.Abstractions >= 8.0.0-preview.3.23174.2",
       "Microsoft.EntityFrameworkCore.Analyzers >= 8.0.0-preview.3.23174.2",
@@ -2972,6 +3007,10 @@
           "MediatR.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[6.0.16, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",

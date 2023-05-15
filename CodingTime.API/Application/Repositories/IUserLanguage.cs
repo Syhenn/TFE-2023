@@ -4,5 +4,6 @@ namespace Application.Repositories;
 
 public interface IUserLanguageRepository
 {
-    Task<UserLanguage> CreateUserLanguage(UserLanguage userLanguage);
+    Task<UserLanguage> GetUserLanguageByIdAsync(int id);
+    Task<UserLanguage> CreateUserLanguageAsync(UserLanguage userLanguage);
 }

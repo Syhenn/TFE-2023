@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Navbar from '../src/component/Navbar';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,24 +20,27 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("https://localhost:7227/User/current-user");
-        setUserData(response.data);
+        const userLanguageResponse = await axios.put("https://localhost:7227/UserLanguage", {
+          userId : response.data.id
+        });
+        console.log(userLanguageResponse);
+        console.log(response.data.id);
       } catch (error) {
         console.error(error);
-        navigate("/login");
+        navigate("/");
       }
     };
     fetchData();
   }, []);
-
   if (userData === null) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <h1>Welcome, {userData.name}</h1>
-      <p>Email: {userData.email}</p>
-    </div>
+    <>
+    
+      <Navbar displayName={userData.displayName} />
+    </>
   );
 };
 

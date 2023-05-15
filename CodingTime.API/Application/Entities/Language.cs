@@ -8,4 +8,5 @@ public class Language
     public string Name { get; set; }
     public string Description { get; set; }
     [JsonIgnore] public ICollection<UserLanguage> UserLanguages { get; set; } = new List<UserLanguage>();
+    [JsonIgnore] public ICollection<Course> Courses { get; set; } = new List<Course>();
 }

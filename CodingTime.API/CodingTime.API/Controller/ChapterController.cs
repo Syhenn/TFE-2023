@@ -1,0 +1,31 @@
+﻿using Application.Context.Chapter;
+using Application.Entities;
+using Domain.Dtos;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace CodingTime.API.Controller;
+[ApiController]
+[Route("[Controller]")]
+public class ChapterController : ControllerBase
+{
+    private readonly IMediator _mediator;
+
+    public ChapterController(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<Chapter>> CreateChapter(ChapterDto chapterDto)
+    {
+        var commandResult = await _mediator.Send(new CreateChapterCommand(chapterDto));
+        return Ok(commandResult);
+    }
+    [HttpGet]
+    public async Task<ActionResult<Chapter>> GetChapters(int CourseId)
+    {
+        var commandResult = await _mediator.Send(new GetChapterByCourseCommand(CourseId));
+        return Ok(commandResult);
+    }
+}

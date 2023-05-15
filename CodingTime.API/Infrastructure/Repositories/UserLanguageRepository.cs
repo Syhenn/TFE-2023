@@ -1,6 +1,7 @@
 ﻿using Application.Entities;
 using Application.Repositories;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
@@ -15,9 +16,16 @@ public class UserLanguageRepository : IUserLanguageRepository
 
     public async Task<UserLanguage> GetUserLanguageByIdAsync(int id)
     {
-        return _context.UserLanguages.FirstOrDefault(x => x.LanguageId == id);
+        return await _context.UserLanguages.FirstOrDefaultAsync(x => x.LanguageId == id);
     }
-    
+
+    public async Task<List<UserLanguage>> GetLanguagesForUser(int userId)
+    {
+        return await _context.UserLanguages
+            .Include(x => x.Language)
+            .Where(x => x.UserId == userId)
+            .ToListAsync();
+    }
     public async Task<UserLanguage> CreateUserLanguageAsync(UserLanguage userLanguage)
     {
         _context.UserLanguages.Add(userLanguage);

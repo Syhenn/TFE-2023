@@ -16,10 +16,17 @@ public class UserLanguageController : ControllerBase
     {
         _mediator = mediator;
     }
+
+    [HttpPut]
+    public async Task<ActionResult<List<UserLanguage>>> GetUserLanguageForUser(int userId)
+    {
+        var commandResult = await _mediator.Send(new GetUserLanguageForUserCommand(userId));
+        return Ok(commandResult);
+    }
     [HttpPost]
     public async Task<ActionResult<UserLanguage>> CreateUserLanguage(UserLanguageDto userLanguageDto)
     {
         var commandResult = await _mediator.Send(new AddUserLanguageCommand(userLanguageDto));
         return Ok(commandResult);
-    } 
+    }
 }

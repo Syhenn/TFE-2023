@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import Register from "./User/Login/Register";
 import Login from './User/Login/Login';
 import Dashboard from './Dashboard';
+import Sandbox from "./Page/sandbox";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +14,7 @@ root.render(
     <Route path="/" element={<Login />}/>
     <Route path="register" element={<Register />} />
     <Route path="dashboard" element={<Dashboard />} />
+    <Route path="sandbox" element={<Sandbox />} />
   </Routes>
 </BrowserRouter>
 );

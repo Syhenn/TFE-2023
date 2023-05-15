@@ -1,7 +1,7 @@
 ﻿using Application.Repositories;
 using MediatR;
 
-namespace Application.Context.UserLanguage;
+namespace Application.Context.Language;
 
 public record GetLanguageByNameCommand(string name) : IRequest<Entities.Language>;
 public class GetLanguageByNameHandler : IRequestHandler<GetLanguageByNameCommand, Entities.Language>

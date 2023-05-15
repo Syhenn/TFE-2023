@@ -9,7 +9,7 @@ public record UserDto(
     string Email, 
     string Password,
     int Age,
-    UserRole UserRole,
+    UserRole? UserRole,
     int? Level,
     DateTime? CreatedAt,
     DateTime? UpdatedAt);

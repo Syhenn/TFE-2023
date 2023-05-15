@@ -14,9 +14,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
 builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserLanguageRepository, UserLanguageRepository>();
 builder.Services.AddControllers();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddMediatR(typeof(Application.Context.User.CreateUserHandler));
+builder.Services.AddMediatR(typeof(Application.Context.UserLanguage.AddUserLanguageHandler));
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>

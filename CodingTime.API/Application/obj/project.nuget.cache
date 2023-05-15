@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "knYymNpktIkbaunXuGkz+z2jFn9lX/d+S9DLw4kR1ChmmSrPWE5/FCbyTa+QfQkZdk7t6j1agpLt2X33g+a/ow==",
+  "dgSpecHash": "cOl5pIntiq4eLTCzfHStJpc4sIXJEYtW3W5jUVQ7uovSNCU/YVQKH8isOiR2wTjoY66Yt1zmQql34w+uVZrkMQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\sylva\\Desktop\\CodinTime\\TFE-2023\\CodingTime.API\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sylva\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\sylva\\.nuget\\packages\\fluentvalidation\\11.5.2\\fluentvalidation.11.5.2.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\mediatr\\7.0.0\\mediatr.7.0.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\7.0.0\\mediatr.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
@@ -43,6 +44,7 @@
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\sylva\\.nuget\\packages\\oneof\\3.0.243\\oneof.3.0.243.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",
     "C:\\Users\\sylva\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

@@ -40,7 +40,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Langages");
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("Application.Entities.User", b =>
@@ -83,7 +83,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserRole")
+                    b.Property<int?>("UserRole")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -96,21 +96,21 @@ namespace Infrastructure.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LangageId")
+                    b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "LangageId");
+                    b.HasKey("UserId", "LanguageId");
 
-                    b.HasIndex("LangageId");
+                    b.HasIndex("LanguageId");
 
-                    b.ToTable("UserLanguage");
+                    b.ToTable("UserLanguages");
                 });
 
             modelBuilder.Entity("Application.Entities.UserLanguage", b =>
                 {
-                    b.HasOne("Application.Entities.Language", "Langage")
+                    b.HasOne("Application.Entities.Language", "Language")
                         .WithMany("UserLanguages")
-                        .HasForeignKey("LangageId")
+                        .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -120,7 +120,7 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Langage");
+                    b.Navigation("Language");
 
                     b.Navigation("User");
                 });

@@ -36,7 +36,25 @@ public class UserController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<User>> CreateUser(UserDto userDto)
     {
-        var commandResult = await _mediator.Send(new CreateUserCommand(userDto), new CancellationToken());
+        var commandResult = await _mediator.Send(new CreateUserCommand(userDto));
+        return Ok(commandResult);
+    }
+    [HttpPost]
+    [Route("verify-user-data")]
+    public async Task<ActionResult> VerifyUserData(UserDto userDto)
+    {
+        var commandResult = await _mediator.Send(new UserDataValidationCommand(userDto));
+        if (commandResult.IsT0)
+            return Ok(commandResult.AsT0);
+        return Content(commandResult.AsT1.Message);
+
+    }
+
+    [HttpPut]
+    [Route("userLanguage")]
+    public async Task<ActionResult<List<UserLanguage>>> GetUserLanguage(int userId)
+    {
+        var commandResult = await _mediator.Send(new GetUserLanguageCommand(userId));
         return Ok(commandResult);
     }
     [Authorize]

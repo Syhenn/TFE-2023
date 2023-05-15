@@ -1,6 +1,3 @@
 ﻿namespace Domain.Dtos;
 
-public class UserLanguageDto
-{
-    
-}
+public record UserLanguageDto(int UserId, int LanguageId);

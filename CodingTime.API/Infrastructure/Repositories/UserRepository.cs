@@ -29,6 +29,12 @@ public class UserRepository : IUserRepository
     {
         return _context.Users.FirstOrDefault(x => x.Email == email);
     }
+
+    public async Task<User> GetUserByDisplayNameAsync(string displayName)
+    {
+        return _context.Users.FirstOrDefault(x => x.DisplayName == displayName);
+    }
+    
     public async Task<User> CreateUserAsync(User user)
     {
         _context.Users.Add(user);
@@ -41,5 +47,19 @@ public class UserRepository : IUserRepository
         _context.Remove(user);
         _context.SaveChangesAsync();
         return user;
+    }
+    public async Task<List<Language>> GetUserLanguagesAsync(int userId)
+    {
+        var user = await _context.Users
+            .Include(u => u.UserLanguages)
+            .ThenInclude(ul => ul.Language)
+            .FirstOrDefaultAsync(u => u.Id == userId);
+
+        if (user != null)
+        {
+            return user.UserLanguages.Select(ul => ul.Language).ToList();
+        }
+
+        return new List<Language>();
     }
 }

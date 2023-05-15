@@ -16,12 +16,15 @@ public class LanguageRepository : ILanguageRepository
 
     public async Task<List<Language>> GetLanguagesAsync()
     {
-        return await _context.Langages.ToListAsync();
+        return await _context.Languages.ToListAsync();
     }
-
+    public async Task<Language?> GetLanguageByNameAsync(string name)
+    {
+        return _context.Languages.FirstOrDefault(x => x.Name == name);
+    }
     public async Task<Language> GetLanguageAsync(int langageId)
     {
-        return _context.Langages
+        return _context.Languages
             .FirstOrDefault(x => x.Id == langageId);
     }
 

@@ -14,3 +14,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.input-log-form{
+  @apply mt-1 block w-full rounded-md border-gray-300 shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+}
+.label-t-input-form{
+  @apply block text-sm font-medium text-gray-700
+}

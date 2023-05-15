@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { FiUserPlus } from 'react-icons/fi';
 import './Register.css'; 
 
 const Register = () => {
@@ -16,8 +17,8 @@ const Register = () => {
   const [age, setAge] = useState("");
   const [userRole, setUserRole] = useState('');
   const [step, setStep] = useState(1);
+  const [selectedLanguage, setSelectedLanguage] = useState('');
   const navigate = useNavigate();
-  const id = 0;
   const userRolesMap = {
     Student: 0,
     Teacher: 1,
@@ -59,18 +60,45 @@ const Register = () => {
       toast.error(errorMessage, { autoClose: 5000 });
       return;
     }
-    if (password != repassword) {
+    if (password !== repassword) {
       let errorMessage = "Les mots de passes ne correspondent pas."
       toast.error(errorMessage, { autoClose: 5000 });
       return;
     }
-    if (userRole && step == 2){
+    
+    if(step === 1){
+      VerifyUserData();
+    }
+    if (userRole && step === 2){
+      nextStep();
+      toast.error("Aucun rôle n'a été séléctionné.", { autoClose: 5000 })
+    }if(step === 3){
       Register();
     }
-    nextStep();
   };
+  const VerifyUserData= async (e) => {
+    const userDto = {
+      name,
+      surname,
+      displayName,
+      email,
+      password,
+      age
+    };
+    try {
+      const response = await axios.post("https://localhost:7227/User/verify-user-data", userDto);
+      const result = response.data;
+      if (result) {
+        nextStep();
+      }else {
+        toast.error(result, {autoClose: 5000})
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
   const Register = async (e) => {
-    const selectedUserRole = parseInt(userRole, 10);
     const userDto = {
       name,
       surname,
@@ -80,11 +108,21 @@ const Register = () => {
       age,
       userRole: userRolesMap[userRole]
     };
-    console.log(userDto);
     try {
-      await axios.post("https://localhost:7227/User", userDto);
-
-      navigate("/");
+      var user = await axios.post("https://localhost:7227/User", userDto);
+      var userId = user.data.id;
+      var language= await axios.get("https://localhost:7227/Language/UserLanguage", {
+        params:{
+          name : selectedLanguage
+        }
+      });
+      var languageId = language.data.id;
+      var userLanguageDto = {
+        userId,
+        languageId
+      };
+      await axios.post("https://localhost:7227/UserLanguage", userLanguageDto);
+     navigate("/");
     } catch (error) {
       console.error(error);
     }
@@ -102,7 +140,7 @@ const Register = () => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="name" className="label-t-input-form">
             Nom
           </label>
           <input
@@ -111,11 +149,11 @@ const Register = () => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 outline-none shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="input-log-form"
           />
         </div>
           <div>
-            <label htmlFor="surname" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="surname" className="label-t-input-form">
               Prénom
             </label>
             <input
@@ -124,11 +162,11 @@ const Register = () => {
               type="text"
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="input-log-form"
             />
           </div>
           <div>
-            <label htmlFor="displayName" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="displayName" className="label-t-input-form">
               Pseudo
             </label>
             <input
@@ -137,11 +175,11 @@ const Register = () => {
               type="text"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="input-log-form"
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="email" className="label-t-input-form">
               Email
             </label>
             <input
@@ -150,11 +188,11 @@ const Register = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="input-log-form"
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="label-t-input-form">
               Mot de passe
             </label>
             <input
@@ -163,11 +201,11 @@ const Register = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="input-log-form"
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="label-t-input-form">
               Retapez le mot de passe
             </label>
             <input
@@ -176,12 +214,12 @@ const Register = () => {
               type="password"
               value={repassword}
               onChange={(e) => setRepassword(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="input-log-form"
             />
           </div>
           <div>
-            <label htmlFor="age" className="block text-sm font-medium text-gray-700">
-              Age
+            <label htmlFor="age" className="label-t-input-form">
+              Tu as quel âge ?
             </label>
             <input
               id="age"
@@ -218,7 +256,7 @@ const Register = () => {
         <div className="text-sm text-center">
           <p className="text-gray-600">Tu as déjà un compte ?</p>
           <a
-            href="#"
+            href="/"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
             Se connecter
@@ -256,17 +294,73 @@ const Register = () => {
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                S'enregistrer
+                Continuer
               </button>
               </div>
           </form>
         </div>
       </div>
       )}
+      {step === 3 && (
+        <div className="flex justify-center items-center min-h-screen bg-gray-50">
+  <div className="max-w-md w-full space-y-8">
+    <div>
+      <h2 className="text-center text-3xl font-extrabold text-gray-900">Quel langage souhaites-tu apprendre pour commencer ?</h2>
+    </div>
+    <form className="mt-8 space-y-8" onSubmit={handleSubmit}>
+      <div className="flex justify-around items-center">
+        <div className="w-1/2 p-4 bg-white rounded-lg shadow-md">
+          <input
+            type="radio"
+            id="c++"
+            name="language"
+            value="c++"
+            className="sr-only"
+            checked={selectedLanguage === 'c++'}
+            onChange={() => setSelectedLanguage('c++')}
+          />
+          <label htmlFor="c++" className={`flex items-center p-4 cursor-pointer`}>
+            <span className={`flex-shrink-0 w-6 h-6 rounded-full border-2 border-indigo-500 mr-4 ${selectedLanguage === 'c++' ? 'bg-indigo-500' : ''}`}></span>
+            <span className="text-lg font-medium text-gray-900">C++</span>
+          </label>
+          <p className="text-gray-500">Utilisé dans les domaines tels que les systèmes embarqués, les jeux vidéo, la robotique, etc.</p>
+        </div>
+        <div className="w-1/2 p-4 bg-white rounded-lg shadow-md m-2">
+          <input
+            type="radio"
+            id="java"
+            name="language"
+            value="java"
+            className="sr-only"
+            checked={selectedLanguage === 'java'}
+            onChange={() => setSelectedLanguage('java')}
+          />
+          <label htmlFor="java" className={`flex items-center p-4 cursor-pointer`}>
+            <span className={`flex-shrink-0 w-6 h-6 rounded-full border-2 border-indigo-500 mr-4 ${selectedLanguage === 'java' ? 'bg-indigo-500' : ''}`}></span>
+            <span className="text-lg font-medium text-gray-900">Java</span>
+          </label>
+          <p className="text-gray-500">Utilisé dans les domaines tels que le développement d'applications Android, les services bancaires, etc.</p>
+        </div>
+      </div>
+      <button
+        className="group relative w-1/2 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >Choisir plus tard</button>
+      <button
+        type="submit"
+        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+         <FiUserPlus className="mr-2" />
+        S'enregistrer
+      </button>
+    </form>
+  </div>
+</div>
+      )}
       </div>
       </CSSTransition>
     </TransitionGroup>
     <ToastContainer />
+
     </>
   );
 };

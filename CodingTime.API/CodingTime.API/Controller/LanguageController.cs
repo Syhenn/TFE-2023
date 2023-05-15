@@ -1,4 +1,5 @@
 ﻿using Application.Context.Language;
+using Application.Context.UserLanguage;
 using Application.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,13 @@ public class LanguageController : ControllerBase
         var commandResult = await _mediator.Send(new GetLanguageCommand(), new CancellationToken());
         return Ok(commandResult);
     }    
+    [HttpGet]
+    [Route("UserLanguage")]
+    public async Task<ActionResult<UserLanguage>> GetLanguageByName(string name)
+    {
+        var commandResult = await _mediator.Send(new GetLanguageByNameCommand(name));
+        return Ok(commandResult);
+    }
     [HttpGet("{languageId}")]
     public async Task<ActionResult<User>> GetLanguage(int  languageId)
     {

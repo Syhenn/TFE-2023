@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import Register from "./User/Login/Register";
 import Login from './User/Login/Login';
 import Dashboard from './Dashboard';
-import Sandbox from "./Page/sandbox";
+import Sandbox from "../src/Page/sandbox";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

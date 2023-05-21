@@ -6,8 +6,8 @@ const Navbar = ({ displayName }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Logique de déconnexion
-    navigate('/login'); // Rediriger vers la page de connexion après la déconnexion
+    localStorage.removeItem("token");
+    navigate('/'); // Rediriger vers la page de connexion après la déconnexion
   };
 
   return (

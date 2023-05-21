@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from '../src/component/Navbar';
+import Navbar from '../src/component/navbar';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
@@ -11,7 +11,7 @@ const Dashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/login");
+      navigate("/");
       return;
     }
 
@@ -23,8 +23,7 @@ const Dashboard = () => {
         const userLanguageResponse = await axios.put("https://localhost:7227/UserLanguage", {
           userId : response.data.id
         });
-        console.log(userLanguageResponse);
-        console.log(response.data.id);
+        setUserData(response.data);
       } catch (error) {
         console.error(error);
         navigate("/");
@@ -38,7 +37,6 @@ const Dashboard = () => {
 
   return (
     <>
-    
       <Navbar displayName={userData.displayName} />
     </>
   );

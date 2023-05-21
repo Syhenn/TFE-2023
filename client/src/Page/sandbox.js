@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../component/Navbar';
+import Navbar from '../component/navbar';
 import axios from 'axios';
 import { Sandpack } from "@codesandbox/sandpack-react";
 const Sandbox = () => {

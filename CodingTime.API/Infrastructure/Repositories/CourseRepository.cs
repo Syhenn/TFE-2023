@@ -25,6 +25,11 @@ public class CourseRepository : ICourseRepository
             .FirstOrDefault(x => x.Id == courseId);
     }
 
+    public async Task<Course> GetCourseByLanguage(int languageId)
+    {
+        return _context.Courses.FirstOrDefault(x => x.LanguageId == languageId);
+    }
+
     public async Task<Course> CreateCourseAsync(Course course)
     {
         _context.Courses.Add(course);

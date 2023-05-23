@@ -24,6 +24,11 @@ public class LessonRepository : ILessonRepository
         return await _context.Lessons.FirstOrDefaultAsync(x => x.Id == lessonId);
     }
 
+    public async Task<List<Lesson>> GetLessonByChapter(int chapterId)
+    {
+        return await _context.Lessons.Where(x => x.ChapterId == chapterId).ToListAsync();
+    }
+
     public async Task<Lesson> CreateLesson(Lesson lesson)
     {
         _context.Lessons.Add(lesson);

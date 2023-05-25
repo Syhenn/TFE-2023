@@ -15,6 +15,13 @@ public class CourseController : ControllerBase
     {
         _mediator = mediator;
     }
+
+    [HttpGet]
+    public async Task<ActionResult<Course>> GetCourseByLanguage(int languageId)
+    {
+        var commandResult = await _mediator.Send(new GetCourseByLanguageCommand(languageId));
+        return commandResult;
+    }
     [HttpPost]
     public async Task<ActionResult<Course>> CreateCourse(CourseDto courseDto)
     {

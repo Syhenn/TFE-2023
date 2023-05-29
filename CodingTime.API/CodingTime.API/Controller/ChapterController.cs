@@ -15,17 +15,24 @@ public class ChapterController : ControllerBase
     {
         _mediator = mediator;
     }
-
-    [HttpPost]
-    public async Task<ActionResult<Chapter>> CreateChapter(ChapterDto chapterDto)
-    {
-        var commandResult = await _mediator.Send(new CreateChapterCommand(chapterDto));
-        return Ok(commandResult);
-    }
     [HttpGet]
     public async Task<ActionResult<Chapter>> GetChapters(int CourseId)
     {
         var commandResult = await _mediator.Send(new GetChapterByCourseCommand(CourseId));
+        return Ok(commandResult);
+    }
+    [HttpGet]
+    [Route("getByName")]
+    public async Task<ActionResult<Chapter>> GetChapterByName(string chapterName)
+    {
+        var commandResult = await _mediator.Send(new GetChapterByNameCommand(chapterName));
+        return Ok(commandResult);
+    }
+    
+    [HttpPost]
+    public async Task<ActionResult<Chapter>> CreateChapter(ChapterDto chapterDto)
+    {
+        var commandResult = await _mediator.Send(new CreateChapterCommand(chapterDto));
         return Ok(commandResult);
     }
 }

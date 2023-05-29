@@ -30,12 +30,10 @@ public class TokenController : ControllerBase
 
             if (user != null)
             {
-                //create claims details based on the user information
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Email, user.Email)
-                    // Add more claims as needed
                 };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));

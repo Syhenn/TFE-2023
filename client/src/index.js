@@ -2,10 +2,11 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Register from "./User/Login/Register";
-import Login from './User/Login/Login';
-import Dashboard from './Dashboard';
-import Sandbox from "../src/Page/sandbox";
+import Register from "./Page/Register";
+import Login from './Page/Login';
+import Dashboard from './Page/Dashboard';
+import Sandbox from "./Page/Sandbox";
+import ManageInterface from "./component/ManageInterface";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +16,7 @@ root.render(
     <Route path="register" element={<Register />} />
     <Route path="dashboard" element={<Dashboard />} />
     <Route path="sandbox" element={<Sandbox />} />
+    <Route path='manageInterface' element={<ManageInterface />}/>
   </Routes>
 </BrowserRouter>
 );

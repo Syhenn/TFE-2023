@@ -25,7 +25,8 @@ public class CreateLessonHandler : IRequestHandler<CreateLessonCommand, Entities
             Chapter = chapter,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
-            Title = command.Lesson.Title
+            Title = command.Lesson.Title,
+            HtmlContent = command.Lesson.HtmlContent
         };
         var requestResult = await _lessonRepository.CreateLesson(lesson);
         return requestResult;

@@ -1,21 +1,62 @@
-import axios from "axios";
-import React, {useState, useEffect} from "react";
+import React from "react";
+import { fetchData, postData } from "../api/apiService";
+import { useEffect } from "react";
+import { useState } from "react";
+import {HiOutlineChevronDoubleDown} from "react-icons/hi2";
+const Progress = ({courseId}) => {
+    const [chapters, setChapters] = useState(null);
+    const [lessons, setLessons] = useState({});
 
-const Progress = (courseId) => {
-    const [courseChapter, setCourseChapter] = useState(null);
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const fetchDataChapter = async () => {
-            try {
-                const response = await axios.get("https://localhost:7227/Chapter", courseId);
-                setCourseChapter = response.data;
-                console.log(courseChapter);
-            }catch(e){
-                console.log(e);
-            }
-        }
-    })
+        const fetchChapters = async () => {
+          try {
+            const chaptersResponse = await fetchData('/Chapter', { courseId });
+            setChapters(chaptersResponse);
+    
+            chaptersResponse.forEach(async (chapter) => {
+              const lessonsResponse = await fetchData('/Lesson/getByChapter', { chapterId: chapter.id });
+              setLessons((prevLessons) => ({
+                ...prevLessons,
+                [chapter.id]: lessonsResponse,
+              }));
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        };
+    
+        fetchChapters();
+      }, [courseId]);
+    return(
+        <div className="container w-screen h-screen flex justify-center">
+        {chapters !== null && (
+          <>
+            {chapters.map((chapter, index) => (
+              <div className="flex flex-col items-center" key={index}>
+                <div className="m-10 text-3xl font-extrabold text-gray-900">
+                  <h1>{chapter.title}</h1>
+                </div>
+                {lessons[chapter.id] !== undefined && (
+                  <>
+                    {lessons[chapter.id].map((lesson, indexLesson) => (
+                        <div className="w-full flex flex-col justify-center items-center" key={indexLesson}>
+                            <button className="w-24 h-24 flex justify-center items-center rounded-full bg-indigo-600 text-white text-5xl italic shadow-xl transform scale-105 perspective-100">
+                            {lesson.id}
+                            </button>
+                            <div className="m-5 text-2xl font-bold text-gray-900">
+                                <h1>{lesson.title}</h1>
+                            </div>
+                            <HiOutlineChevronDoubleDown className="text-5xl m-7"/>
+                        </div>
+                    ))}
+                  </>
+                )}
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+    )
 }
 
 export default Progress;

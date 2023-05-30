@@ -1,3 +1,3 @@
 ﻿namespace Domain.Dtos;
 
-public record LessonDto(string Title, int ChapterId);
+public record LessonDto(string Title, int ChapterId, string HtmlContent);

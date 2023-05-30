@@ -6,6 +6,7 @@ public interface IChapterRepository
 {
     Task<List<Chapter>> GetChaptersAsync();
     Task<List<Chapter>> GetChapterByCourse(int courseId);
+    Task<Chapter> GetChapterByName(string chapterName);
     Task<Chapter> GetChapterAsync(int chapterId);
     Task<Chapter> CreateChapter(Chapter chapter);
     Task<Chapter> DeleteChapter(Chapter chapter);

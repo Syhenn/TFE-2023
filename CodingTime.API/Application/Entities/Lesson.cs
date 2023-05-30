@@ -6,6 +6,8 @@ public class Lesson
     public string Title { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
+    
+    public string HtmlContent { get; set; }
 
     public int ChapterId { get; set; }
     public Chapter Chapter { get; set; }

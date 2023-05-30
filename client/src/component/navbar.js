@@ -7,7 +7,7 @@ const Navbar = ({ displayName }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate('/'); // Rediriger vers la page de connexion après la déconnexion
+    navigate('/');
   };
 
   return (

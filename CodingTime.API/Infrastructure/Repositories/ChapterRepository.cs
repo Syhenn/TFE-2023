@@ -19,6 +19,11 @@ public class ChapterRepository : IChapterRepository
         return await _context.Chapters.ToListAsync();
     }
 
+    public async Task<Chapter> GetChapterByName(string chapterName)
+    {
+        return await _context.Chapters.FirstOrDefaultAsync(x => x.Title == chapterName);
+    }
+
     public async Task<Chapter> GetChapterAsync(int chapterId)
     {
         var test = await _context.Chapters

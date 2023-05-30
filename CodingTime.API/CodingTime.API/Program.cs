@@ -18,6 +18,7 @@ builder.Services.AddScoped<IUserLanguageRepository, UserLanguageRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
 builder.Services.AddScoped<ILessonRepository, LessonRepository>();
+builder.Services.AddScoped<IFriendsRepository, FriendsRepository>();
 builder.Services.AddControllers();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddMediatR(typeof(Application.Context.User.CreateUserHandler));

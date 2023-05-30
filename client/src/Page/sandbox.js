@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../component/navbar';
+import Navbar from '../component/Navbar';
 import axios from 'axios';
 import { Sandpack } from "@codesandbox/sandpack-react";
+import {postData, fetchData} from '../api/apiService'
 const Sandbox = () => {
     const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Sandbox = () => {
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (!token) {
-          navigate("/login");
+          navigate("/");
           return;
         }
     
@@ -18,7 +19,7 @@ const Sandbox = () => {
     
         const fetchData = async () => {
           try {
-            const response = await axios.get("https://localhost:7227/User/current-user");
+            const response = await fetchData('/User/current-user');
             setUserData(response.data);
           } catch (error) {
             console.error(error);
@@ -27,10 +28,6 @@ const Sandbox = () => {
         };
         fetchData();
       }, []);
-    
-      if (userData === null) {
-        return <div>Loading...</div>;
-      }
       const handleLanguageChange = (language) => {
         setSelectedLanguage(language);
       };

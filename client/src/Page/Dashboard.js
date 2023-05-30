@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from '../src/component/navbar';
+import Navbar from '../component/Navbar';
 import { useNavigate } from 'react-router-dom';
-import ManageInterface from "./component/manageInterface";
-import Progress from "./component/progress";
+import {fetchData} from '../api/apiService'
+import Progress from "../component/Progress";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
@@ -23,9 +23,9 @@ const Dashboard = () => {
   
     const fetchDataUser = async () => {
       try {
-        const response = await axios.get("https://localhost:7227/User/current-user");
-        setUserData(response.data);
-        fetchDataUserLanguage(response.data.id);
+        const response = await fetchData('/User/current-user');
+        setUserData(response);
+        fetchDataUserLanguage(response.id);
       } catch (error) {
         console.error(error);
         navigate("/");
@@ -34,29 +34,28 @@ const Dashboard = () => {
   
     const fetchDataUserLanguage = async (userId) => {
       try {
-        const userLanguageResponse = await axios.get("https://localhost:7227/UserLanguage", {
-          params: {
-            userId: userId
-          }
-        });
-        setUserLanguage(userLanguageResponse.data);
-        setSelectedLanguage(userLanguageResponse.data[0].id)
-
+        const userLanguageResponse = await fetchData("/UserLanguage", {userId});
+        setUserLanguage(userLanguageResponse);
+        setSelectedLanguage(userLanguageResponse[0].id)
+        fetchCourseDefault(userLanguageResponse[0].languageId)
       } catch (error) {
         console.log(error);
       }
     };
-
+    const fetchCourseDefault = async (languageId) => {
+      try {
+        const courseResponse = await fetchData("/Course/getByLanguage",{languageId});
+        setCourse(courseResponse);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     fetchDataUser();
   }, []);
   const fetchDataCourse = async (languageId) => {
     try {
-      const courseResponse = await axios.get("https://localhost:7227/Course", {
-        params: {
-          languageId: languageId
-        }
-      });
-      setCourse(courseResponse.data);
+      const courseResponse = await fetchData("/Course/getByLanguage",{languageId});
+      setCourse(courseResponse);
     } catch (error) {
       console.log(error);
     }
@@ -65,26 +64,29 @@ const Dashboard = () => {
     setSelectedLanguage(languageId);
     fetchDataCourse(languageId)
   };
-  if (userData === null || userLanguage === null) {
-    return <div>Loading...</div>;
+  const handleManageClick = () => {
+    navigate('/ManageInterface')
   }
-
   return (
     <>
-      <Navbar displayName={userData.displayName} />
+    {userData!=null &&(<Navbar displayName={userData.displayName} />)}
+      <button onClick={handleManageClick}>Ajouter de la matière</button>
       <div className="container mx-auto mt-8">
-        <Progress chapterId={1} />
         <div className="flex justify-center mb-4">
+          {selectedLanguage !== null && (
           <select
             className="block appearance-none bg-white border border-indigo-600 rounded-md px-4 py-2 text-indigo-600 focus:outline-none focus:border-indigo-400"
             value={selectedLanguage}
             onChange={(e) => handleLanguageChange(e.target.value)}
-          >
+          >{userLanguage!=null &&(
+            <>
             {userLanguage.map((language) => (
               <option key={language.language.id} value={language.language.id}>{language.language.name}</option>
-            ))}
+            ))}</>)}
           </select>
+          )}
         </div>
+        {course!=null &&(<Progress courseId={course.id} />)}
       </div>
     </>
   );

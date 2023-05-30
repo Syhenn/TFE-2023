@@ -16,6 +16,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<Chapter> Chapters { get; set; }
     public DbSet<Lesson> Lessons { get; set; }
 
+    public DbSet<Friends> UsersRelation { get; set; }
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>().HasKey(u => u.Id);
@@ -26,6 +29,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Course>().HasKey(c => c.Id);
         modelBuilder.Entity<Chapter>().HasKey(ch => ch.Id);
         modelBuilder.Entity<Lesson>().HasKey(l => l.Id);
+        modelBuilder.Entity<Friends>().HasKey(f => f.id);
         modelBuilder.Entity<UserLanguage>()
             .HasOne(ul => ul.User)
             .WithMany(u => u.UserLanguages)

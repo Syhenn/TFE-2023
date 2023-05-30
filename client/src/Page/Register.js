@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {postData, fetchData} from '../api/apiService'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { FiUserPlus } from 'react-icons/fi';
-import './Register.css'; 
+import '../styleComponent/LoginRegisterStyle.css'
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -71,7 +71,6 @@ const Register = () => {
     }
     if (userRole && step === 2){
       nextStep();
-      toast.error("Aucun rôle n'a été séléctionné.", { autoClose: 5000 })
     }if(step === 3){
       Register();
     }
@@ -86,12 +85,11 @@ const Register = () => {
       age
     };
     try {
-      const response = await axios.post("https://localhost:7227/User/verify-user-data", userDto);
-      const result = response.data;
-      if (result) {
+      const response = await postData("/User/verify-user-data", userDto);
+      if (response) {
         nextStep();
       }else {
-        toast.error(result, {autoClose: 5000})
+        toast.error(response, {autoClose: 5000})
         return;
       }
     } catch (error) {
@@ -109,19 +107,15 @@ const Register = () => {
       userRole: userRolesMap[userRole]
     };
     try {
-      var user = await axios.post("https://localhost:7227/User", userDto);
-      var userId = user.data.id;
-      var language= await axios.get("https://localhost:7227/Language/UserLanguage", {
-        params:{
-          name : selectedLanguage
-        }
-      });
-      var languageId = language.data.id;
+      var user = await postData("/User", userDto);
+      var userId = user.id;
+      var language= await fetchData("/Language/UserLanguage", {selectedLanguage});
+      var languageId = language.id;
       var userLanguageDto = {
         userId,
         languageId
       };
-      await axios.post("https://localhost:7227/UserLanguage", userLanguageDto);
+      await postData("/UserLanguage", userLanguageDto);
      navigate("/");
     } catch (error) {
       console.error(error);
@@ -360,7 +354,11 @@ const Register = () => {
       </CSSTransition>
     </TransitionGroup>
     <ToastContainer />
-
+    <div className="custom-shape-divider-bottom-1685095547">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
+      </svg>
+    </div>
     </>
   );
 };

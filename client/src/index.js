@@ -5,9 +5,10 @@ import reportWebVitals from './reportWebVitals';
 import Register from "./Page/Register";
 import Login from './Page/Login';
 import Dashboard from './Page/Dashboard';
-import Sandbox from './Page/Sandbox';
 import ManageInterface from "./component/ManageInterface";
+import Sandbox from './Page/Sandbox';
 import CourseForm from "./Page/CourseForm";
+import LessonPage from "./component/LessonPage";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -18,6 +19,7 @@ root.render(
     <Route path="sandbox" element={<Sandbox />} />
     <Route path='manageInterface' element={<ManageInterface />}/>
     <Route path='courseForm' element={<CourseForm />}/>
+    <Route path='lesson/:lessonId' element={<LessonPage/>}/>
   </Routes>
 </BrowserRouter>
 );

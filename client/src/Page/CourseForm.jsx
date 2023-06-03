@@ -11,6 +11,7 @@ const CourseForm = () => {
   const [courses, setCourses] = useState({});
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedChapter, setSelectedChapter] = useState(null);
+  const [chapterTitle, setChapterTitle] = useState(null);
   const [chapters, setChapters] = useState({});
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
@@ -71,14 +72,13 @@ const CourseForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     var selectedChapterId = selectedChapter.id;
-    let title = "Test";
+    let title = chapterTitle;
     var chapterDto = {
       Title : title,
       ChapterId : selectedChapterId,
       HtmlContent : lessonContent
     }
-    console.log(chapterDto);
-    var response = postData('/Lesson', chapterDto);
+    postData('/Lesson', chapterDto);
   };
   const handleCourseChange = async (course) => {
     setSelectedCourse(course)
@@ -143,6 +143,10 @@ const CourseForm = () => {
               ))}
             </select>
           )}
+        </div>
+        <div>
+          <p className='label-t-input-form'>Titre du cours a créer :  </p>
+          <input type='text' className='input-log-form' onChange={(e) => setChapterTitle(e.target.value)}></input>
         </div>
         <div className='flex justify-center flex-col'>
           <div className='w-full text-center mb-10 text-3xl font-extrabold text-gray-900'>

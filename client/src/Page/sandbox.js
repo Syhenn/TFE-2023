@@ -17,13 +17,13 @@ const Sandbox = () => {
     
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     
-        const fetchData = async () => {
+        const fetchDataUser = async () => {
           try {
             const response = await fetchData('/User/current-user');
-            setUserData(response.data);
+            setUserData(response);
           } catch (error) {
             console.error(error);
-            navigate("/login");
+            navigate("/");
           }
         };
         fetchData();
@@ -40,7 +40,7 @@ const Sandbox = () => {
 
   return (
     <>
-      <Navbar displayName={userData.displayName} />
+    {userData!=null &&(<Navbar displayName={userData.displayName} />)}
       <div className="container mx-auto mt-8">
         <div className="flex justify-center space-x-4 mb-4">
           <ul className="flex space-x-4">

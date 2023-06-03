@@ -67,10 +67,14 @@ const Dashboard = () => {
   const handleManageClick = () => {
     navigate('/ManageInterface')
   }
+  const handleCourseClick = () => {
+    navigate('/courseForm');
+  }
   return (
     <>
     {userData!=null &&(<Navbar displayName={userData.displayName} />)}
       <button onClick={handleManageClick}>Ajouter de la matière</button>
+      <button onClick={handleCourseClick}>Ajouter un cours</button>
       <div className="container mx-auto mt-8">
         <div className="flex justify-center mb-4">
           {selectedLanguage !== null && (

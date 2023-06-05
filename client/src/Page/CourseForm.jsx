@@ -88,32 +88,6 @@ const CourseForm = () => {
     setSelectedChapter(chapter);
   }
 
-  const editorConfiguration = {
-    toolbar: [
-      'heading',
-      '|',
-      'bold',
-      'italic',
-      'underline',
-      'strikethrough',
-      '|',
-      'alignment',
-      '|',
-      'bulletedList',
-      'numberedList',
-      '|',
-      'indent',
-      'outdent',
-      '|',
-      'link',
-      'blockQuote',
-      'code',
-      '|',
-      'undo',
-      'redo',
-    ],
-  };
-
   return (
     <div>
       {userData != null && <Navbar displayName={userData.displayName} />}
@@ -156,7 +130,6 @@ const CourseForm = () => {
             <CKEditor
               editor={ClassicEditor}
               data={lessonContent}
-              config={editorConfiguration}
               onChange={handleEditorChange}
             />
             <div className='w-full mt-20 flex justify-center items-center'>

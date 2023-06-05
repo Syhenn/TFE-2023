@@ -2,10 +2,13 @@ import React from "react";
 import { fetchData, postData } from "../api/apiService";
 import { useEffect } from "react";
 import { useState } from "react";
+
 import {HiOutlineChevronDoubleDown} from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 const Progress = ({courseId}) => {
     const [chapters, setChapters] = useState(null);
     const [lessons, setLessons] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchChapters = async () => {
@@ -27,6 +30,9 @@ const Progress = ({courseId}) => {
     
         fetchChapters();
       }, [courseId]);
+      const navigateToLesson = (lessonId) => {
+        navigate(`/lesson/${lessonId}`);
+      };
     return(
         <div className="container w-screen h-screen flex justify-center">
         {chapters !== null && (
@@ -40,7 +46,7 @@ const Progress = ({courseId}) => {
                   <>
                     {lessons[chapter.id].map((lesson, indexLesson) => (
                         <div className="w-full flex flex-col justify-center items-center" key={indexLesson}>
-                            <button className="w-24 h-24 flex justify-center items-center rounded-full bg-indigo-600 text-white text-5xl italic shadow-xl transform scale-105 perspective-100">
+                            <button onClick={() => navigateToLesson(lesson.id)} className="w-24 h-24 flex justify-center items-center rounded-full bg-indigo-600 text-white text-5xl italic shadow-xl transform scale-105 perspective-100">
                             {lesson.id}
                             </button>
                             <div className="m-5 text-2xl font-bold text-gray-900">

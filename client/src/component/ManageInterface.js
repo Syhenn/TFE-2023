@@ -78,6 +78,9 @@ const ManageInterface = () => {
       console.log(error);
     }
   }
+  const handleAddCours = async () => {
+    navigate('/courseForm');
+  }
   return(
     <>
       {userData && <Navbar displayName={userData.displayName} />}
@@ -95,6 +98,14 @@ const ManageInterface = () => {
                   onClick={handleAddLanguage}
                 >
                   Ajouter un nouveau langage
+                </button>
+                <button
+                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
+                  onClick={handleAddCours}
+                >
+                  Ajouter un nouveau cours
                 </button>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 

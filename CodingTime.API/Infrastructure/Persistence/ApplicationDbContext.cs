@@ -15,10 +15,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Course> Courses { get; set; }
     public DbSet<Chapter> Chapters { get; set; }
     public DbSet<Lesson> Lessons { get; set; }
-
-    public DbSet<Friends> UsersRelation { get; set; }
     public DbSet<Quiz> Quizzes { get; set; }
-
+    public DbSet<QuizAnswer> QuizAnswers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,17 +24,18 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Language>().HasKey(l => l.Id);
         modelBuilder.Entity<UserLanguage>()
             .HasKey(ul => new { ul.UserId, ul.LanguageId });
-            
+
         modelBuilder.Entity<Course>().HasKey(c => c.Id);
         modelBuilder.Entity<Chapter>().HasKey(ch => ch.Id);
         modelBuilder.Entity<Lesson>().HasKey(l => l.Id);
-        modelBuilder.Entity<Friends>().HasKey(f => f.id);
         modelBuilder.Entity<Quiz>().HasKey(q => q.Id);
+        modelBuilder.Entity<QuizAnswer>().HasKey(qa => qa.Id);
+
         modelBuilder.Entity<UserLanguage>()
             .HasOne(ul => ul.User)
             .WithMany(u => u.UserLanguages)
             .HasForeignKey(ul => ul.UserId);
-            
+
         modelBuilder.Entity<UserLanguage>()
             .HasOne(ul => ul.Language)
             .WithMany(l => l.UserLanguages)
@@ -54,5 +53,20 @@ public class ApplicationDbContext : DbContext
             .HasMany(ch => ch.Lessons)
             .WithOne(l => l.Chapter)
             .HasForeignKey(l => l.ChapterId);
+
+        modelBuilder.Entity<QuizAnswer>()
+            .HasOne(qa => qa.User)
+            .WithMany(u => u.QuizAnswers)
+            .HasForeignKey(qa => qa.UserId);
+
+        modelBuilder.Entity<QuizAnswer>()
+            .HasOne(qa => qa.Quiz)
+            .WithMany(q => q.QuizAnswers)
+            .HasForeignKey(qa => qa.QuizId);
+        
+        modelBuilder.Entity<Quiz>()
+            .HasOne(q => q.Course)
+            .WithMany(l => l.Quizzes)
+            .HasForeignKey(q => q.CourseId);
     }
 }

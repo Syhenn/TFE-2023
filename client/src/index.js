@@ -9,7 +9,9 @@ import ManageInterface from "./component/ManageInterface";
 import Sandbox from './Page/Sandbox';
 import CourseForm from "./Page/CourseForm";
 import QuestionCreationPage from './component/SurveyComponent';
-import QuizPage from "./Page/Quiz";
+import LessonPage from './Page/LessonPage';
+import QuizPage from "./Page/QuizPage";
+import QuizChoice from "./Page/QuizChoice";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -20,8 +22,10 @@ root.render(
     <Route path="sandbox" element={<Sandbox />} />
     <Route path='manageInterface' element={<ManageInterface />}/>
     <Route path='courseForm' element={<CourseForm />}/>
+    <Route path='lesson/:lessonId' element={<LessonPage />}/>
     <Route path='quizCreate' element={<QuestionCreationPage />}/>
-    <Route path='quizPage/:quizId' element={<QuizPage /> }/>
+    <Route path='quizChoice' element={<QuizChoice />}/>
+    <Route path='quizPage/:courseId' element={<QuizPage /> }/>
   </Routes>
 </BrowserRouter>
 );

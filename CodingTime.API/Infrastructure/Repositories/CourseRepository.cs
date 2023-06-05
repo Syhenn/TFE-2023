@@ -19,7 +19,7 @@ public class CourseRepository : ICourseRepository
         return await _context.Courses.ToListAsync();
     }
 
-    public async  Task<Course> GetCourseAsync(int courseId)
+    public async Task<Course> GetCourseAsync(int courseId)
     {
         return _context.Courses
             .FirstOrDefault(x => x.Id == courseId);
@@ -30,9 +30,19 @@ public class CourseRepository : ICourseRepository
         return await _context.Courses
             .FirstOrDefaultAsync(x => x.Title == courseName);
     }
+
     public async Task<Course> GetCourseByLanguage(int languageId)
     {
         return _context.Courses.FirstOrDefault(x => x.LanguageId == languageId);
+    }
+
+    public async Task<Course> GetCourseIncluded(int courseId)
+    {
+        var course =  await _context.Courses
+            .Include(c => c.Quizzes)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(c => c.Id == courseId);
+        return course;
     }
 
     public async Task<Course> CreateCourseAsync(Course course)

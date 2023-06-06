@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230523141945_BMX")]
-    partial class BMX
+    [Migration("20230606160640_updated")]
+    partial class updated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,23 +24,6 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Application.Entities.BMX", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bmxes");
-                });
 
             modelBuilder.Entity("Application.Entities.Chapter", b =>
                 {
@@ -62,6 +45,29 @@ namespace Infrastructure.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Chapters");
+                });
+
+            modelBuilder.Entity("Application.Entities.CompletedLesson", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CompletedLessons");
                 });
 
             modelBuilder.Entity("Application.Entities.Course", b =>
@@ -111,6 +117,30 @@ namespace Infrastructure.Migrations
                     b.ToTable("Languages");
                 });
 
+            modelBuilder.Entity("Application.Entities.LeaderboardEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("LastUpdateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Points")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LeaderboardEntry");
+                });
+
             modelBuilder.Entity("Application.Entities.Lesson", b =>
                 {
                     b.Property<int>("Id")
@@ -125,6 +155,10 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("HtmlContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -137,6 +171,73 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ChapterId");
 
                     b.ToTable("Lessons");
+                });
+
+            modelBuilder.Entity("Application.Entities.Quiz", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CorrectAnswer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FakeAnswerOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FakeAnswerTwo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Quizzes");
+                });
+
+            modelBuilder.Entity("Application.Entities.QuizAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AnsweredAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Points")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuizId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuizId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("QuizAnswers");
                 });
 
             modelBuilder.Entity("Application.Entities.User", b =>
@@ -213,6 +314,25 @@ namespace Infrastructure.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("Application.Entities.CompletedLesson", b =>
+                {
+                    b.HasOne("Application.Entities.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.Entities.User", "User")
+                        .WithMany("CompletedLessons")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lesson");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Application.Entities.Course", b =>
                 {
                     b.HasOne("Application.Entities.Language", "Language")
@@ -224,6 +344,17 @@ namespace Infrastructure.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("Application.Entities.LeaderboardEntry", b =>
+                {
+                    b.HasOne("Application.Entities.User", "User")
+                        .WithMany("LeaderboardEntries")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Application.Entities.Lesson", b =>
                 {
                     b.HasOne("Application.Entities.Chapter", "Chapter")
@@ -233,6 +364,36 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Chapter");
+                });
+
+            modelBuilder.Entity("Application.Entities.Quiz", b =>
+                {
+                    b.HasOne("Application.Entities.Course", "Course")
+                        .WithMany("Quizzes")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Application.Entities.QuizAnswer", b =>
+                {
+                    b.HasOne("Application.Entities.Quiz", "Quiz")
+                        .WithMany("QuizAnswers")
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.Entities.User", "User")
+                        .WithMany("QuizAnswers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quiz");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Application.Entities.UserLanguage", b =>
@@ -262,6 +423,8 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Application.Entities.Course", b =>
                 {
                     b.Navigation("Chapters");
+
+                    b.Navigation("Quizzes");
                 });
 
             modelBuilder.Entity("Application.Entities.Language", b =>
@@ -271,8 +434,19 @@ namespace Infrastructure.Migrations
                     b.Navigation("UserLanguages");
                 });
 
+            modelBuilder.Entity("Application.Entities.Quiz", b =>
+                {
+                    b.Navigation("QuizAnswers");
+                });
+
             modelBuilder.Entity("Application.Entities.User", b =>
                 {
+                    b.Navigation("CompletedLessons");
+
+                    b.Navigation("LeaderboardEntries");
+
+                    b.Navigation("QuizAnswers");
+
                     b.Navigation("UserLanguages");
                 });
 #pragma warning restore 612, 618

@@ -12,6 +12,7 @@ import QuestionCreationPage from './component/SurveyComponent';
 import LessonPage from './Page/LessonPage';
 import QuizPage from "./Page/QuizPage";
 import QuizChoice from "./Page/QuizChoice";
+import CreateQuizForm from "./Page/CreateQuizForm";
 import LeaderBoard from "./Page/Leaderboard";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +29,7 @@ root.render(
     <Route path='quizChoice' element={<QuizChoice />}/>
     <Route path='quizPage/:courseId' element={<QuizPage /> }/>
     <Route path='leaderboard' element={<LeaderBoard /> }/>
+    <Route path='createQuizForm' element={<CreateQuizForm/> }/>
   </Routes>
 </BrowserRouter>
 );

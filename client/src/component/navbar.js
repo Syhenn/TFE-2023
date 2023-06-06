@@ -64,14 +64,14 @@ const Navbar = ({ displayName , role}) => {
                 className="block px-4 py-2 text-gray-800 hover:bg-indigo-200 flex items-center"
               >
                 <AiOutlineHome className="text-lg mr-2" />
-                <span>Quiz Choice</span>
+                <span>Quiz</span>
               </Link>
               <Link
                 to="/leaderboard"
                 className="block px-4 py-2 text-gray-800 hover:bg-indigo-200 flex items-center"
               >
                 <AiOutlineTrophy className="text-lg mr-2" />
-                <span>Leaderboard</span>
+                <span>Classement</span>
               </Link>
               {role > 0 && (
                 <Link

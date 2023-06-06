@@ -50,7 +50,7 @@ public class UserController : ControllerBase
 
     }
 
-    [HttpPut]
+    [HttpGet]
     [Route("userLanguage")]
     public async Task<ActionResult<List<UserLanguage>>> GetUserLanguage(int userId)
     {
@@ -59,9 +59,9 @@ public class UserController : ControllerBase
     }
     [Authorize]
     [HttpPut]
-    public async Task<ActionResult<User>> DeleteUser(User user)
+    public async Task<ActionResult<User>> DeleteUser(string email)
     {
-        var commandResult = await _mediator.Send(new DeleteUserCommand(user), new CancellationToken());
+        var commandResult = await _mediator.Send(new DeleteUserCommand(email));
         return Ok(commandResult);
     }
     [Authorize]

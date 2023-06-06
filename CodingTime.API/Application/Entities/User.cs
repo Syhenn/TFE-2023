@@ -20,4 +20,5 @@ public class User
     [JsonIgnore] public ICollection<UserLanguage> UserLanguages { get; set; } = new List<UserLanguage>();
     [JsonIgnore] public ICollection<QuizAnswer> QuizAnswers { get; set; } = new List<QuizAnswer>();
     [JsonIgnore] public ICollection<LeaderboardEntry> LeaderboardEntries { get; set; } = new List<LeaderboardEntry>();
+    [JsonIgnore]public ICollection<CompletedLesson> CompletedLessons { get; set; } = new List<CompletedLesson>();
 }

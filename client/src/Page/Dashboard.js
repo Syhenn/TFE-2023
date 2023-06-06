@@ -64,9 +64,6 @@ const Dashboard = () => {
     setSelectedLanguage(languageId);
     fetchDataCourse(languageId)
   };
-  const handleManageClick = () => {
-    navigate('/ManageInterface')
-  }
   return (
     <>
     {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
@@ -85,7 +82,7 @@ const Dashboard = () => {
           </select>
           )}
         </div>
-        {course!=null &&(<Progress courseId={course.id} />)}
+        {course!=null &&(<Progress courseId={course.id} userId={userData.id} />)}
       </div>
     </>
   );

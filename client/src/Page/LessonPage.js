@@ -24,6 +24,7 @@ const LessonPage = () => {
           navigate("/");
         }
       };
+
       const fetchLesson = async () => {
         console.log(lessonId);
         try {

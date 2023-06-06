@@ -44,6 +44,29 @@ namespace Infrastructure.Migrations
                     b.ToTable("Chapters");
                 });
 
+            modelBuilder.Entity("Application.Entities.CompletedLesson", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CompletedLessons");
+                });
+
             modelBuilder.Entity("Application.Entities.Course", b =>
                 {
                     b.Property<int>("Id")
@@ -288,6 +311,25 @@ namespace Infrastructure.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("Application.Entities.CompletedLesson", b =>
+                {
+                    b.HasOne("Application.Entities.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.Entities.User", "User")
+                        .WithMany("CompletedLessons")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lesson");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Application.Entities.Course", b =>
                 {
                     b.HasOne("Application.Entities.Language", "Language")
@@ -396,6 +438,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Application.Entities.User", b =>
                 {
+                    b.Navigation("CompletedLessons");
+
                     b.Navigation("LeaderboardEntries");
 
                     b.Navigation("QuizAnswers");

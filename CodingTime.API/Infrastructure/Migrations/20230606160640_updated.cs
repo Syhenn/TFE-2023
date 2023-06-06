@@ -6,20 +6,43 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class QuizAnswer : Migration
+    public partial class updated : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "UsersRelation");
-
-            migrationBuilder.AddColumn<int>(
-                name: "CourseId",
-                table: "Quizzes",
-                type: "int",
+            migrationBuilder.AddColumn<string>(
+                name: "HtmlContent",
+                table: "Lessons",
+                type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: "");
+
+            migrationBuilder.CreateTable(
+                name: "CompletedLessons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    LessonId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompletedLessons", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CompletedLessons_Lessons_LessonId",
+                        column: x => x.LessonId,
+                        principalTable: "Lessons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CompletedLessons_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "LeaderboardEntry",
@@ -38,6 +61,30 @@ namespace Infrastructure.Migrations
                         name: "FK_LeaderboardEntry_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Quizzes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FakeAnswerOne = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FakeAnswerTwo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CorrectAnswer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Quizzes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Quizzes_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -71,9 +118,14 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Quizzes_CourseId",
-                table: "Quizzes",
-                column: "CourseId");
+                name: "IX_CompletedLessons_LessonId",
+                table: "CompletedLessons",
+                column: "LessonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CompletedLessons_UserId",
+                table: "CompletedLessons",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LeaderboardEntry_UserId",
@@ -90,21 +142,17 @@ namespace Infrastructure.Migrations
                 table: "QuizAnswers",
                 column: "UserId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Quizzes_Courses_CourseId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Quizzes_CourseId",
                 table: "Quizzes",
-                column: "CourseId",
-                principalTable: "Courses",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                column: "CourseId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Quizzes_Courses_CourseId",
-                table: "Quizzes");
+            migrationBuilder.DropTable(
+                name: "CompletedLessons");
 
             migrationBuilder.DropTable(
                 name: "LeaderboardEntry");
@@ -112,27 +160,12 @@ namespace Infrastructure.Migrations
             migrationBuilder.DropTable(
                 name: "QuizAnswers");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Quizzes_CourseId",
-                table: "Quizzes");
+            migrationBuilder.DropTable(
+                name: "Quizzes");
 
             migrationBuilder.DropColumn(
-                name: "CourseId",
-                table: "Quizzes");
-
-            migrationBuilder.CreateTable(
-                name: "UsersRelation",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    friendId = table.Column<int>(type: "int", nullable: false),
-                    userId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UsersRelation", x => x.id);
-                });
+                name: "HtmlContent",
+                table: "Lessons");
         }
     }
 }

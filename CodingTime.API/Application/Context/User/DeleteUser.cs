@@ -2,7 +2,7 @@
 using MediatR;
 
 namespace Application.Context.User;
-public record DeleteUserCommand(Entities.User User) : IRequest<Entities.User>;
+public record DeleteUserCommand(string email) : IRequest<Entities.User>;
 public class DeleteUserHandler : IRequestHandler<DeleteUserCommand, Entities.User>
 {
     private readonly IUserRepository _userRepository;
@@ -15,7 +15,8 @@ public class DeleteUserHandler : IRequestHandler<DeleteUserCommand, Entities.Use
 
     public async Task<Entities.User> Handle(DeleteUserCommand command, CancellationToken cancellationToken)
     {
-        var resultCreate = await _userRepository.DeleteUserAsync(command.User);
+        var user = await _userRepository.GetUserByMailAsync(command.email);
+        var resultCreate = await _userRepository.DeleteUserAsync(user);
         return resultCreate;
     }
 }

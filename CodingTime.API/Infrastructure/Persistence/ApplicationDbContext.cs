@@ -17,6 +17,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Lesson> Lessons { get; set; }
     public DbSet<Quiz> Quizzes { get; set; }
     public DbSet<QuizAnswer> QuizAnswers { get; set; }
+    public DbSet<CompletedLesson> CompletedLessons { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -30,6 +31,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Lesson>().HasKey(l => l.Id);
         modelBuilder.Entity<Quiz>().HasKey(q => q.Id);
         modelBuilder.Entity<QuizAnswer>().HasKey(qa => qa.Id);
+        modelBuilder.Entity<CompletedLesson>().HasKey(cl => cl.Id);
 
         modelBuilder.Entity<UserLanguage>()
             .HasOne(ul => ul.User)
@@ -44,6 +46,16 @@ public class ApplicationDbContext : DbContext
             .HasMany(c => c.Courses)
             .WithOne(l => l.Language)
             .HasForeignKey(l => l.LanguageId);
+
+        modelBuilder.Entity<CompletedLesson>()
+            .HasOne(cl => cl.User)
+            .WithMany(u => u.CompletedLessons)
+            .HasForeignKey(cl => cl.UserId);
+
+        modelBuilder.Entity<CompletedLesson>()
+            .HasOne(cl => cl.Lesson)
+            .WithMany()
+            .HasForeignKey(cl => cl.LessonId);
 
         modelBuilder.Entity<Course>()
             .HasMany(c => c.Chapters)

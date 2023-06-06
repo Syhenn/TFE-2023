@@ -60,8 +60,8 @@ const LeaderBoard = () => {
       <div className="container mx-auto mt-8">
         <div className="flex items-center justify-center mb-4">
           <h2 className="text-2xl font-semibold mr-2">
-            <GiPodiumWinner className="inline-block mr-2 text-xl text-yellow-500" />
-            Leaderboard
+            <GiPodiumWinner className="inline-block mr-2 text-4xl text-yellow-500" />
+            Classement général
           </h2>
         </div>
         <table className="min-w-full divide-y divide-gray-200">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../component/Navbar';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchData } from '../api/apiService';
+import { fetchData, postData } from '../api/apiService';
 import * as Survey from 'survey-react';
 import 'survey-react/survey.css';
 
@@ -10,6 +10,8 @@ const QuizPage = () => {
   const { courseId } = useParams();
   const [userData, setUserData] = useState(null);
   const [quizData, setQuizData] = useState([]);
+  const [totalScore, setTotalScore] = useState(0);
+  const [quizCompletedMessage, setQuizCompletedMessage] = useState('');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [quizDataForm, setQuizDataForm] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
@@ -38,7 +40,7 @@ const QuizPage = () => {
         const quizzesResponse = await fetchData(`/Course/getIncluded`, { courseId: courseId });
         console.log(quizzesResponse);
         setQuizData(quizzesResponse.quizzes);
-        startTimer(120); // Start the timer for the first question (120 seconds)
+        startTimer(120);
       } catch (error) {
         console.log(error);
       }
@@ -57,26 +59,44 @@ const QuizPage = () => {
 
     setTimeout(() => {
       clearInterval(intervalId);
-      handleNextQuestion(); // Move to the next question when the time expires
+      handleNextQuestion();
     }, timeLimitInSeconds * 1000);
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = (survey) => {
+    const quiz = quizData[currentQuestionIndex];
+    const userAnswer = survey.valuesHash[quiz.name];
+    const correctAnswer = quiz.correctAnswer;
+    const points = userAnswer === correctAnswer ? 15 : 0;
+  
+    const updatedTotalScore = totalScore + points;
+    setTotalScore(updatedTotalScore);
+  
+    const quizAnswerDto = {
+      UserId: userData.id,
+      QuizId: quiz.id,
+      Points: points,
+    };
+  
+    try {
+      postData('/QuizAnswer', quizAnswerDto);
+    } catch (error) {
+      console.log(error);
+    }
+  
     setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-    // Perform any additional actions when moving to the next question
   };
+  
 
   const handleOnComplete = (survey) => {
-    // Process the user's response for the current question
     if (currentQuestionIndex === quizData.length - 1) {
-      // Last question, quiz completed
-      console.log('Quiz completed!');
-      // Perform actions for quiz completion, e.g., calculate points
+      const scoreMessage = `Quiz terminé! Votre score est de ${totalScore} points`;
+      setQuizCompletedMessage(scoreMessage);
     } else {
-      // Move to the next question
-      handleNextQuestion();
+      handleNextQuestion(survey);
     }
   };
+  
 
   const generateQuizDataForm = (quizData) => {
     const choices = [
@@ -85,6 +105,7 @@ const QuizPage = () => {
       quizData.correctAnswer
     ];
     choices.sort(() => 0.5 - Math.random());
+  
     const quizDataJson = {
       id: quizData.id,
       name: quizData.name,
@@ -98,26 +119,43 @@ const QuizPage = () => {
         },
       ],
     };
+  
     setQuizDataForm(quizDataJson);
   };
+  
 
   useEffect(() => {
     if (quizData.length > 0 && currentQuestionIndex < quizData.length) {
       generateQuizDataForm(quizData[currentQuestionIndex]);
     }
   }, [quizData, currentQuestionIndex]);
-
+  const handleToDashboard =() => {
+    navigate('/dashboard');
+  }
   return (
     <>
-      {userData != null && <Navbar displayName={userData.displayName} />}
+      {userData != null && <Navbar displayName={userData.displayName} role={userData.userRole} />}
       <div className="container mx-auto mt-8">
         {quizDataForm != null && (
           <>
-            <h2>Temps restant: {timeLeft} secondes</h2>
-            <Survey.Survey
-              json={quizDataForm}
-              onComplete={handleOnComplete}
-            />
+            {quizCompletedMessage ? (
+              <div className="text-center flex justify-center flex-col items-center">
+                <h2 className="text-3xl font-bold mb-5">{quizCompletedMessage}</h2>
+                <button
+                  className="group relative w-1/2 flex justify-center py-2 px-4 border 
+                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
+                  onClick={handleToDashboard}
+                >
+                  Revenir à l'accueil
+                </button>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-2xl mb-5">Temps restant: {timeLeft} secondes</h2>
+                <Survey.Survey json={quizDataForm} onComplete={handleOnComplete} />
+              </>
+            )}
           </>
         )}
       </div>

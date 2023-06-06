@@ -40,7 +40,7 @@ const LessonPage = () => {
 
   return (
     <div>
-      {userData!=null &&(<Navbar displayName={userData.displayName} />)}
+    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
       {lesson != null &&(
         <div>
 

@@ -5,13 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import Register from "./Page/Register";
 import Login from './Page/Login';
 import Dashboard from './Page/Dashboard';
-import ManageInterface from "./component/ManageInterface";
+import ManageInterface from "./Page/ManageInterface";
 import Sandbox from './Page/Sandbox';
 import CourseForm from "./Page/CourseForm";
 import QuestionCreationPage from './component/SurveyComponent';
 import LessonPage from './Page/LessonPage';
 import QuizPage from "./Page/QuizPage";
 import QuizChoice from "./Page/QuizChoice";
+import LeaderBoard from "./Page/Leaderboard";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -26,6 +27,7 @@ root.render(
     <Route path='quizCreate' element={<QuestionCreationPage />}/>
     <Route path='quizChoice' element={<QuizChoice />}/>
     <Route path='quizPage/:courseId' element={<QuizPage /> }/>
+    <Route path='leaderboard' element={<LeaderBoard /> }/>
   </Routes>
 </BrowserRouter>
 );

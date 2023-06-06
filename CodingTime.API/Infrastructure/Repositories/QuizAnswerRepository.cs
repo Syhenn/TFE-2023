@@ -28,6 +28,8 @@ public class QuizAnswerRepository : IQuizAnswerRepository
 
     public async Task<List<QuizAnswer>> GetQuizAnswers()
     {
-        return await _context.QuizAnswers.ToListAsync();
+        return await _context.QuizAnswers
+            .Include(x => x.User)
+            .ToListAsync();
     }
 }

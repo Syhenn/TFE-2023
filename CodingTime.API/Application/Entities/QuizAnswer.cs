@@ -1,4 +1,6 @@
-﻿namespace Application.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace Application.Entities;
 
 public class QuizAnswer
 {
@@ -9,5 +11,5 @@ public class QuizAnswer
     public DateTime AnsweredAt { get; set; }
 
     public User User { get; set; }
-    public Quiz Quiz { get; set; }
+    [JsonIgnore] public Quiz Quiz { get; set; }
 }

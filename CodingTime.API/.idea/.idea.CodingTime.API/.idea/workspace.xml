@@ -6,83 +6,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="939fd523-186c-49c1-9345-6f427a25233e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Application/Context/Course/GetCourseIncluded.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/Context/QuizAnswer/CreateQuizAnswer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/Entities/LeaderBoardEntry.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/Entities/QuizAnswer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/Repositories/IQuizAnswerRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CodingTime.API/Controller/QuizAnswerController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Dtos/QuizAnswerDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230605094236_QuizAnswer.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230605094236_QuizAnswer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Repositories/QuizAnswerRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Context/QuizAnswer/GetQuizAnswer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Context/Quiz/CreateQuiz.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Context/Quiz/CreateQuiz.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Entities/Course.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Entities/Course.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Entities/Friends.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/Entities/Quiz.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Entities/Quiz.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Entities/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Repositories/ICourseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Repositories/ICourseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Repositories/IFriendsRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Entities/QuizAnswer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Entities/QuizAnswer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Domain.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/ref/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/ref/Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/refint/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/refint/Application.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodingTime.API/Controller/CourseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/Controller/CourseController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodingTime.API/Controller/FriendsController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodingTime.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/Controller/QuizAnswerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/Controller/QuizAnswerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/Controller/TokenController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/Controller/TokenController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/CodingTime.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/CodingTime.API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/CodingTime.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/CodingTime.API.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Domain.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Infrastructure.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/ref/CodingTime.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/ref/CodingTime.API.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/refint/CodingTime.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/refint/CodingTime.API.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Dtos/QuizDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Dtos/QuizDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/bin/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/bin/Debug/net6.0/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/bin/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/bin/Debug/net6.0/Domain.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/ref/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/ref/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/refint/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/refint/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Persistence/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Persistence/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Repositories/CourseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Repositories/CourseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Repositories/FriendsRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Repositories/QuizRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Repositories/QuizRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Repositories/QuizAnswerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Repositories/QuizAnswerRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Application.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Domain.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Domain.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Infrastructure.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/ref/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/ref/Infrastructure.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/refint/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/refint/Infrastructure.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/Page/Quiz.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/component/LessonPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/CourseForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/CourseForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/QuizPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/QuizPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/component/ManageInterface.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/component/ManageInterface.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,27 +83,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.32087228",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.32087228&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\sylva\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\sylva\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\sylva\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\sylva\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\sylva\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\sylva\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.CodingTime.API">
     <configuration name="CodingTime.API" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/CodingTime.API/CodingTime.API.csproj" />
@@ -199,7 +156,9 @@
       <workItem from="1685287988125" duration="2233000" />
       <workItem from="1685349477822" duration="5783000" />
       <workItem from="1685876757427" duration="9413000" />
-      <workItem from="1685957138446" duration="4113000" />
+      <workItem from="1685957138446" duration="6445000" />
+      <workItem from="1686002725128" duration="2026000" />
+      <workItem from="1686040691602" duration="2022000" />
     </task>
     <task id="LOCAL-00001" summary="Clean Architecture Setup">
       <created>1682953273429</created>
@@ -272,37 +231,5 @@
     <MESSAGE value="CourseDesign" />
     <MESSAGE value="Visuel Changes" />
     <option name="LAST_COMMIT_MESSAGE" value="Visuel Changes" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Infrastructure/Repositories/CourseRepository.cs</url>
-          <line>43</line>
-          <properties documentPath="C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\Infrastructure\Repositories\CourseRepository.cs" initialLine="43" containingFunctionPresentation="method 'GetCourseIncluded'">
-            <startOffsets>
-              <option value="1205" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1219" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CodingTime.API/Controller/CourseController.cs</url>
-          <line>43</line>
-          <properties documentPath="C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\CodingTime.API\Controller\CourseController.cs" initialLine="43" containingFunctionPresentation="method 'GetCourseIncluded'">
-            <startOffsets>
-              <option value="1275" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1300" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -12,5 +12,5 @@ public class Quiz
     public string CorrectAnswer { get; set; } 
     public int CourseId { get; set; } 
     [JsonIgnore]public Course Course { get; set; }
-    public ICollection<QuizAnswer> QuizAnswers { get; set; } = new List<QuizAnswer>();
+    [JsonIgnore]public ICollection<QuizAnswer> QuizAnswers { get; set; } = new List<QuizAnswer>();
 }

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiCode, FiUser, FiLogOut, FiList } from 'react-icons/fi';
+import { FiCode, FiUser, FiLogOut, FiList, FiSettings  } from 'react-icons/fi';
 import { AiOutlineHome, AiOutlineTrophy } from 'react-icons/ai';
 
-const Navbar = ({ displayName }) => {
+const Navbar = ({ displayName , role}) => {
   const navigate = useNavigate();
   const [showToolsDropdown, setShowToolsDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -25,11 +25,10 @@ const Navbar = ({ displayName }) => {
 
   useEffect(() => {
     document.addEventListener('click', handleOutsideClick);
-
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
-  }, []);
+  }, [displayName, role]);
 
   return (
     <nav className="bg-indigo-600 py-4 px-8 flex justify-between items-center">
@@ -74,6 +73,15 @@ const Navbar = ({ displayName }) => {
                 <AiOutlineTrophy className="text-lg mr-2" />
                 <span>Leaderboard</span>
               </Link>
+              {role > 0 && (
+                <Link
+                  to="/manageInterface"
+                  className="block px-4 py-2 text-gray-800 hover:bg-indigo-200 flex items-center"
+                >
+                  <FiSettings className="text-lg mr-2" />
+                  <span>Administration</span>
+                </Link>
+              )}
             </div>
           )}
         </div>

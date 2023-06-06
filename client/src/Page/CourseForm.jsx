@@ -15,6 +15,7 @@ const CourseForm = () => {
   const [chapters, setChapters] = useState({});
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -46,7 +47,7 @@ const CourseForm = () => {
     }
     const fetchChapters = async (courseId) => {
       try {
-        const chaptersReponse = await fetchData('/Chapter', {courseId});
+        const chaptersReponse = await fetchData('/Chapter', { courseId });
         setChapters(chaptersReponse);
         setSelectedChapter(chaptersReponse[0])
       } catch (error) {
@@ -74,30 +75,40 @@ const CourseForm = () => {
     var selectedChapterId = selectedChapter.id;
     let title = chapterTitle;
     var chapterDto = {
-      Title : title,
-      ChapterId : selectedChapterId,
-      HtmlContent : lessonContent
+      Title: title,
+      ChapterId: selectedChapterId,
+      HtmlContent: lessonContent
     }
     postData('/Lesson', chapterDto);
   };
+
   const handleCourseChange = async (course) => {
     setSelectedCourse(course)
     fetchChapters(course);
-  }  
+  };
+
   const handleChapterChange = async (chapter) => {
     setSelectedChapter(chapter);
-  }
+  };
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
 
   return (
-    <div>
-      {userData != null && <Navbar displayName={userData.displayName} />}
-      <div className="container mx-auto mt-8">
-        <div>
-          <p>A quel cours ajouter une leçon : </p>
+    <div className="bg-indigo-100 min-h-screen">
+    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
+      <div className="container mx-auto py-8">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-extrabold text-gray-900">Création d'un cours</h2>
+        </div>
+        <div className="mb-6">
+          <p className="text-gray-700 mb-2">À quel cours ajouter une leçon :</p>
           {selectedCourse !== null && (
             <select
               value={selectedCourse}
               onChange={(e) => handleCourseChange(e.target.value)}
+              className="border border-gray-300 rounded-md py-2 px-4 w-full"
             >
               {courses.map((course, index) => (
                 <option key={index} value={course.id}>{course.title}</option>
@@ -105,12 +116,13 @@ const CourseForm = () => {
             </select>
           )}
         </div>
-        <div>
-          <p>A quel chapitre de ce cours ajouter une leçon : </p>
+        <div className="mb-6">
+          <p className="text-gray-700 mb-2">À quel chapitre de ce cours ajouter une leçon :</p>
           {selectedChapter !== null && (
             <select
               value={selectedChapter}
               onChange={(e) => handleChapterChange(e.target.value)}
+              className="border border-gray-300 rounded-md py-2 px-4 w-full"
             >
               {chapters.map((chapter, index) => (
                 <option key={index} value={chapter.id}>{chapter.title}</option>
@@ -118,21 +130,48 @@ const CourseForm = () => {
             </select>
           )}
         </div>
-        <div>
-          <p className='label-t-input-form'>Titre du cours a créer :  </p>
-          <input type='text' className='input-log-form' onChange={(e) => setChapterTitle(e.target.value)}></input>
+        <div className="mb-6">
+          <label className="text-gray-700 mb-2 block" htmlFor="chapterTitle">Titre du cours à créer :</label>
+          <input
+            id="chapterTitle"
+            type="text"
+            className="border border-gray-300 rounded-md py-2 px-4 w-full"
+            onChange={(e) => setChapterTitle(e.target.value)}
+          />
         </div>
-        <div className='flex justify-center flex-col'>
-          <div className='w-full text-center mb-10 text-3xl font-extrabold text-gray-900'>
-            <h2>Création d'un cours</h2>
-          </div>
-          <form onSubmit={handleSubmit}>
+        <div className="flex justify-center">
+          <form onSubmit={handleSubmit} className="w-full max-w-screen-xl">
             <CKEditor
               editor={ClassicEditor}
               data={lessonContent}
               onChange={handleEditorChange}
+              config={{
+                toolbar: {
+                  items: [
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'link',
+                    '|',
+                    'bulletedList',
+                    'numberedList',
+                    '|',
+                    'indent',
+                    'outdent',
+                    '|',
+                    'imageUpload',
+                    'blockQuote',
+                    'insertTable',
+                    'mediaEmbed',
+                    'undo',
+                    'redo',
+                  ],
+                },
+              }}
             />
-            <div className='w-full mt-20 flex justify-center items-center'>
+            <div className="mt-8 flex justify-center">
               <button
                 type="submit"
                 className="group relative w-1/2 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -141,7 +180,7 @@ const CourseForm = () => {
               </button>
             </div>
           </form>
-      </div>
+        </div>
       </div>
     </div>
   );

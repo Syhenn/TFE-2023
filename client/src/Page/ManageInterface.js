@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import Navbar from "./Navbar";
+import Navbar from "../component/Navbar";
 
 const ManageInterface = () => {
   const [userData, setUserData] = useState(null);
@@ -83,7 +83,7 @@ const ManageInterface = () => {
   }
   return(
     <>
-      {userData && <Navbar displayName={userData.displayName} />}
+      {userData && <Navbar displayName={userData.displayName} role={userData.userRole} />}
       <div className="flex justify-center items-center min-h-screen bg-gray-50">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -96,14 +96,6 @@ const ManageInterface = () => {
                   border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={handleAddLanguage}
-                >
-                  Ajouter un nouveau langage
-                </button>
-                <button
-                  className="group relative w-full flex justify-center py-2 px-4 border 
-                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
-                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
-                  onClick={handleAddCours}
                 >
                   Ajouter un nouveau cours
                 </button>
@@ -119,9 +111,17 @@ const ManageInterface = () => {
                   className="group relative w-full flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
-                  onClick={handleAddLesson}
+                  onClick={handleAddCours}
                 >
-                  Ajouter une nouvelle leçon à un chapitre d'un cours
+                  Ajouter une nouvelle leçon
+                </button>
+                <button
+                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
+                  onClick={handleAddCours}
+                >
+                  Ajouter un nouveau quiz
                 </button>
               </>
             )}

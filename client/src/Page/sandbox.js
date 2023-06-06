@@ -40,7 +40,7 @@ const Sandbox = () => {
 
   return (
     <>
-    {userData!=null &&(<Navbar displayName={userData.displayName} />)}
+    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
       <div className="container mx-auto mt-8">
         <div className="flex justify-center space-x-4 mb-4">
           <ul className="flex space-x-4">

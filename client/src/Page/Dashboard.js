@@ -69,8 +69,7 @@ const Dashboard = () => {
   }
   return (
     <>
-    {userData!=null &&(<Navbar displayName={userData.displayName} />)}
-      <button onClick={handleManageClick}>Ajouter de la matière</button>
+    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
       <div className="container mx-auto mt-8">
         <div className="flex justify-center mb-4">
           {selectedLanguage !== null && (

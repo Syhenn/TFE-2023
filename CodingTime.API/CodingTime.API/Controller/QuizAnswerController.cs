@@ -1,4 +1,6 @@
-﻿using Application.Context.QuizAnswer;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using Application.Context.QuizAnswer;
 using Application.Entities;
 using Domain.Dtos;
 using MediatR;
@@ -18,8 +20,15 @@ public class QuizAnswerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<QuizAnswer>> CreateQuiz(QuizAnswerDto quizAnswerDto)
+    public async Task<ActionResult<QuizAnswer>> CreateQuizAnswer([FromBody]QuizAnswerDto quizAnswerDto)
     {
+
         return await _mediator.Send(new CreateQuizAnswerCommand(quizAnswerDto));
+    } 
+    [HttpGet]
+    public async Task<ActionResult<List<QuizAnswer>>> GetQuizAnswers()
+    {
+
+        return await _mediator.Send(new GetQuizAnswerCommand());
     }
 }

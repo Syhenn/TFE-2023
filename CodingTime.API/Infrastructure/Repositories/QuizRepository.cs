@@ -23,8 +23,9 @@ public class QuizRepository : IQuizRepository
 
     public async Task<Quiz> GetQuiz(int quizId)
     {
-        return await _dbContext.Quizzes
+        var quiz= await _dbContext.Quizzes
             .FirstOrDefaultAsync(x => x.Id == quizId);
+        return quiz;
     }
 
     public async Task<List<Quiz>> GetQuizzes()

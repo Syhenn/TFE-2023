@@ -6,18 +6,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="939fd523-186c-49c1-9345-6f427a25233e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Application/Context/Quiz/CreateQuiz.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/Context/Quiz/GetQuiz.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/Entities/Quiz.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/Repositories/IQuizRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CodingTime.API/Controller/QuizController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Dtos/QuizDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230604153749_Quiz Entity.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230604153749_Quiz Entity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230604161403_Delete QuizAnswer.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230604161403_Delete QuizAnswer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Repositories/QuizRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Context/CompletedLesson/CreateCompletedLesson.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Context/CompletedLesson/GetCompletedLessonForUser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Entities/CompletedLesson.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Repositories/ICompletedLesson.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CodingTime.API/Controller/CompletedLessonController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/Dtos/CompletedLessonDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230606160640_updated.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230606160640_updated.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Repositories/CompletedLessonRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Context/User/DeleteUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Context/User/DeleteUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Entities/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Domain.dll" afterDir="false" />
@@ -28,6 +28,7 @@
       <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/ref/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/ref/Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/refint/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/refint/Application.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/Controller/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/Controller/UserController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.pdb" afterDir="false" />
@@ -50,6 +51,16 @@
       <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/ref/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/ref/Domain.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/refint/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/refint/Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/20230523141945_BMX.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/20230523141945_BMX.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/20230528154752_HtmlContent-to-lesson.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/20230528154752_HtmlContent-to-lesson.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/20230604153749_Quiz Entity.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/20230604153749_Quiz Entity.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/20230604161403_Delete QuizAnswer.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/20230604161403_Delete QuizAnswer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/20230605094236_QuizAnswer.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/20230605094236_QuizAnswer.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/Persistence/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Persistence/ApplicationDbContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Application.dll" afterDir="false" />
@@ -64,8 +75,10 @@
       <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/ref/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/ref/Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/refint/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/refint/Infrastructure.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/ManageInterface.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/ManageInterface.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/QuizChoice.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/QuizChoice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/api/apiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/api/apiService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/component/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/component/navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +94,18 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7b65416a8e1e01edbb081cce449a1b59bfc627a6c6c0516b9fc1383426c68d/ApplicationModelFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/647ccdff6e854dceae9f7cb0fe40d3e04600/44/53d5eb1c/RequestPostProcessorBehavior`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/647ccdff6e854dceae9f7cb0fe40d3e04600/78/91e10118/IRequestHandler`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a96e0fe19b5d4e07aa7bc26a4743e7903e00/0d/ff6ef0be/ServiceCollectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c13f49990bf34d18b209c4f451026a97a226b0/e8/07e08fe7/AsyncTaskMethodBuilder`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/538d6298bbdfde97cc62b11f4c9b6d3f7a94e3f60a7f2fd9f9c13aa13bb6573/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7d9a41d47547e1fe7fe548b21ab4de12cc2671170a023bc8c629017837eb5f4/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8aca45508683a6169bab9e8bd96b7cda607d638cacfaa31173c8c278c45/ISender.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c07532ecad6affb99bea9097d852faca34a95966fae4d18186c722a075cfda/ActionResult.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c6354d55b4c1fdbe22621ea48185af62cdeadcf4f28d9ed0890dfdf36c6/ControllerBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d61056f07ee0646ce8270be8cfeff9a309f7d9cc1386d6e138f727d978e3fa7/DefaultValidatorExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d6f95382468b317a172feb667db83ae826247df59838f7f780cef897689bd83/TaskAwaiter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e5b9c140912e8295f69159adbf39ad664d070868f2c2ae42d7e7dd1d92a9d4/ServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -99,27 +123,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.32087228",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.32087228&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\Henquin\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Henquin\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\Henquin\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\sylva\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\sylva\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\sylva\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.CodingTime.API">
     <configuration name="CodingTime.API" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/CodingTime.API/CodingTime.API.csproj" />
@@ -172,6 +196,9 @@
       <workItem from="1685287988125" duration="2233000" />
       <workItem from="1685349477822" duration="5783000" />
       <workItem from="1685876757427" duration="9413000" />
+      <workItem from="1685957138446" duration="6445000" />
+      <workItem from="1686002725128" duration="2026000" />
+      <workItem from="1686040691602" duration="10340000" />
     </task>
     <task id="LOCAL-00001" summary="Clean Architecture Setup">
       <created>1682953273429</created>

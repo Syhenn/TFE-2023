@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from '../component/Navbar';
 import { useNavigate } from 'react-router-dom';
-import {fetchData} from '../api/apiService'
-import Progress from "../component/Progress";
+import {fetchData} from '../api/apiService';
+import Progress from "../component/progress";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
@@ -64,17 +64,9 @@ const Dashboard = () => {
     setSelectedLanguage(languageId);
     fetchDataCourse(languageId)
   };
-  const handleManageClick = () => {
-    navigate('/ManageInterface')
-  }
-  const handleCourseClick = () => {
-    navigate('/courseForm');
-  }
   return (
     <>
-    {userData!=null &&(<Navbar displayName={userData.displayName} />)}
-      <button onClick={handleManageClick}>Ajouter de la matière</button>
-      <button onClick={handleCourseClick}>Ajouter un cours</button>
+    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
       <div className="container mx-auto mt-8">
         <div className="flex justify-center mb-4">
           {selectedLanguage !== null && (
@@ -90,7 +82,7 @@ const Dashboard = () => {
           </select>
           )}
         </div>
-        {course!=null &&(<Progress courseId={course.id} />)}
+        {course!=null &&(<Progress courseId={course.id} userId={userData.id} />)}
       </div>
     </>
   );

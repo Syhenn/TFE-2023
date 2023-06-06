@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { putData } from "../api/apiService";
 import axios from "axios";
-import Navbar from "./Navbar";
+import Navbar from "../component/Navbar";
 
 const ManageInterface = () => {
   const [userData, setUserData] = useState(null);
@@ -9,6 +10,8 @@ const ManageInterface = () => {
   const [course, setCourse] = useState(null);
   const [courseName, setCourseName] = useState(null);
   const [titleChapter, setTitleChapter] = useState(null);
+  const [showDeleteUserPopup, setShowDeleteUserPopup] = useState(false);
+  const [userEmailToDelete, setUserEmailToDelete] = useState("");
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [showAddLanguageForm, setShowAddLanguageForm] = useState(false);
@@ -48,12 +51,7 @@ const ManageInterface = () => {
   };
 
   const handleAddChapter = () => {
-    console.log(titleChapter, course);
     setShowAddChapterForm(true);
-  };
-
-  const handleAddLesson = () => {
-    setShowAddLessonForm(true);
   };
   const fetchChapterCreate = async (courseId) => {
     var createdChapter = {
@@ -61,7 +59,7 @@ const ManageInterface = () => {
       courseId
     };
     try {
-      var chapterResponse = await axios.post("https://localhost:7227/Chapter", createdChapter);
+      await axios.post("https://localhost:7227/Chapter", createdChapter);
     } catch (error) {
       console.log(error);
     }
@@ -78,9 +76,27 @@ const ManageInterface = () => {
       console.log(error);
     }
   }
+  const deleteUser = async () => {
+    try {
+      putData("/User", userEmailToDelete)
+      setShowDeleteUserPopup(false); 
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleAddCours = async () => {
+    navigate('/courseForm');
+  }
+  const handleAddQuiz = async () => {
+    navigate('/createQuizForm');
+  }
+  const showDeleteUser = (email) => {
+    setUserEmailToDelete(email);
+    setShowDeleteUserPopup(true);
+  };
   return(
     <>
-      {userData && <Navbar displayName={userData.displayName} />}
+      {userData && <Navbar displayName={userData.displayName} role={userData.userRole} />}
       <div className="flex justify-center items-center min-h-screen bg-gray-50">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -94,7 +110,7 @@ const ManageInterface = () => {
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={handleAddLanguage}
                 >
-                  Ajouter un nouveau langage
+                  Ajouter un nouveau cours
                 </button>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 
@@ -108,9 +124,17 @@ const ManageInterface = () => {
                   className="group relative w-full flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
-                  onClick={handleAddLesson}
+                  onClick={handleAddCours}
                 >
-                  Ajouter une nouvelle leçon à un chapitre d'un cours
+                  Ajouter une nouvelle leçon
+                </button>
+                <button
+                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
+                  onClick={handleAddQuiz}
+                >
+                  Ajouter un nouveau quiz
                 </button>
               </>
             )}
@@ -128,6 +152,7 @@ const ManageInterface = () => {
                   className="group relative w-full flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
+                  onClick={() => showDeleteUser(userData.email)}
                 >
                   Supprimer un utilisateur
                 </button>
@@ -137,7 +162,6 @@ const ManageInterface = () => {
         </div>
       </div>
 
-      {/* Popup Form for Add Language */}
       {showAddLanguageForm && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-8 max-w-md">
@@ -151,8 +175,6 @@ const ManageInterface = () => {
           </div>
         </div>
       )}
-
-      {/* Popup Form for Add Chapter */}
       {showAddChapterForm && (
         <>
         <div className="absolute inset-0 bg-gray-500 opacity-75">
@@ -206,8 +228,6 @@ const ManageInterface = () => {
         </div>
         </>
       )}
-
-      {/* Popup Form for Add Lesson */}
       {showAddLessonForm && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-8 max-w-md">
@@ -220,6 +240,38 @@ const ManageInterface = () => {
             </button>
           </div>
         </div>
+      )}
+      {showDeleteUserPopup && (
+        <>
+        <div className="absolute inset-0 bg-gray-500 opacity-75">
+        </div>
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8 max-w-md">
+            <h2 className="text-2xl font-bold mb-4">Supprimer un utilisateur</h2>
+            <p>Veuillez entrer l'adresse e-mail de l'utilisateur à supprimer :</p>
+            <input
+              type="email"
+              className="border w-full border-gray-300 rounded-md px-3 py-2 mt-2"
+              value={userEmailToDelete}
+              onChange={(e) => setUserEmailToDelete(e.target.value)}
+            />
+            <div className="flex justify-end mt-4">
+              <button
+                className="py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700 mr-2"
+                onClick={deleteUser}
+              >
+                Supprimer
+              </button>
+              <button
+                className="py-2 px-4 bg-gray-400 text-white rounded-md hover:bg-gray-500"
+                onClick={() => setShowDeleteUserPopup(false)}
+              >
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+        </>
       )}
     </>
   );

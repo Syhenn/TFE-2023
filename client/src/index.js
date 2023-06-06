@@ -5,11 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import Register from "./Page/Register";
 import Login from './Page/Login';
 import Dashboard from './Page/Dashboard';
+import ManageInterface from "./Page/ManageInterface";
 import Sandbox from './Page/Sandbox';
-import ManageInterface from "./component/ManageInterface";
 import CourseForm from "./Page/CourseForm";
 import QuestionCreationPage from './component/SurveyComponent';
-import QuizPage from "./Page/Quiz";
+import LessonPage from './Page/LessonPage';
+import QuizPage from "./Page/QuizPage";
+import QuizChoice from "./Page/QuizChoice";
+import CreateQuizForm from "./Page/CreateQuizForm";
+import LeaderBoard from "./Page/Leaderboard";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -20,8 +24,12 @@ root.render(
     <Route path="sandbox" element={<Sandbox />} />
     <Route path='manageInterface' element={<ManageInterface />}/>
     <Route path='courseForm' element={<CourseForm />}/>
+    <Route path='lesson/:lessonId' element={<LessonPage />}/>
     <Route path='quizCreate' element={<QuestionCreationPage />}/>
-    <Route path='quizPage/:quizId' element={<QuizPage /> }/>
+    <Route path='quizChoice' element={<QuizChoice />}/>
+    <Route path='quizPage/:courseId' element={<QuizPage /> }/>
+    <Route path='leaderboard' element={<LeaderBoard /> }/>
+    <Route path='createQuizForm' element={<CreateQuizForm/> }/>
   </Routes>
 </BrowserRouter>
 );

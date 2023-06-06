@@ -36,6 +36,13 @@ public class CourseController : ControllerBase
         var commandResult = await _mediator.Send(new GetCourseByNameCommand(CourseName));
         return Ok(commandResult);
     }
+    [HttpGet]
+    [Route("getIncluded")]
+    public async Task<ActionResult<Course>> GetCourseIncluded([FromQuery] int CourseId)
+    {
+        var commandResult = await _mediator.Send(new GetCourseIncludedCommand(CourseId));
+        return Ok(commandResult);
+    }
     [HttpPost]
     public async Task<ActionResult<Course>> CreateCourse(CourseDto courseDto)
     {

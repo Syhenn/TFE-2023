@@ -5,6 +5,7 @@ import axios from "axios";
 import { fetchData, postData } from '../api/apiService';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../component/Navbar';
+import '../styleComponent/ckeditor.css';
 
 const CourseForm = () => {
   const [lessonContent, setLessonContent] = useState('');
@@ -57,6 +58,7 @@ const CourseForm = () => {
     fetchDataUser();
     fetchCourses();
   }, []);
+
   const fetchChapters = async (courseId) => {
     try {
       const chaptersReponse = await fetchData('/Chapter', {courseId});
@@ -65,6 +67,7 @@ const CourseForm = () => {
       console.log(error)
     }
   }
+
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
     setLessonContent(data);
@@ -97,7 +100,7 @@ const CourseForm = () => {
 
   return (
     <div className="bg-indigo-100 min-h-screen">
-    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
+      {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
       <div className="container mx-auto py-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-extrabold text-gray-900">Création d'un cours</h2>
@@ -139,38 +142,17 @@ const CourseForm = () => {
             onChange={(e) => setChapterTitle(e.target.value)}
           />
         </div>
-        <div className="flex justify-center">
-          <form onSubmit={handleSubmit} className="w-full max-w-screen-xl">
-            <CKEditor
-              editor={ClassicEditor}
-              data={lessonContent}
-              onChange={handleEditorChange}
-              config={{
-                toolbar: {
-                  items: [
-                    'heading',
-                    '|',
-                    'bold',
-                    'italic',
-                    'underline',
-                    'link',
-                    '|',
-                    'bulletedList',
-                    'numberedList',
-                    '|',
-                    'indent',
-                    'outdent',
-                    '|',
-                    'imageUpload',
-                    'blockQuote',
-                    'insertTable',
-                    'mediaEmbed',
-                    'undo',
-                    'redo',
-                  ],
-                },
-              }}
-            />
+        <div className="flex justify-center w-full">
+          <form id='ckeditor' onSubmit={handleSubmit} className="w-full max-w-screen-xl">
+            <div className="flex items-start">
+              <div className="w-full">
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={lessonContent}
+                  onChange={handleEditorChange}
+                />
+              </div>
+            </div>
             <div className="mt-8 flex justify-center">
               <button
                 type="submit"

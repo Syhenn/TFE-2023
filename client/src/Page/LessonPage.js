@@ -78,18 +78,19 @@ const LessonPage = () => {
     <div>
       {userData != null && (<Navbar displayName={userData.displayName} role={userData.userRole} />)}
       {lesson != null && (
-        <div>
-          <h1>{lesson.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: lesson.htmlContent }} />
-            <div className="text-center mt-4">
-              <button
-                className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
-                onClick={handleLessonCompletion}
-              >
-                J'ai terminé cette leçon
-              </button>
-            </div>
+        <>
+        <div className="m-10">
+          <div id='ckeditor' className="text-left" dangerouslySetInnerHTML={{ __html: lesson.htmlContent }} />
         </div>
+        <div className="text-center mt-4">
+          <button
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
+            onClick={handleLessonCompletion}
+          >
+            J'ai terminé cette leçon
+          </button>
+        </div>
+        </>
       )}
     </div>
   );

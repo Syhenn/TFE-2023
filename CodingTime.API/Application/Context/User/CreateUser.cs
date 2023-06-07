@@ -1,8 +1,7 @@
 ﻿using Application.Repositories;
 using Domain.Dtos;
-using FluentValidation;
 using MediatR;
-using OneOf;
+using BCrypt.Net;
 
 namespace Application.Context.User
 {
@@ -28,7 +27,7 @@ namespace Application.Context.User
                 Email = command.UserDto.Email,
                 Id = 0,
                 Level = 0,
-                Password = command.UserDto.Password,
+                Password = BCrypt.Net.BCrypt.HashPassword(command.UserDto.Password),
                 Name = command.UserDto.Name,
                 Surname = command.UserDto.Surname,
                 UserRole = command.UserDto.UserRole

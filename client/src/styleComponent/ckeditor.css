@@ -1,0 +1,42 @@
+@font-face {
+	font-family: 'Open-sans';
+	src: url('../font/OpenSans_Condensed-Regular.ttf');
+}
+
+#ckeditor h2 {
+    font-size: 48px;
+    width: 100%;
+    border-bottom: 1px solid black;
+    font-family: "Open-sans", sans-serif;
+  }
+  
+  #ckeditor h3 {
+    font-size: 35px;
+    width: 100%;
+    margin: 5px 0px 5px 5vw;
+    font-family: "Open-sans", sans-serif; 
+  }
+  #ckeditor h4 {
+    font-size: 30px;
+    width: 100%;
+    margin: 5px 0px 5px 5vw;
+    font-family: "Open-sans", sans-serif; 
+  }
+  #ckeditor param {
+    text-align: left;
+    font-family: "Open-sans", serif;
+  }
+  
+  #ckeditor blockquote {
+    margin: 20px 0 10px 50px;
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.754);
+    color: white;
+    font-family: "Open-sans", sans-serif;
+  }
+  #ckeditor p {
+    margin: 20px 0 10px 50px;
+    font-size: 25px;
+    width: 90%;
+    font-family: "Open-sans", sans-serif;
+  }

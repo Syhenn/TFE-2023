@@ -14,6 +14,9 @@ import QuizPage from "./Page/QuizPage";
 import QuizChoice from "./Page/QuizChoice";
 import CreateQuizForm from "./Page/CreateQuizForm";
 import LeaderBoard from "./Page/Leaderboard";
+import UserEditPage from "./Page/UserEditPage";
+import RegistrationToNewCourse from "./Page/RegistrationToNewCourse";
+import EditProfilePage from "./Page/EditProfilePage";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -30,6 +33,9 @@ root.render(
     <Route path='quizPage/:courseId' element={<QuizPage /> }/>
     <Route path='leaderboard' element={<LeaderBoard /> }/>
     <Route path='createQuizForm' element={<CreateQuizForm/> }/>
+    <Route path='userEditPage' element={<UserEditPage />}/>
+    <Route path='newCourse' element={<RegistrationToNewCourse />}/>
+    <Route path='editProfilePage' element={<EditProfilePage />}/>
   </Routes>
 </BrowserRouter>
 );

@@ -287,15 +287,23 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Application.Entities.UserLanguage", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "LanguageId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("LanguageId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserLanguages");
                 });

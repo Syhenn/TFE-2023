@@ -5,6 +5,7 @@ import axios from "axios";
 import { fetchData, postData } from '../api/apiService';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../component/Navbar';
+import '../styleComponent/ckeditor.css';
 
 const CourseForm = () => {
   const [lessonContent, setLessonContent] = useState('');
@@ -139,37 +140,12 @@ const CourseForm = () => {
             onChange={(e) => setChapterTitle(e.target.value)}
           />
         </div>
-        <div className="flex justify-center">
-          <form onSubmit={handleSubmit} className="w-full max-w-screen-xl">
+        <div className="flex justify-center w-full text-left">
+          <form id='ckeditor' onSubmit={handleSubmit} className="w-full max-w-screen-xl">
             <CKEditor
               editor={ClassicEditor}
               data={lessonContent}
               onChange={handleEditorChange}
-              config={{
-                toolbar: {
-                  items: [
-                    'heading',
-                    '|',
-                    'bold',
-                    'italic',
-                    'underline',
-                    'link',
-                    '|',
-                    'bulletedList',
-                    'numberedList',
-                    '|',
-                    'indent',
-                    'outdent',
-                    '|',
-                    'imageUpload',
-                    'blockQuote',
-                    'insertTable',
-                    'mediaEmbed',
-                    'undo',
-                    'redo',
-                  ],
-                },
-              }}
             />
             <div className="mt-8 flex justify-center">
               <button

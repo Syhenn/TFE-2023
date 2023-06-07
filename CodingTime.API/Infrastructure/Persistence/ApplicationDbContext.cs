@@ -23,15 +23,13 @@ public class ApplicationDbContext : DbContext
     {
         modelBuilder.Entity<User>().HasKey(u => u.Id);
         modelBuilder.Entity<Language>().HasKey(l => l.Id);
-        modelBuilder.Entity<UserLanguage>()
-            .HasKey(ul => new { ul.UserId, ul.LanguageId });
-
         modelBuilder.Entity<Course>().HasKey(c => c.Id);
         modelBuilder.Entity<Chapter>().HasKey(ch => ch.Id);
         modelBuilder.Entity<Lesson>().HasKey(l => l.Id);
         modelBuilder.Entity<Quiz>().HasKey(q => q.Id);
         modelBuilder.Entity<QuizAnswer>().HasKey(qa => qa.Id);
         modelBuilder.Entity<CompletedLesson>().HasKey(cl => cl.Id);
+        modelBuilder.Entity<UserLanguage>().HasKey(cl => cl.Id);
 
         modelBuilder.Entity<UserLanguage>()
             .HasOne(ul => ul.User)

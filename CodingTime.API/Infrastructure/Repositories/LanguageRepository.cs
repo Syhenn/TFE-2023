@@ -25,6 +25,8 @@ public class LanguageRepository : ILanguageRepository
     public async Task<Language> GetLanguageAsync(int langageId)
     {
         return _context.Languages
+            .Include(x => x.Courses)
+            .Include(x =>x.UserLanguages)
             .FirstOrDefault(x => x.Id == langageId);
     }
 

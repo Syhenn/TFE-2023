@@ -46,6 +46,28 @@
           }
         }
       },
+      "BCrypt/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/DevOne.Security.Cryptography.BCrypt.dll": {}
+        },
+        "runtime": {
+          "lib/DevOne.Security.Cryptography.BCrypt.dll": {}
+        }
+      },
+      "BCrypt.Net-Core/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "FluentValidation/11.5.2": {
         "type": "package",
         "compile": {
@@ -1116,6 +1138,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "BCrypt": "1.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.16",
           "Microsoft.EntityFrameworkCore": "8.0.0-preview.3.23174.2",
@@ -1170,6 +1193,41 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "BCrypt/1.0.0": {
+      "sha512": "/ibwe2Sg7MJR26IrEzW2Rde9/+A+AYXB5Kf9w/8BVLDdzSfUe4W2M7i2efy1Wa9wHh1k0y81Q6h9Ty8C6IrUGA==",
+      "type": "package",
+      "path": "bcrypt/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.1.0.0.nupkg.sha512",
+        "bcrypt.nuspec",
+        "lib/DevOne.Security.Cryptography.BCrypt.dll"
+      ]
+    },
+    "BCrypt.Net-Core/1.6.0": {
+      "sha512": "hsKiHGjrnlDW05MzuzzlD9gNP8YOW2KbZ+FbvISrilsKJJ76tXKhWey6psZX5sd7DczNpSU2U6ldjPoblk8BLw==",
+      "type": "package",
+      "path": "bcrypt.net-core/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-core.1.6.0.nupkg.sha512",
+        "bcrypt.net-core.nuspec",
+        "lib/net40/BCrypt.Net-Core.dll",
+        "lib/net40/BCrypt.Net-Core.pdb",
+        "lib/net45/BCrypt.Net-Core.dll",
+        "lib/net45/BCrypt.Net-Core.pdb",
+        "lib/net451/BCrypt.Net-Core.dll",
+        "lib/net451/BCrypt.Net-Core.pdb",
+        "lib/net452/BCrypt.Net-Core.dll",
+        "lib/net452/BCrypt.Net-Core.pdb",
+        "lib/netstandard1.3/BCrypt.Net-Core.dll",
+        "lib/netstandard1.3/BCrypt.Net-Core.pdb",
+        "lib/netstandard2.0/BCrypt.Net-Core.dll",
+        "lib/netstandard2.0/BCrypt.Net-Core.pdb"
       ]
     },
     "FluentValidation/11.5.2": {
@@ -3041,6 +3099,8 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "BCrypt >= 1.0.0",
+      "BCrypt.Net-Core >= 1.6.0",
       "Domain >= 1.0.0",
       "FluentValidation >= 11.5.2",
       "MediatR >= 7.0.0",
@@ -3096,6 +3156,14 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "BCrypt": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "BCrypt.Net-Core": {
+            "target": "Package",
+            "version": "[1.6.0, )"
+          },
           "FluentValidation": {
             "target": "Package",
             "version": "[11.5.2, )"
@@ -3162,5 +3230,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.406\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BCrypt 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "BCrypt",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

@@ -58,7 +58,7 @@ public class UserController : ControllerBase
         return Ok(commandResult);
     }
     [Authorize]
-    [HttpPut]
+    [HttpDelete]
     public async Task<ActionResult<User>> DeleteUser(string email)
     {
         var commandResult = await _mediator.Send(new DeleteUserCommand(email));

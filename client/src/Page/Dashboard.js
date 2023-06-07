@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from '../component/Navbar';
+import Navbar from "../component/Navbar";
 import { useNavigate } from 'react-router-dom';
 import {fetchData} from '../api/apiService';
 import Progress from "../component/progress";

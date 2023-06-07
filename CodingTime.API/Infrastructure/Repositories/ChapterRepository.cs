@@ -36,6 +36,7 @@ public class ChapterRepository : IChapterRepository
     {
         return await _context.Chapters            
             .Include(x => x.Course)
+            .Include(x =>x.Lessons)
             .Where(x => x.CourseId == courseId)
             .ToListAsync();
     }

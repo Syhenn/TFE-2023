@@ -30,3 +30,12 @@ export const putData = async (endpoint, data) => {
       throw error;
   }
 };
+export const deleteData = async (endpoint, data) => {
+  try {
+      const response = await axios.delete(endpoint, data);
+      return response.data;
+  } catch (error) {
+      console.log(error);
+      throw error;
+  }
+};

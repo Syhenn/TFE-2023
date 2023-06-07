@@ -65,7 +65,7 @@ const QuizPage = () => {
 
   const handleNextQuestion = (survey) => {
     const quiz = quizData[currentQuestionIndex];
-    const userAnswer = survey.valuesHash[quiz.name];
+    const userAnswer = survey && survey.valuesHash ? survey.valuesHash[quiz.name] : '';
     const correctAnswer = quiz.correctAnswer;
     const points = userAnswer === correctAnswer ? 15 : 0;
   
@@ -89,8 +89,23 @@ const QuizPage = () => {
   
 
   const handleOnComplete = (survey) => {
+    const quiz = quizData[currentQuestionIndex];
+    const userAnswer = survey.valuesHash[quiz.name];
+    const correctAnswer = quiz.correctAnswer;
+    const points = userAnswer === correctAnswer ? 15 : 0;
+  
+    const quizAnswerDto = {
+      UserId: userData.id,
+      QuizId: quiz.id,
+      Points: points,
+    };
+    try {
+      postData('/QuizAnswer', quizAnswerDto);
+    } catch (error) {
+      console.log(error);
+    }
     if (currentQuestionIndex === quizData.length - 1) {
-      const scoreMessage = `Quiz terminé! Votre score est de ${totalScore} points`;
+      const scoreMessage = `Quiz terminé! Votre score est de ${totalScore+points} points`;
       setQuizCompletedMessage(scoreMessage);
     } else {
       handleNextQuestion(survey);

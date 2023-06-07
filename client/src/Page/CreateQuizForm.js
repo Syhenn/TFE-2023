@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { postData, fetchData } from '../api/apiService';
+import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../component/Navbar';
@@ -46,9 +47,10 @@ const CreateQuizForm = () => {
 });
   const handleSubmit = async (e) => {
     e.preventDefault();
+    quizData.courseId = selectedCourse;
     try {
       await postData('/Quiz', quizData);
-      navigate('/success');
+      toast.success("Quiz ajouté", { autoClose: 5000 });
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +60,8 @@ const CreateQuizForm = () => {
     setQuizData({ ...quizData, [e.target.name]: e.target.value });
   };
   const handleCourseChange = (event) => {
-    setSelectedCourse(event.target.value);
+    const id = parseInt(event.target.value);
+    setSelectedCourse(id);
   };
   return (
     <>
@@ -138,7 +141,7 @@ const CreateQuizForm = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="courseId" className="block text-gray-700 font-bold mb-2">
-            Course ID
+            Pour quel cours créer le Quiez
           </label>
           <select
           value={selectedCourse}
@@ -162,6 +165,7 @@ const CreateQuizForm = () => {
         </button>
       </form>
     </div>
+    <ToastContainer />
     </>
   );
 };

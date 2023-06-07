@@ -36,4 +36,11 @@ public class LessonController : ControllerBase
         var commandResult = await _mediator.Send(new GetLessonByChapterCommand(chapterId));
         return Ok(commandResult);
     }
+    [HttpGet]
+    [Route("nextLesson")]
+    public async Task<ActionResult<Lesson>> NextLesson(int lessonId)
+    {
+        var commandResult = await _mediator.Send(new GetNextLessonCommand(lessonId));
+        return Ok(commandResult);
+    }
 }

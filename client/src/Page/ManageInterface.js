@@ -78,7 +78,7 @@ const ManageInterface = () => {
   }
   const deleteUser = async () => {
     try {
-      putData("/User", userEmailToDelete)
+      deleteUser("/User", userEmailToDelete)
       setShowDeleteUserPopup(false); 
     } catch (error) {
       console.error(error);

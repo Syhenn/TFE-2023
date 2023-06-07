@@ -9,5 +9,5 @@ public class Chapter
 
     public int CourseId { get; set; }
     public Course Course { get; set; }
-    [JsonIgnore] public ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
+    [JsonIgnore] public List<Lesson> Lessons { get; set; } = new List<Lesson>();
 }

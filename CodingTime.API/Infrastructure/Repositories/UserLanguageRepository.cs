@@ -19,6 +19,11 @@ public class UserLanguageRepository : IUserLanguageRepository
         return await _context.UserLanguages.FirstOrDefaultAsync(x => x.LanguageId == id);
     }
 
+    public async Task<UserLanguage> GetUserLanguageAsync(int userId, int languageId)
+    {
+        return await _context.UserLanguages.FirstOrDefaultAsync(x => x.UserId == userId && x.LanguageId == languageId);
+    }
+
     public async Task<List<UserLanguage>> GetLanguagesForUser(int userId)
     {
         return await _context.UserLanguages
@@ -26,6 +31,7 @@ public class UserLanguageRepository : IUserLanguageRepository
             .Where(x => x.UserId == userId)
             .ToListAsync();
     }
+
     public async Task<UserLanguage> CreateUserLanguageAsync(UserLanguage userLanguage)
     {
         _context.UserLanguages.Add(userLanguage);

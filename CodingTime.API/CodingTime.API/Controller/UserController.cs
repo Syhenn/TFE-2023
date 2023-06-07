@@ -32,7 +32,13 @@ public class UserController : ControllerBase
         var commandResult = await _mediator.Send(new GetUserByIdCommand(userId), new CancellationToken());
         return Ok(commandResult);
     }
-    
+    [HttpGet]
+    [Route("userMail")]
+    public async Task<ActionResult<User>> GetUserByMail(string email)
+    {
+        var commandResult = await _mediator.Send(new GetUserByMailCommand(email), new CancellationToken());
+        return Ok(commandResult);
+    }
     [HttpPost]
     public async Task<ActionResult<User>> CreateUser(UserDto userDto)
     {
@@ -55,6 +61,12 @@ public class UserController : ControllerBase
     public async Task<ActionResult<List<UserLanguage>>> GetUserLanguage(int userId)
     {
         var commandResult = await _mediator.Send(new GetUserLanguageCommand(userId));
+        return Ok(commandResult);
+    }
+    [HttpPut]
+    public async Task<ActionResult<List<UserLanguage>>> UpdateUser(UserDto userDto)
+    {
+        var commandResult = await _mediator.Send(new UpdateUserCommand(userDto));
         return Ok(commandResult);
     }
     [Authorize]

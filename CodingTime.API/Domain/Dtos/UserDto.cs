@@ -7,7 +7,7 @@ public record UserDto(
     string Surname,
     string DisplayName,
     string Email, 
-    string Password,
+    string? Password,
     int Age,
     UserRole? UserRole,
     int? Level,

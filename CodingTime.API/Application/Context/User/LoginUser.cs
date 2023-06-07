@@ -20,6 +20,11 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, Entities.User>
         var userByMail = await _userRepository.GetUserByMailAsync(command.email);
         if (userByMail == null)
             return null;
-        return command.password != userByMail.Password ? null : userByMail;
+
+        bool passwordsMatch = BCrypt.Net.BCrypt.Verify(command.password, userByMail.Password);
+        if (!passwordsMatch)
+            return null;
+
+        return userByMail;
     }
 }

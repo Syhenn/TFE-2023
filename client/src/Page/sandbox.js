@@ -26,7 +26,7 @@ const Sandbox = () => {
             navigate("/");
           }
         };
-        fetchData();
+        fetchDataUser();
       }, []);
       const handleLanguageChange = (language) => {
         setSelectedLanguage(language);

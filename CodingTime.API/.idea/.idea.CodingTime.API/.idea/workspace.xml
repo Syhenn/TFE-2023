@@ -6,14 +6,116 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="939fd523-186c-49c1-9345-6f427a25233e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Application/Context/Lesson/GetFirstLesson.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Context/User/GetUserByMail.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Context/User/UpdateUser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/BCrypt.Net-Core.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/DevOne.Security.Cryptography.BCrypt.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230607154825_userLanguageId.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230607154825_userLanguageId.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230607155256_updateUserLanguage.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Migrations/20230607155256_updateUserLanguage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Context/User/CreateUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Context/User/CreateUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Context/User/LoginUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Context/User/LoginUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Context/UserLanguage/AddUserLanguage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Context/UserLanguage/AddUserLanguage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Entities/UserLanguage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Entities/UserLanguage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Repositories/IUserLanguage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Repositories/IUserLanguage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Repositories/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Repositories/IUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Application.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/bin/Debug/net6.0/Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/Application.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/ref/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/ref/Application.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net6.0/refint/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/Debug/net6.0/refint/Application.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/CodingTime.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/CodingTime.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/Controller/LessonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/Controller/LessonController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/Controller/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/Controller/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Application.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/CodingTime.API.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/CodingTime.API.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/CodingTime.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/CodingTime.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/CodingTime.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/CodingTime.API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Domain.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/bin/Debug/net6.0/Infrastructure.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/CodingTime.API.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/CodingTime.API.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/CodingTime.API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/ref/CodingTime.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/ref/CodingTime.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/refint/CodingTime.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/Debug/net6.0/refint/CodingTime.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodingTime.API/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/CodingTime.API/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Dtos/UserDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Dtos/UserDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/bin/Debug/net6.0/Domain.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/bin/Debug/net6.0/Domain.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/bin/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/bin/Debug/net6.0/Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/bin/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/bin/Debug/net6.0/Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/ref/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/ref/Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/refint/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Debug/net6.0/refint/Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Persistence/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Persistence/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Repositories/LanguageRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Repositories/LanguageRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Repositories/UserLanguageRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Repositories/UserLanguageRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Repositories/UserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Application.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Application.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Infrastructure.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Infrastructure.deps.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/bin/Debug/net6.0/Infrastructure.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/Infrastructure.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/ref/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/ref/Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/refint/Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Debug/net6.0/refint/Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Infrastructure.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/Infrastructure.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/Page/CourseForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/CourseForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/ManageInterface.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/ManageInterface.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/sandbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/sandbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/component/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/component/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,24 +304,5 @@
     <MESSAGE value="CourseDesign" />
     <MESSAGE value="Visuel Changes" />
     <option name="LAST_COMMIT_MESSAGE" value="Visuel Changes" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Application/Context/Lesson/GetNextLesson.cs</url>
-          <line>21</line>
-          <properties documentPath="C:\Users\sylva\Desktop\CodinTime\TFE-2023\CodingTime.API\Application\Context\Lesson\GetNextLesson.cs" initialLine="21" containingFunctionPresentation="method 'Handle'">
-            <startOffsets>
-              <option value="914" />
-            </startOffsets>
-            <endOffsets>
-              <option value="996" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

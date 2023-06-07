@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import {postData} from '../api/apiService'
-import '../styleComponent/LoginRegisterStyle.css'
+import '../styleComponent/LoginRegisterStyle.css';
+import bcrypt from 'bcryptjs';
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -23,6 +23,13 @@ public class AddUserLanguageHandler : IRequestHandler<AddUserLanguageCommand, En
     {
         var user = await _userRepository.GetUserAsync(command.userLanguageDto.UserId);
         var language = await _languageRepository.GetLanguageAsync(command.userLanguageDto.LanguageId);
+        
+        var existingUserLanguage = await _userLanguageRepository.GetUserLanguageAsync(user.Id, language.Id);
+        if (existingUserLanguage != null)
+        {
+            return null;
+        }
+
         var userLanguage = new Entities.UserLanguage()
         {
             Language = language,
@@ -30,8 +37,8 @@ public class AddUserLanguageHandler : IRequestHandler<AddUserLanguageCommand, En
             User = user,
             UserId = user.Id
         };
+
         var userLanguageResult = await _userLanguageRepository.CreateUserLanguageAsync(userLanguage);
         return userLanguageResult;
-
     }
 }

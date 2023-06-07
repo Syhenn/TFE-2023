@@ -5,7 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import {postData, fetchData} from '../api/apiService'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { FiUserPlus } from 'react-icons/fi';
-import '../styleComponent/LoginRegisterStyle.css'
+import '../styleComponent/LoginRegisterStyle.css';
+import bcrypt from 'bcryptjs';
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -109,16 +110,27 @@ const Register = () => {
     try {
       var user = await postData("/User", userDto);
       var userId = user.id;
-      var language= await fetchData("/Language/UserLanguage", {selectedLanguage});
+      var language= await fetchData("/Language/UserLanguage", {name : selectedLanguage});
       var languageId = language.id;
       var userLanguageDto = {
         userId,
         languageId
       };
+      console.log(userLanguageDto);
       await postData("/UserLanguage", userLanguageDto);
-     navigate("/");
     } catch (error) {
       console.error(error);
+    }
+    try {
+      var firstLesson = await fetchData("/Lesson/firstLesson", {languageId});
+      let completedLessonDto = {
+        UserId : userId,
+        LessonId : firstLesson.id
+      }
+      await postData("/CompletedLesson", completedLessonDto);
+      navigate('/');
+    } catch (error) {
+      console.log(error)
     }
   }
   return (
@@ -224,20 +236,6 @@ const Register = () => {
               className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px] "
             />
           </div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-              />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                Se souvenir de moi
-              </label>
-            </div>
-          </div>
-
           <div>
             <button
               type="submit"
@@ -308,7 +306,7 @@ const Register = () => {
             type="radio"
             id="c++"
             name="language"
-            value="c++"
+            value="1"
             className="sr-only"
             checked={selectedLanguage === 'c++'}
             onChange={() => setSelectedLanguage('c++')}
@@ -324,7 +322,7 @@ const Register = () => {
             type="radio"
             id="java"
             name="language"
-            value="java"
+            value="2"
             className="sr-only"
             checked={selectedLanguage === 'java'}
             onChange={() => setSelectedLanguage('java')}
@@ -336,9 +334,6 @@ const Register = () => {
           <p className="text-gray-500">Utilisé dans les domaines tels que le développement d'applications Android, les services bancaires, etc.</p>
         </div>
       </div>
-      <button
-        className="group relative w-1/2 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      >Choisir plus tard</button>
       <button
         type="submit"
         className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

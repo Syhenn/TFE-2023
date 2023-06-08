@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { putData } from "../api/apiService";
+import { putData, postData, fetchData } from "../api/apiService";
 import axios from "axios";
 import Navbar from "../component/Navbar";
 
 const ManageInterface = () => {
   const [userData, setUserData] = useState(null);
   const [courseList, setCourseList] = useState(null);
-  const [course, setCourse] = useState(null);
-  const [courseName, setCourseName] = useState(null);
+  const [courseName, setCourseName] = useState("");
   const [titleChapter, setTitleChapter] = useState(null);
   const [showDeleteUserPopup, setShowDeleteUserPopup] = useState(false);
   const [userEmailToDelete, setUserEmailToDelete] = useState("");
@@ -58,23 +57,24 @@ const ManageInterface = () => {
       title : titleChapter,
       courseId
     };
-    try {
-      await axios.post("https://localhost:7227/Chapter", createdChapter);
-    } catch (error) {
-      console.log(error);
-    }
+    console.log(createdChapter);
+    // try {
+    //   await postData("/Chapter", createdChapter);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   const handleChapterSubmit = async () => {
-    try {
-      var courseResponse = await axios.get("https://localhost:7227/Course/getByName", {
-        params: {
-          CourseName : courseName 
-        }
-      });
-      fetchChapterCreate(courseResponse.data.id);
-    } catch (error) {
-      console.log(error);
+    if (courseName === "") {
+      return;
     }
+    console.log(courseName);
+    // try {
+    //   var courseResponse = await fetchData("/Course/getByName",  {courseName });
+    //   fetchChapterCreate(courseResponse.data.id);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
   const deleteUser = async () => {
     try {

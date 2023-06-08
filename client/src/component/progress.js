@@ -98,17 +98,17 @@ const Progress = ({ courseId, userId }) => {
                       key={indexLesson}
                     >
                       <button
-                        onClick={() => navigateToLesson(lesson.id)}
-                        className={`w-24 h-24 flex justify-center items-center rounded-full text-white text-5xl italic shadow-xl transform scale-105 perspective-100 ${
-                          isLessonCompleted(lesson.id)
-                            ? "bg-indigo-600 cursor-pointer"
-                            : "bg-gray-400"
-                        }`}
-                        disabled={!isLessonCompleted(lesson.id)}
-                        title={getLessonStatusMessage(lesson.id, chapter)}
-                      >
-                        {lesson.id}
-                      </button>
+                      onClick={() => navigateToLesson(lesson.id)}
+                      className={`z-0 w-24 h-24 flex justify-center items-center rounded-full text-white text-5xl italic shadow-xl transform scale-105 perspective-100 ${
+                        isLessonCompleted(lesson.id)
+                          ? "bg-indigo-600 cursor-pointer"
+                          : "bg-gray-400"
+                      }`}
+                      disabled={!isLessonCompleted(lesson.id)}
+                      title={getLessonStatusMessage(lesson.id, chapter)}
+                    >
+                      {indexLesson + 1}
+                    </button>
                       <div className="m-5 text-2xl font-bold text-gray-900">
                         <h1>{lesson.title}</h1>
                       </div>

@@ -62,7 +62,7 @@ const Navbar = ({ displayName , role}) => {
             <span className="mx-auto">Outils</span>
           </button>
           {showToolsDropdown && (
-            <div className="absolute right-0 left-0 mt-2 py-4 w-40 bg-white rounded shadow-lg">
+            <div className="z-10 absolute right-0 left-0 mt-2 py-4 w-40 bg-white rounded shadow-lg">
               <Link
                 to="/newCourse"
                 className="block px-4 py-2 text-gray-800 hover:bg-indigo-200 flex items-center"

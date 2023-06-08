@@ -8,7 +8,6 @@ import Dashboard from './Page/Dashboard';
 import ManageInterface from "./Page/ManageInterface";
 import Sandbox from './Page/Sandbox';
 import CourseForm from "./Page/CourseForm";
-import QuestionCreationPage from './component/SurveyComponent';
 import LessonPage from './Page/LessonPage';
 import QuizPage from "./Page/QuizPage";
 import QuizChoice from "./Page/QuizChoice";
@@ -28,7 +27,6 @@ root.render(
     <Route path='manageInterface' element={<ManageInterface />}/>
     <Route path='courseForm' element={<CourseForm />}/>
     <Route path='lesson/:lessonId' element={<LessonPage />}/>
-    <Route path='quizCreate' element={<QuestionCreationPage />}/>
     <Route path='quizChoice' element={<QuizChoice />}/>
     <Route path='quizPage/:courseId' element={<QuizPage /> }/>
     <Route path='leaderboard' element={<LeaderBoard /> }/>

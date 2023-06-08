@@ -41,7 +41,6 @@ public class CourseRepository : ICourseRepository
         var course =  await _context.Courses
             .Include(c => c.Quizzes)
             .Include(x =>x.Chapters)
-            .AsNoTracking()
             .FirstOrDefaultAsync(c => c.Id == courseId);
         return course;
     }

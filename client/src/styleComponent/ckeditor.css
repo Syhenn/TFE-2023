@@ -29,6 +29,9 @@
   
   #ckeditor blockquote {
     margin: 20px 0 10px 50px;
+    padding: 10px;
+    border-radius: 2px;
+    font-size: 25px;
     width: 90%;
     background-color: rgba(0, 0, 0, 0.754);
     color: white;

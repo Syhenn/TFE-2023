@@ -25,10 +25,11 @@ const CreateQuizForm = () => {
       return;
     }
         
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const fetchDataUser = async () => {
         try {
-          const response = await axios.get("https://localhost:7227/User/current-user");
-          setUserData(response.data);
+          const response = await fetchData("/User/current-user");
+          setUserData(response);
         } catch (error) {
           console.error(error);
           navigate("/");
@@ -37,6 +38,7 @@ const CreateQuizForm = () => {
     const fetchCourses = async () => {
         try {
           const coursesResponse = await fetchData("/Course");
+          setSelectedCourse(coursesResponse[0])
           setCourses(coursesResponse);
         } catch (error) {
           console.log(error);
@@ -44,7 +46,7 @@ const CreateQuizForm = () => {
       };
       fetchCourses();
       fetchDataUser();
-});
+}, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     quizData.courseId = selectedCourse;
@@ -141,13 +143,15 @@ const CreateQuizForm = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="courseId" className="block text-gray-700 font-bold mb-2">
-            Pour quel cours créer le Quiez
+            Pour quel cours créer le Quiz
           </label>
-          <select
-          value={selectedCourse}
-          onChange={handleCourseChange}
-          className="w-full p-2 border border-gray-300 rounded mb-4"
-        >
+          {selectedCourse !== null &&(
+            <>
+            <select
+              value={selectedCourse}
+              onChange={handleCourseChange}
+              className="w-full p-2 border border-gray-300 rounded mb-4"
+            >
             <option value="">Séléctionnez un cours</option>
           {courses &&
             courses.map((course) => (
@@ -155,7 +159,10 @@ const CreateQuizForm = () => {
                 {course.title}
               </option>
             ))}
-        </select>
+            </select>
+            </>
+          )}
+
         </div>
         <button
           type="submit"

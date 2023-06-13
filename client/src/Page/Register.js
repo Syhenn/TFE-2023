@@ -51,7 +51,6 @@ const Register = () => {
       if (!password ||!repassword) {
         errorMessage += ' Mot de passe,';
       }
-  
       if (!age) {
         errorMessage += ' Age,';
       }
@@ -61,7 +60,12 @@ const Register = () => {
       return;
     }
     if (password !== repassword) {
-      let errorMessage = "Les mots de passes ne correspondent pas."
+      let errorMessage = "Les mots de passe ne correspondent pas."
+      toast.error(errorMessage, { autoClose: 5000 });
+      return;
+    }
+    if (password.length < 6) {
+      let errorMessage = 'Le mot de passe doit faire au moins 6 caractères.';
       toast.error(errorMessage, { autoClose: 5000 });
       return;
     }
@@ -86,7 +90,7 @@ const Register = () => {
     };
     try {
       const response = await postData("/User/verify-user-data", userDto);
-      if (response) {
+      if (response === true) {
         nextStep();
       }else {
         toast.error(response, {autoClose: 5000})

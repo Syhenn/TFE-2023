@@ -1,5 +1,4 @@
 ﻿using Application.Repositories;
-using Domain.Dtos;
 using MediatR;
 
 namespace Application.Context.User;

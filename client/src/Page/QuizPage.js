@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navbar from '../component/Navbar';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchData, postData } from '../api/apiService';
+import { BsClockFill } from 'react-icons/bs';
 import * as Survey from 'survey-react';
 import 'survey-react/survey.css';
 
@@ -66,7 +67,7 @@ const QuizPage = () => {
   const handleNextQuestion = (survey) => {
     const quiz = quizData[currentQuestionIndex];
     const userAnswer = survey && survey.valuesHash ? survey.valuesHash[quiz.name] : '';
-    const correctAnswer = quiz.correctAnswer;
+    const correctAnswer = quiz && quiz.correctAnswer ? quiz.correctAnswer : '';
     const points = userAnswer === correctAnswer ? 15 : 0;
   
     const updatedTotalScore = totalScore + points;
@@ -147,6 +148,11 @@ const QuizPage = () => {
   const handleToDashboard =() => {
     navigate('/dashboard');
   }
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  };
   return (
     <>
       {userData != null && <Navbar displayName={userData.displayName} role={userData.userRole} />}
@@ -167,7 +173,10 @@ const QuizPage = () => {
               </div>
             ) : (
               <>
-                <h2 className="text-2xl mb-5">Temps restant: {timeLeft} secondes</h2>
+                <div className="flex items-center justify-center">
+                  <BsClockFill className="mr-2 text-gray-500" size={20} />
+                  <span className="text-xl">{formatTime(timeLeft)}</span>
+                </div>
                 <Survey.Survey json={quizDataForm} onComplete={handleOnComplete} />
               </>
             )}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { putData, postData, fetchData } from "../api/apiService";
+import { putData, postData, fetchData, deleteData } from "../api/apiService";
 import axios from "axios";
 import Navbar from "../component/Navbar";
 
@@ -12,10 +12,12 @@ const ManageInterface = () => {
   const [showDeleteUserPopup, setShowDeleteUserPopup] = useState(false);
   const [userEmailToDelete, setUserEmailToDelete] = useState("");
   const token = localStorage.getItem("token");
-  const navigate = useNavigate();
   const [showAddLanguageForm, setShowAddLanguageForm] = useState(false);
   const [showAddChapterForm, setShowAddChapterForm] = useState(false);
   const [showAddLessonForm, setShowAddLessonForm] = useState(false);
+  const [showDeleteLessonPopup, setShowDeleteLessonPopup] = useState(false);
+  const [lessonIdToDelete,setLessonIdToDelete] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
@@ -58,32 +60,40 @@ const ManageInterface = () => {
       courseId
     };
     console.log(createdChapter);
-    // try {
-    //   await postData("/Chapter", createdChapter);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      await postData("/Chapter", createdChapter);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleChapterSubmit = async () => {
     if (courseName === "") {
       return;
     }
     console.log(courseName);
-    // try {
-    //   var courseResponse = await fetchData("/Course/getByName",  {courseName });
-    //   fetchChapterCreate(courseResponse.data.id);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      var courseResponse = await fetchData("/Course/getByName",  {courseName });
+      fetchChapterCreate(courseResponse.id);
+    } catch (error) {
+      console.log(error);
+    }
   }
   const deleteUser = async () => {
     try {
-      deleteUser("/User", userEmailToDelete)
+      await deleteData("/User", userEmailToDelete)
       setShowDeleteUserPopup(false); 
     } catch (error) {
       console.error(error);
     }
   };
+  const deleteLesson = async () => {
+    try {
+      await deleteData(`/Lesson/${lessonIdToDelete}`);
+      setShowDeleteLessonPopup(false); 
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const handleAddCours = async () => {
     navigate('/courseForm');
   }
@@ -96,6 +106,12 @@ const ManageInterface = () => {
   };
   const handleUserEdit = () => {
     navigate('/userEditPage');
+  }
+  const handleDeleteLesson = () => {
+    setShowDeleteLessonPopup(true);
+  }
+  const handleUpdateLesson = () => {
+    navigate('/updateLesson');
   }
   return(
     <>
@@ -138,6 +154,22 @@ const ManageInterface = () => {
                   onClick={handleAddQuiz}
                 >
                   Ajouter un nouveau quiz
+                </button>
+                <button
+                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mb-5 mt-5"
+                  onClick={handleDeleteLesson}
+                >
+                  Supprimer une leçon
+                </button>
+                <button
+                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 mb-5 mt-5"
+                  onClick={handleUpdateLesson}
+                >
+                  Modifier une leçon
                 </button>
               </>
             )}
@@ -269,6 +301,36 @@ const ManageInterface = () => {
               <button
                 className="py-2 px-4 bg-gray-400 text-white rounded-md hover:bg-gray-500"
                 onClick={() => setShowDeleteUserPopup(false)}
+              >
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+        </>
+      )}{showDeleteLessonPopup && (
+        <>
+        <div className="absolute inset-0 bg-gray-500 opacity-75">
+        </div>
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8 max-w-md">
+            <h2 className="text-2xl font-bold mb-4">Supprimer une leçon</h2>
+            <p>Veuillez entrer l'ID de la leçon à supprimer :</p>
+            <input
+              type="text"
+              className="border w-full border-gray-300 rounded-md px-3 py-2 mt-2"
+              onChange={(e) => setLessonIdToDelete(e.target.value)}
+            />
+            <div className="flex justify-end mt-4">
+              <button
+                className="py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700 mr-2"
+                onClick={deleteLesson}
+              >
+                Supprimer
+              </button>
+              <button
+                className="py-2 px-4 bg-gray-400 text-white rounded-md hover:bg-gray-500"
+                onClick={() => setShowDeleteLessonPopup(false)}
               >
                 Annuler
               </button>

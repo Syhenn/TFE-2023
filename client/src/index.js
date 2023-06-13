@@ -16,6 +16,7 @@ import LeaderBoard from "./Page/Leaderboard";
 import UserEditPage from "./Page/UserEditPage";
 import RegistrationToNewCourse from "./Page/RegistrationToNewCourse";
 import EditProfilePage from "./Page/EditProfilePage";
+import LessonUpdate from "./Page/LessonUpdate";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -34,6 +35,7 @@ root.render(
     <Route path='userEditPage' element={<UserEditPage />}/>
     <Route path='newCourse' element={<RegistrationToNewCourse />}/>
     <Route path='editProfilePage' element={<EditProfilePage />}/>
+    <Route path='updateLesson' element={<LessonUpdate />}/>
   </Routes>
 </BrowserRouter>
 );

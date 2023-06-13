@@ -50,5 +50,12 @@ public class LessonController : ControllerBase
         var commandResult = await _mediator.Send(new GetFirstLessonCommand(languageId));
         return Ok(commandResult);
     }
-    
+
+    [HttpDelete("{lessonId}")]
+    public async Task<ActionResult<Lesson>> DeleteLesson(int lessonId)
+    {
+        var commandResult = await _mediator.Send(new DeleteLessonCommand(lessonId));
+        return Ok(commandResult);
+    }
+
 }

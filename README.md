@@ -1,12 +1,13 @@
 # TFE-2023
 TFE 2022 - 2023 
-API : 
+backend : 
   - .Net core 6 
   - Using CQRS (Mediatr)
   - Clean Architecture  
   ![CleanArchitecture](https://user-images.githubusercontent.com/89152439/235498887-bcf733c3-436a-4927-8a96-045027d35bd9.jpg)
  
- Front : 
-    - React (Axios request)
+ Frontend : 
+    - ReactJS (Axios request)
     - SurveyJS
-    - Tailwind
+    - CKEditor
+    - Tailwind CSS

@@ -97,13 +97,13 @@ const CourseForm = () => {
   };
 
   return (
-    <div className="bg-indigo-100 min-h-screen">
+    <div className="min-h-screen">
     {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
       <div className="container mx-auto py-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-extrabold text-gray-900">Création d'un cours</h2>
         </div>
-        <div className="mb-6">
+        <div className="mb-6 mr-10 ml-10">
           <p className="text-gray-700 mb-2">À quel cours ajouter une leçon :</p>
           {selectedCourse !== null && (
             <select
@@ -117,7 +117,7 @@ const CourseForm = () => {
             </select>
           )}
         </div>
-        <div className="mb-6">
+        <div className="mb-6 mr-10 ml-10">
           <p className="text-gray-700 mb-2">À quel chapitre de ce cours ajouter une leçon :</p>
           {selectedChapter !== null && (
             <select
@@ -131,7 +131,7 @@ const CourseForm = () => {
             </select>
           )}
         </div>
-        <div className="mb-6">
+        <div className="mb-6 mr-10 ml-10">
           <label className="text-gray-700 mb-2 block" htmlFor="chapterTitle">Titre du cours à créer :</label>
           <input
             id="chapterTitle"

@@ -33,7 +33,6 @@ const LeaderBoard = () => {
         const usersResponse = await fetchData('/User');
         const quizAnswersResponse = await fetchData('/QuizAnswer');
 
-        // Agréger les points par utilisateur
         const usersWithPoints = usersResponse.map(user => {
           const points = quizAnswersResponse
             .filter(answer => answer.userId === user.id)
@@ -56,8 +55,7 @@ const LeaderBoard = () => {
 
   return (
     <>
-    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
-      <div className="container mx-auto mt-8">
+{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}      <div className="container mx-auto mt-8">
         <div className="flex items-center justify-center mb-4">
           <h2 className="text-2xl font-semibold mr-2">
             <GiPodiumWinner className="inline-block mr-2 text-4xl text-yellow-500" />

@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Text;
 using Application.Context.User;
 using Application.Entities;
-using Domain.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

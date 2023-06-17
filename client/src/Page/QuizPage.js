@@ -155,8 +155,7 @@ const QuizPage = () => {
   };
   return (
     <>
-      {userData != null && <Navbar displayName={userData.displayName} role={userData.userRole} />}
-      <div className="container mx-auto mt-8">
+{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}      <div className="container mx-auto mt-8">
         {quizDataForm != null && (
           <>
             {quizCompletedMessage ? (

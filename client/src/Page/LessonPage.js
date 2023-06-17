@@ -76,7 +76,7 @@ const LessonPage = () => {
 
   return (
     <div>
-      {userData != null && (<Navbar displayName={userData.displayName} role={userData.userRole} />)}
+{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}
       {lesson != null && (
         <>
         <div className="m-10">

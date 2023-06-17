@@ -1,5 +1,6 @@
 ﻿using Application.Entities;
 using Application.Repositories;
+using Domain.Dtos;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,12 +15,18 @@ public class LessonRepository : ILessonRepository
         _context = context;
     }
 
+    public async Task<Lesson> UpdateLesson(Lesson lesson)
+    {
+        _context.Lessons.Update(lesson);
+        await _context.SaveChangesAsync();
+        return lesson;
+    }
     public async Task<List<Lesson>> GetLessonsAsync()
     {
         return await _context.Lessons.ToListAsync();
     }
 
-    public async Task<Lesson> GetLessonAsync(int lessonId)
+    public async Task<Lesson> GetLessonAsync(int? lessonId)
     {
         return await _context.Lessons.FirstOrDefaultAsync(x => x.Id == lessonId);
     }

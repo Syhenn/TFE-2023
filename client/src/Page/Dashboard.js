@@ -24,6 +24,7 @@ const Dashboard = () => {
     const fetchDataUser = async () => {
       try {
         const response = await fetchData('/User/current-user');
+        console.log(response);
         setUserData(response);
         fetchDataUserLanguage(response.id);
       } catch (error) {
@@ -66,7 +67,7 @@ const Dashboard = () => {
   };
   return (
     <>
-    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
+    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}
       <div className="container mx-auto mt-8">
         <div className="flex justify-center mb-4">
           {selectedLanguage !== null && (

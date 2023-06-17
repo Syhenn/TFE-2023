@@ -43,7 +43,7 @@ public class ChapterRepository : IChapterRepository
 
     public async Task<Chapter> CreateChapter(Chapter chapter)
     {
-        _context.Chapters.Add(chapter);
+        await _context.Chapters.AddAsync(chapter);
         await _context.SaveChangesAsync();
         return chapter;
     }

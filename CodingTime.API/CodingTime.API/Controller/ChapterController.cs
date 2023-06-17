@@ -35,4 +35,10 @@ public class ChapterController : ControllerBase
         var commandResult = await _mediator.Send(new CreateChapterCommand(chapterDto));
         return Ok(commandResult);
     }
+    [HttpDelete("{chapterId}")]
+    public async Task<ActionResult<Chapter>> DeleteChapter(int chapterId)
+    {
+        var commandResult = await _mediator.Send(new DeleteChapterCommand(chapterId));
+        return Ok(commandResult);
+    }
 }

@@ -51,8 +51,7 @@ const EditProfilePage = () => {
 
   return (
     <>
-    {userData != null && <Navbar displayName={userData.displayName} role={userData.userRole} />}
-    <div className="container mx-auto p-4">
+{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}    <div className="container mx-auto p-4">
     <div className="m-10 text-3xl text-center font-extrabold text-gray-900">
       <h1 >Modifier les informations personnelles</h1>
       </div>

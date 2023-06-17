@@ -2,6 +2,7 @@
 using Domain.Dtos;
 using MediatR;
 using BCrypt.Net;
+using Domain.Enum;
 
 namespace Application.Context.User
 {
@@ -27,12 +28,16 @@ namespace Application.Context.User
                 Email = command.UserDto.Email,
                 Id = 0,
                 Level = 0,
+                IsVerify = false,
                 Password = BCrypt.Net.BCrypt.HashPassword(command.UserDto.Password),
                 Name = command.UserDto.Name,
                 Surname = command.UserDto.Surname,
                 UserRole = command.UserDto.UserRole
             };
-
+            if (user.UserRole == UserRole.Student)
+            {
+                user.IsVerify = true;
+            }
             var resultCreate = await _userRepository.CreateUserAsync(user);
             return resultCreate;
         }

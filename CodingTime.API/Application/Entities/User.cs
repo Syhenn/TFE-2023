@@ -16,6 +16,7 @@ public class User
     public int Level { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdateAt { get; set; }
+    public bool IsVerify { get; set; }
 
     [JsonIgnore] public ICollection<UserLanguage> UserLanguages { get; set; } = new List<UserLanguage>();
     [JsonIgnore] public ICollection<QuizAnswer> QuizAnswers { get; set; } = new List<QuizAnswer>();

@@ -30,6 +30,9 @@ const CourseForm = () => {
     const fetchDataUser = async () => {
       try {
         const response = await fetchData('/User/current-user');
+        if(response.isVerify === false){
+          navigate('/dashboard');
+        }
         setUserData(response);
       } catch (error) {
         console.error(error);
@@ -73,7 +76,7 @@ const CourseForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    var selectedChapterId = selectedChapter.id;
+    var selectedChapterId = selectedChapter;
     let title = chapterTitle;
     var chapterDto = {
       Title: title,
@@ -81,15 +84,12 @@ const CourseForm = () => {
       HtmlContent: lessonContent
     }
     postData('/Lesson', chapterDto);
+    navigate('/dashboard');
   };
 
   const handleCourseChange = async (course) => {
     setSelectedCourse(course)
     fetchChapters(course);
-  };
-
-  const handleChapterChange = async (chapter) => {
-    setSelectedChapter(chapter);
   };
 
   const toggleDropdown = () => {
@@ -98,7 +98,7 @@ const CourseForm = () => {
 
   return (
     <div className="min-h-screen">
-    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
+    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}
       <div className="container mx-auto py-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-extrabold text-gray-900">Création d'un cours</h2>
@@ -122,7 +122,7 @@ const CourseForm = () => {
           {selectedChapter !== null && (
             <select
               value={selectedChapter}
-              onChange={(e) => handleChapterChange(e.target.value)}
+              onChange={(e) => setSelectedChapter(e.target.value)}
               className="border border-gray-300 rounded-md py-2 px-4 w-full"
             >
               {chapters.map((chapter, index) => (

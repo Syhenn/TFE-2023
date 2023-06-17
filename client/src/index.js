@@ -18,6 +18,9 @@ import RegistrationToNewCourse from "./Page/RegistrationToNewCourse";
 import EditProfilePage from "./Page/EditProfilePage";
 import LessonUpdate from "./Page/LessonUpdate";
 import DeleteLesson from "./Page/DeleteLesson";
+import DeleteChapter from "./Page/DeleteChapter";
+import UpdateQuiz from "./Page/UpdateQuiz";
+import VerifyUser from "./Page/VerifyUser";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -38,6 +41,9 @@ root.render(
     <Route path='editProfilePage' element={<EditProfilePage />}/>
     <Route path='updateLesson' element={<LessonUpdate />}/>
     <Route path='deleteLesson' element={<DeleteLesson/>}/>
+    <Route path='deleteChapter' element={<DeleteChapter/>}/>
+    <Route path="updateQuiz" element={<UpdateQuiz/>}/>
+    <Route path='verifyUser' element={<VerifyUser/>}/>
   </Routes>
 </BrowserRouter>
 );

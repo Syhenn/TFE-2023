@@ -58,4 +58,10 @@ public class LessonController : ControllerBase
         return Ok(commandResult);
     }
 
+    [HttpPut]
+    public async Task<ActionResult<Lesson>> UpdateLesson(LessonDto lessonDto)
+    {
+        var commandResult = await _mediator.Send(new UpdateLessonCommand(lessonDto));
+        return Ok(commandResult);
+    }
 }

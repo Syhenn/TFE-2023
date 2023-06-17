@@ -6,7 +6,7 @@ import Navbar from "../component/Navbar";
 
 const ManageInterface = () => {
   const [userData, setUserData] = useState(null);
-  const [courseList, setCourseList] = useState(null);
+  const [courseList, setCourseList] = useState([]);
   const [courseName, setCourseName] = useState("");
   const [titleChapter, setTitleChapter] = useState(null);
   const [showDeleteUserPopup, setShowDeleteUserPopup] = useState(false);
@@ -26,8 +26,11 @@ const ManageInterface = () => {
     
     const fetchDataUser = async () => {
       try {
-        const response = await axios.get("https://localhost:7227/User/current-user");
-        setUserData(response.data);
+        const response = await fetchData("/User/current-user");
+        if(response.isVerify === false){
+          navigate('/dashboard');
+        }
+        setUserData(response);
       } catch (error) {
         console.error(error);
         navigate("/");
@@ -35,8 +38,9 @@ const ManageInterface = () => {
     };
     const fetchCourseList = async () => {
       try {
-        const courseListResponse = await axios.get("https://localhost:7227/Course");
-        setCourseList(courseListResponse.data);
+        const courseListResponse = await fetchData("/Course");
+        setCourseName(courseListResponse[0].title);
+        setCourseList(courseListResponse);
       } catch (error) {
         
       }
@@ -54,28 +58,27 @@ const ManageInterface = () => {
   };
   const fetchChapterCreate = async (courseId) => {
     var createdChapter = {
-      title : titleChapter,
+      title: titleChapter,
       courseId
     };
-    console.log(createdChapter);
     try {
-      await postData("/Chapter", createdChapter);
+      var createChapterResult = await postData("/Chapter", createdChapter);
+      navigate('/dashboard');
     } catch (error) {
       console.log(error);
-    }
+    } 
   };
   const handleChapterSubmit = async () => {
     if (courseName === "") {
       return;
     }
-    console.log(courseName);
     try {
-      var courseResponse = await fetchData("/Course/getByName",  {courseName });
+      var courseResponse = await fetchData("/Course/getByName", { courseName });
       fetchChapterCreate(courseResponse.id);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   const deleteUser = async () => {
     try {
       await deleteData("/User", userEmailToDelete)
@@ -103,27 +106,26 @@ const ManageInterface = () => {
   const handleUpdateLesson = () => {
     navigate('/updateLesson');
   }
+  const handleDeleteChapter = () => {
+    navigate('/deleteChapter');
+  }
+  const handleUpdateQuiz = () => {
+    navigate('/updateQuiz');
+  }
   return(
     <>
-      {userData && <Navbar displayName={userData.displayName} role={userData.userRole} />}
-      <div className="flex justify-center items-center min-h-screen bg-gray-50">
+{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}      
+<div className="flex justify-center items-center w-full h-full">
         <div className="max-w-md w-full space-y-8">
           <div>
             <h2 className="text-center text-3xl font-extrabold text-gray-900">Interface de gestion</h2>
             <h3 className="text-center text-2xl font-extrabold text-gray-500">Gestion des cours</h3>
             {(userData && userData.userRole > 0) && (
               <>
+                <h4 className="text-center text-xl font-extrabold text-gray-400">Chapitre</h4>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 
-                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
-                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
-                  onClick={handleAddLanguage}
-                >
-                  Ajouter un nouveau cours
-                </button>
-                <button
-                  className="group relative w-full flex justify-center py-2 px-4 border 
-                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
+                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={handleAddChapter}
                 >
@@ -131,7 +133,16 @@ const ManageInterface = () => {
                 </button>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 
-                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
+                  border-transparent text-sm font-medium rounded-md text-white bg-purple-950 hover:bg-purple-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mb-5 mt-5"
+                  onClick={handleDeleteChapter}
+                >
+                  Supprimer un chapitre
+                </button>
+                <h4 className="text-center text-xl font-extrabold text-gray-400">Quiz</h4>
+                <button
+                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={handleAddQuiz}
                 >
@@ -139,7 +150,16 @@ const ManageInterface = () => {
                 </button>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 
-                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
+                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
+                  onClick={handleUpdateQuiz}
+                >
+                  Modifier un quiz
+                </button>
+                <h4 className="text-center text-xl font-extrabold text-gray-400">Leçon</h4>
+                <button
+                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={handleAddCours}
                 >
@@ -147,16 +167,16 @@ const ManageInterface = () => {
                 </button>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 
-                  border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 
-                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 mb-5 mt-5"
+                  border-transparent text-sm font-medium rounded-md text-white bg-cyan-700 hover:bg-cyan-500 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-5 mt-5"
                   onClick={handleUpdateLesson}
                 >
                   Modifier une leçon
                 </button>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 
-                  border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 
-                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mb-5 mt-5"
+                  border-transparent text-sm font-medium rounded-md text-white bg-purple-950 hover:bg-purple-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mb-5 mt-5"
                   onClick={handleDeleteLesson}
                 >
                   Supprimer une leçon
@@ -168,7 +188,7 @@ const ManageInterface = () => {
                 <h3 className="text-center text-2xl font-extrabold text-gray-500">Interface administrateur</h3>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 
-                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
+                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={handleUserEdit}
                 >
@@ -176,8 +196,8 @@ const ManageInterface = () => {
                 </button>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 
-                  border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
-                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
+                  border-transparent text-sm font-medium rounded-md text-white bg-purple-950 hover:bg-purple-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mb-5 mt-5"
                   onClick={() => showDeleteUser(userData.email)}
                 >
                   Supprimer un utilisateur
@@ -229,7 +249,7 @@ const ManageInterface = () => {
               {courseList.map((course) =>(
                 <option
                  key={course.id} 
-                 value={course.title}>
+                 value={course.id}>
                   {course.title}
                   </option>
               ))}
@@ -283,7 +303,7 @@ const ManageInterface = () => {
             />
             <div className="flex justify-end mt-4">
               <button
-                className="py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-700 mr-2"
+                className="py-2 px-4 bg-purple-950 text-white rounded-md hover:bg-purple-700 mr-2"
                 onClick={deleteUser}
               >
                 Supprimer

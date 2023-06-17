@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FiCode, FiUser, FiLogOut, FiList, FiSettings  } from 'react-icons/fi';
 import { AiOutlineHome, AiOutlineTrophy } from 'react-icons/ai';
 
-const Navbar = ({ displayName , role}) => {
+const Navbar = ({ displayName , role, isVerify}) => {
   const navigate = useNavigate();
   const [showToolsDropdown, setShowToolsDropdown] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
@@ -91,7 +91,7 @@ const Navbar = ({ displayName , role}) => {
                 <AiOutlineTrophy className="text-lg mr-2" />
                 <span>Classement</span>
               </Link>
-              {role > 0 && (
+              {(role > 0 && isVerify) && (
                 <Link
                   to="/manageInterface"
                   className="block px-4 py-2 text-gray-800 hover:bg-indigo-200 flex items-center"

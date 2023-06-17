@@ -76,13 +76,13 @@ const Progress = ({ courseId, userId }) => {
   const getLessonStatusMessage = (lessonId, chapter) => {
     const status = getLessonStatus(lessonId, chapter);
     if (status === "locked") {
-      return "Complete the previous lesson to unlock";
+      return "Complétez la leçon d'avant pour continuer";
     }
     return "";
   };
 
   return (
-    <div className="container w-screen h-screen flex justify-center">
+    <div className="container w-screen h-full flex justify-center flex-col">
       {chapters !== null && (
         <>
           {chapters.map((chapter, index) => (

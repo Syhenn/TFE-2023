@@ -29,6 +29,9 @@ const CreateQuizForm = () => {
     const fetchDataUser = async () => {
         try {
           const response = await fetchData("/User/current-user");
+          if(response.isVerify === false){
+            navigate('/dashboard');
+          }
           setUserData(response);
         } catch (error) {
           console.error(error);
@@ -67,7 +70,7 @@ const CreateQuizForm = () => {
   };
   return (
     <>
-    {userData && <Navbar displayName={userData.displayName} role={userData.userRole} />}
+    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}
     <div className="container mx-auto mt-8">
       <h2 className="text-2xl font-bold mb-4">Créer un quiz</h2>
       <form onSubmit={handleSubmit}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { fetchData } from "../api/apiService";
+import { fetchData, putData } from "../api/apiService";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../component/Navbar";
@@ -32,6 +32,9 @@ const LessonUpdate = () => {
         const fetchDataUser = async () => {
             try {
               const response = await fetchData("/User/current-user");
+              if(response.isVerify === false){
+                navigate('/dashboard');
+              }
               setUserData(response);
             } catch (error) {
               console.error(error);
@@ -57,7 +60,6 @@ const LessonUpdate = () => {
         fetchLesson(e);
     }
     const fetchLesson = async (courseId) => {
-        console.log(courseId);
         try {
             var chaptersResponse = await fetchData('/Chapter', { courseId });
             setChapters(chaptersResponse);
@@ -94,12 +96,23 @@ const LessonUpdate = () => {
       };
     const handleSubmit = async (event) => {
         event.preventDefault();
+        let lesson = await fetchData('/Lesson', { lessonId: selectedLesson });
+        var lessonDto = {
+            Id : selectedLesson, 
+            Title : lesson.title, 
+            ChapterId : lesson.chapterId,
+            HtmlContent : lessonContent
+        };
+        try {
+            await putData('/Lesson', lessonDto);
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <>
             <div className="min-h-screen">
-                {userData != null && (<Navbar displayName={userData.displayName} role={userData.userRole} />)}
-                <div className="container mx-auto py-8">
+            {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}                <div className="container mx-auto py-8">
                     <div className="text-center mb-10">
                         <h2 className="text-3xl font-extrabold text-gray-900">Modification d'une leçon</h2>
                     </div>

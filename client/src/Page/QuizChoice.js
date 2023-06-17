@@ -53,8 +53,7 @@ const QuizChoice = () => {
 
   return (
     <>
-    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} />)}
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-50">
+{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}    <div className="flex flex-col items-center justify-center h-screen bg-gray-50">
       <h2 className="text-center text-3xl font-extrabold text-gray-900">Choix du Quiz</h2>
       <div className="bg-white p-8 mt-10 rounded shadow">
         <h2 className="text-xl font-bold mb-4">Pour quel cours faire un quiz :</h2>

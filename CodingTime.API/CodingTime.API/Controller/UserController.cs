@@ -69,6 +69,12 @@ public class UserController : ControllerBase
         var commandResult = await _mediator.Send(new UpdateUserCommand(userDto));
         return Ok(commandResult);
     }
+    [HttpPut("{userId:int}")]
+    public async Task<ActionResult<User>> VerifyUser(int userId)
+    {
+        var commandResult = await _mediator.Send(new VerifyUserCommand(userId));
+        return commandResult;
+    }
     [Authorize]
     [HttpDelete]
     public async Task<ActionResult<User>> DeleteUser(string email)

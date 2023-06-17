@@ -26,6 +26,9 @@ const DeleteLesson = () => {
         const fetchDataUser = async () => {
             try {
               const response = await fetchData("/User/current-user");
+              if(response.isVerify === false){
+                navigate('/dashboard');
+              }
               setUserData(response);
             } catch (error) {
               console.error(error);
@@ -92,13 +95,12 @@ const DeleteLesson = () => {
     return (
         <>
             <div className="min-h-screen">
-                {userData != null && (<Navbar displayName={userData.displayName} role={userData.userRole} />)}
-                <div className="container mx-auto py-8">
+                {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}                <div className="container mx-auto py-8">
                     <div className="text-center mb-10">
-                        <h2 className="text-3xl font-extrabold text-gray-900">Modification d'une leçon</h2>
+                        <h2 className="text-3xl font-extrabold text-gray-900">Suppression d'une leçon</h2>
                     </div>
                     <div className="mb-6 mr-10 ml-10">
-                        <p className="text-gray-700 mb-2">Pour quel cours modifier la leçon:</p>
+                        <p className="text-gray-700 mb-2">Pour quel cours supprimer la leçon:</p>
                         {selectedCourse !== null && (
                             <select
                                 value={selectedCourse}
@@ -113,7 +115,7 @@ const DeleteLesson = () => {
                         )}
                     </div>
                     
-                    <p className="text-gray-700 mb-2 mr-10 ml-10">Modifier quelle leçon: </p>
+                    <p className="text-gray-700 mb-2 mr-10 ml-10">Supprimer quelle leçon: </p>
                     <div className="mb-6 mr-10 ml-10 flex flex-col items-center">
                         {lessons !== null && lessons.length > 0 && (
                             <>

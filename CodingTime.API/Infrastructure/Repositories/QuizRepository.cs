@@ -21,7 +21,7 @@ public class QuizRepository : IQuizRepository
         return quiz;
     }
 
-    public async Task<Quiz> GetQuiz(int quizId)
+    public async Task<Quiz> GetQuiz(int? quizId)
     {
         var quiz= await _dbContext.Quizzes
             .FirstOrDefaultAsync(x => x.Id == quizId);
@@ -31,5 +31,12 @@ public class QuizRepository : IQuizRepository
     public async Task<List<Quiz>> GetQuizzes()
     {
         return await _dbContext.Quizzes.ToListAsync();
+    }
+
+    public async Task<Quiz> UpdateQuiz(Quiz quiz)
+    {
+        _dbContext.Quizzes.Update(quiz);
+        _dbContext.SaveChangesAsync();
+        return quiz;
     }
 }

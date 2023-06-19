@@ -31,7 +31,7 @@ public class LessonController : ControllerBase
     }
     [HttpGet]
     [Route("getByChapter")]
-    public async Task<ActionResult<Lesson>> CreateLesson(int chapterId)
+    public async Task<ActionResult<Lesson>> GetLessonByChapter(int chapterId)
     {
         var commandResult = await _mediator.Send(new GetLessonByChapterCommand(chapterId));
         return Ok(commandResult);

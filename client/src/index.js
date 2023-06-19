@@ -7,7 +7,7 @@ import Login from './Page/Login';
 import Dashboard from './Page/Dashboard';
 import ManageInterface from "./Page/ManageInterface";
 import Sandbox from './Page/Sandbox';
-import CourseForm from "./Page/CourseForm";
+import LessonForm from "./Page/LessonForm";
 import LessonPage from './Page/LessonPage';
 import QuizPage from "./Page/QuizPage";
 import QuizChoice from "./Page/QuizChoice";
@@ -21,6 +21,7 @@ import DeleteLesson from "./Page/DeleteLesson";
 import DeleteChapter from "./Page/DeleteChapter";
 import UpdateQuiz from "./Page/UpdateQuiz";
 import VerifyUser from "./Page/VerifyUser";
+import VerifyCourse from "./Page/VerifyCourse";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -30,7 +31,7 @@ root.render(
     <Route path="dashboard" element={<Dashboard />} />
     <Route path="sandbox" element={<Sandbox />} />
     <Route path='manageInterface' element={<ManageInterface />}/>
-    <Route path='courseForm' element={<CourseForm />}/>
+    <Route path='lessonForm' element={<LessonForm />}/>
     <Route path='lesson/:lessonId' element={<LessonPage />}/>
     <Route path='quizChoice' element={<QuizChoice />}/>
     <Route path='quizPage/:courseId' element={<QuizPage /> }/>
@@ -44,6 +45,7 @@ root.render(
     <Route path='deleteChapter' element={<DeleteChapter/>}/>
     <Route path="updateQuiz" element={<UpdateQuiz/>}/>
     <Route path='verifyUser' element={<VerifyUser/>}/>
+    <Route path='verifyCourse' element={<VerifyCourse/>}/>
   </Routes>
 </BrowserRouter>
 );

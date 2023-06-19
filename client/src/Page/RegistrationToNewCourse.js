@@ -66,12 +66,12 @@ const RegistrationToNewCourse = () => {
     <>
 {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}      <div className="container mx-auto p-4">
       <div className="m-10 text-3xl text-center font-extrabold text-gray-900">
-                <h1>Inscription à un nouveau cours</h1>
+                <h1>Inscription à un nouveau langage</h1>
               </div>
         <form onSubmit={handleRegistrationSubmit}>
           <div className="mb-4">
             <label htmlFor="course" className="block font-medium mb-2">
-              Sélectionnez un cours :
+              Sélectionnez un langage à apprendre :
             </label>
             <select
               id="course"
@@ -80,7 +80,7 @@ const RegistrationToNewCourse = () => {
               value={selectedCourse?.id || ''}
               onChange={handleCourseChange}
             >
-              <option value="">Sélectionnez un cours</option>
+              <option value="">Sélectionnez un langage</option>
               {courses.map((course) => (
                 <option key={course.id} value={course.id}>
                   {course.name}

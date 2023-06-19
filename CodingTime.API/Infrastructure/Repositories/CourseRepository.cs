@@ -31,9 +31,9 @@ public class CourseRepository : ICourseRepository
             .FirstOrDefaultAsync(x => x.Title == courseName);
     }
 
-    public async Task<Course> GetCourseByLanguage(int languageId)
+    public async Task<List<Course>> GetCourseByLanguage(int languageId)
     {
-        return _context.Courses.FirstOrDefault(x => x.LanguageId == languageId);
+        return await _context.Courses.Where(x => x.LanguageId == languageId).ToListAsync();
     }
 
     public async Task<Course> GetCourseIncluded(int courseId)
@@ -52,6 +52,12 @@ public class CourseRepository : ICourseRepository
         return course;
     }
 
+    public async Task<Course> UpdateCourse(Course course)
+    {
+        _context.Courses.Update(course);
+        await _context.SaveChangesAsync();
+        return course;
+    }
     public async Task<Course> DeleteCourseAsync(Course course)
     {
         _context.Remove(course);

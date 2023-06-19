@@ -25,6 +25,8 @@ public class CreateCourseHandler : IRequestHandler<CreateCourseCommand, Entities
             Title = command.CourseDto.Title,
             Description = command.CourseDto.Description,
             LanguageId = command.CourseDto.LanguageId,
+            CreatedBy = command.CourseDto.CreatedBy,
+            IsVerify = false,
             Language = language
         };
         var result = await _courseRepository.CreateCourseAsync(course);

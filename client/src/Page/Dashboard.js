@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../component/Navbar";
 import { useNavigate } from 'react-router-dom';
-import {fetchData} from '../api/apiService';
+import { fetchData } from '../api/apiService';
 import Progress from "../component/progress";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
   const [userLanguage, setUserLanguage] = useState(null);
-  const [course, setCourse] = useState(null);
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
+  const [courses, setCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,9 +18,9 @@ const Dashboard = () => {
       navigate("/");
       return;
     }
-  
+
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  
+
     const fetchDataUser = async () => {
       try {
         const response = await fetchData('/User/current-user');
@@ -32,58 +32,75 @@ const Dashboard = () => {
         navigate("/");
       }
     };
-  
+
     const fetchDataUserLanguage = async (userId) => {
       try {
-        const userLanguageResponse = await fetchData("/UserLanguage", {userId});
+        const userLanguageResponse = await fetchData("/UserLanguage", { userId });
         setUserLanguage(userLanguageResponse);
-        setSelectedLanguage(userLanguageResponse[0].id)
-        fetchCourseDefault(userLanguageResponse[0].languageId)
+        const coursePromises = userLanguageResponse.map((element) =>
+          fetchDataCourse(element.languageId)
+        );
+        const courseResponses = await Promise.all(coursePromises);
+        const mergedCourses = courseResponses.reduce(
+          (accumulator, currentCourses) => accumulator.concat(currentCourses),
+          []
+        );
+        setCourses(mergedCourses);
+        setSelectedCourse(mergedCourses[0]);
+        console.log(mergedCourses);
       } catch (error) {
         console.log(error);
       }
     };
-    const fetchCourseDefault = async (languageId) => {
+
+    const fetchDataCourse = async (languageId) => {
       try {
-        const courseResponse = await fetchData("/Course/getByLanguage",{languageId});
-        setCourse(courseResponse);
+        const courseResponse = await fetchData("/Course/getByLanguage", { languageId });
+        return courseResponse;
       } catch (error) {
         console.log(error);
       }
     };
+
     fetchDataUser();
   }, []);
-  const fetchDataCourse = async (languageId) => {
-    try {
-      const courseResponse = await fetchData("/Course/getByLanguage",{languageId});
-      setCourse(courseResponse);
-    } catch (error) {
-      console.log(error);
-    }
+
+  const handleCourseChange = (courseId) => {
+    const selectedCourse = courses.find((course) => course.id === parseInt(courseId));
+    setSelectedCourse(selectedCourse);
+    console.log(courseId);
   };
-  const handleLanguageChange = (languageId) => {
-    setSelectedLanguage(languageId);
-    fetchDataCourse(languageId)
-  };
+
   return (
     <>
-    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}
+      {userData != null && (
+        <Navbar
+          displayName={userData.displayName}
+          role={userData.userRole}
+          isVerify={userData.isVerify}
+        />
+      )}
       <div className="container mx-auto mt-8">
         <div className="flex justify-center mb-4">
-          {selectedLanguage !== null && (
-          <select
-            className="block appearance-none bg-white border border-indigo-600 rounded-md px-4 py-2 text-indigo-600 focus:outline-none focus:border-indigo-400"
-            value={selectedLanguage}
-            onChange={(e) => handleLanguageChange(e.target.value)}
-          >{userLanguage!=null &&(
-            <>
-            {userLanguage.map((language) => (
-              <option key={language.language.id} value={language.language.id}>{language.language.name}</option>
-            ))}</>)}
-          </select>
+          {courses.length > 0 && (
+            <select
+              className="block appearance-none bg-white border border-indigo-600 rounded-md px-4 py-2 text-indigo-600 focus:outline-none focus:border-indigo-400"
+              value={selectedCourse?.id.toString() || ''}
+              onChange={(e) => handleCourseChange(e.target.value)}
+            >
+              {courses
+                .filter((course) => course.isVerify)
+                .map((course) => (
+                  <option key={course.id} value={course.id} className="text-center">
+                    {course.title}
+                  </option>
+                ))}
+            </select>
           )}
         </div>
-        {course!=null &&(<Progress courseId={course.id} userId={userData.id} />)}
+        {selectedCourse != null && (
+          <Progress courseId={selectedCourse.id} userId={userData.id} />
+        )}
       </div>
     </>
   );

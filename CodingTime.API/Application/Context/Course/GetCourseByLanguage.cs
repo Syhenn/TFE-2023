@@ -3,9 +3,9 @@ using MediatR;
 
 namespace Application.Context.Course;
 
-public record GetCourseByLanguageCommand(int languageId) : IRequest<Entities.Course>;
+public record GetCourseByLanguageCommand(int languageId) : IRequest<List<Entities.Course>>;
 
-public class GetCourseByLanguageHandler : IRequestHandler<GetCourseByLanguageCommand, Entities.Course>
+public class GetCourseByLanguageHandler : IRequestHandler<GetCourseByLanguageCommand,List<Entities.Course>>
 {
     private readonly ICourseRepository _CourseRepository;
 
@@ -14,7 +14,7 @@ public class GetCourseByLanguageHandler : IRequestHandler<GetCourseByLanguageCom
         _CourseRepository = courseRepository;
     }
 
-    public async Task<Entities.Course> Handle(GetCourseByLanguageCommand command, CancellationToken cancellationToken)
+    public async Task<List<Entities.Course>> Handle(GetCourseByLanguageCommand command, CancellationToken cancellationToken)
     {
         return await _CourseRepository.GetCourseByLanguage(command.languageId);
     }

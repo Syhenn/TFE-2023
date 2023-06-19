@@ -23,7 +23,7 @@ public class CourseController : ControllerBase
     }
     [HttpGet]
     [Route("getByLanguage")]
-    public async Task<ActionResult<Course>> GetCourseByLanguage(int languageId)
+    public async Task<ActionResult<List<Course>>> GetCourseByLanguage(int languageId)
     {
         var commandResult = await _mediator.Send(new GetCourseByLanguageCommand(languageId));
         return commandResult;
@@ -43,10 +43,24 @@ public class CourseController : ControllerBase
         var commandResult = await _mediator.Send(new GetCourseIncludedCommand(CourseId));
         return Ok(commandResult);
     }
+
+    [HttpPut("{courseId}")]
+    public async Task<ActionResult<Course>> VerifyCourse(int courseId)
+    {
+        var commandResult = await _mediator.Send(new VerifyCourseCommand(courseId));
+        return commandResult;
+    }
     [HttpPost]
     public async Task<ActionResult<Course>> CreateCourse(CourseDto courseDto)
     {
         var commandResult = await _mediator.Send(new CreateCourseCommand(courseDto));
+        return commandResult;
+    }
+
+    [HttpDelete("{courseId}")]
+    public async Task<ActionResult<Course>> DeleteCourse(int courseId)
+    {
+        var commandResult = await _mediator.Send(new DeleteCourseCommand(courseId));
         return commandResult;
     }
 }

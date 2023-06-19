@@ -29,18 +29,20 @@ const DeleteChapter = () => {
           navigate('/dashboard');
         }
         setUserData(response);
+        fetchCourses(response.id);
       } catch (error) {
         console.error(error);
         navigate("/");
       }
     };
 
-    const fetchCourses = async () => {
+    const fetchCourses = async (userId) => {
       try {
         const coursesResponse = await fetchData("/Course");
-        if (coursesResponse !== null) {
-          setCourses(coursesResponse);
-          setSelectedCourse(coursesResponse[0]);
+        if (coursesResponse !== null) {       
+          const userCourses = coursesResponse.filter((course) => course.createdBy === userId);
+          setCourses(userCourses);
+          setSelectedCourse(userCourses[0]);
         }
       } catch (error) {
         console.log(error);
@@ -124,10 +126,10 @@ const DeleteChapter = () => {
             )}
           </div>
 
-          <p className="text-gray-700 mb-2 mr-10 ml-10">Supprimer quel chapitre: </p>
           <div className="mb-6 mr-10 ml-10 flex flex-col items-center">
             {chapters !== null && chapters.length > 0 && (
               <>
+              <p className="text-gray-700 mb-2 mr-10 ml-10">Supprimer quel chapitre: </p>
                 <select
                   value={selectedChapter}
                   onChange={(e) => handleChapterChange(e.target.value)}

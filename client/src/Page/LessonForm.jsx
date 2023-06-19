@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../component/Navbar';
 import '../styleComponent/ckeditor.css';
 
-const CourseForm = () => {
+const LessonForm = () => {
   const [lessonContent, setLessonContent] = useState('');
   const [courses, setCourses] = useState({});
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -33,18 +33,20 @@ const CourseForm = () => {
         if(response.isVerify === false){
           navigate('/dashboard');
         }
-        setUserData(response);
+        setUserData(response);  
+      fetchCourses(response.id);
       } catch (error) {
         console.error(error);
         navigate("/");
       }
     };
-    const fetchCourses = async () => {
+    const fetchCourses = async (userId) => {
       try {
         const responseCourses = await fetchData('/Course');
-        setCourses(responseCourses);
-        setSelectedCourse(responseCourses[0]);
-        fetchChapters(responseCourses[0].id);
+        const userCourses = responseCourses.filter((course) => course.createdBy === userId);
+        setCourses(userCourses);
+        setSelectedCourse(userCourses[0]);
+        fetchChapters(userCourses[0].id);
       } catch (error) {
         console.log(error);
       }
@@ -59,7 +61,6 @@ const CourseForm = () => {
       }
     }
     fetchDataUser();
-    fetchCourses();
   }, []);
   const fetchChapters = async (courseId) => {
     try {
@@ -76,14 +77,15 @@ const CourseForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    var selectedChapterId = selectedChapter;
+    var selectedChapterId = selectedChapter.id;
     let title = chapterTitle;
-    var chapterDto = {
+    var lessonDto = {
       Title: title,
       ChapterId: selectedChapterId,
       HtmlContent: lessonContent
     }
-    postData('/Lesson', chapterDto);
+    console.log(lessonDto);
+    postData('/Lesson', lessonDto);
     navigate('/dashboard');
   };
 
@@ -162,4 +164,4 @@ const CourseForm = () => {
   );
 };
 
-export default CourseForm;
+export default LessonForm;

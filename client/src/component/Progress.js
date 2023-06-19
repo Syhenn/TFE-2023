@@ -18,7 +18,7 @@ const Progress = ({ courseId, userId }) => {
         const chaptersResponse = await fetchData("/Chapter", { courseId });
         setChapters(chaptersResponse);
 
-        chaptersResponse.forEach(async (chapter) => {
+        chaptersResponse.forEach(async (chapter, index) => {
           const lessonsResponse = await fetchData("/Lesson/getByChapter", {
             chapterId: chapter.id,
           });
@@ -27,25 +27,24 @@ const Progress = ({ courseId, userId }) => {
             [chapter.id]: lessonsResponse,
           }));
 
-          const firstLessonId = lessonsResponse[0]?.id;
-          const isLessonCompleted = completedLessons.some(
-            (completedLesson) => completedLesson.lessonId === firstLessonId
-          );
-            
-          if (!isLessonCompleted) {
-            const lessonCompleteResponse = await fetchData("/CompletedLesson", {
-              userId,
-            });
-            console.log(lessonCompleteResponse);
-            const firstLessonCompleted = lessonCompleteResponse.some(
+          if (index === 0) {
+            const firstLessonId = lessonsResponse[0]?.id;
+            const isLessonCompleted = completedLessons.some(
               (completedLesson) => completedLesson.lessonId === firstLessonId
             );
-            if (!firstLessonCompleted) {
-              let lessonCompletedDto = {
-                userId,
-                lessonId: firstLessonId,
-              };
-              await postData("/CompletedLesson", lessonCompletedDto);
+              
+            if (!isLessonCompleted) {
+              const firstLessonCompleted = completedLessons.some(
+                (completedLesson) => completedLesson.chapterId === chapter.id
+              );
+              if (!firstLessonCompleted) {
+                let lessonCompletedDto = {
+                  userId,
+                  lessonId: firstLessonId,
+                  chapterId: chapter.id
+                };
+                await postData("/CompletedLesson", lessonCompletedDto);
+              }
             }
           }
         });
@@ -134,9 +133,7 @@ const Progress = ({ courseId, userId }) => {
                       <div className="m-5 text-2xl font-bold text-gray-900">
                         <h1>{lesson.title}</h1>
                       </div>
-                      {indexLesson !== lessons[chapter.id].length - 1 && (
-                        <HiOutlineChevronDoubleDown className="text-5xl m-7" />
-                      )}
+                      <HiOutlineChevronDoubleDown className="text-5xl m-7" />
                     </div>
                   ))}
                 </>

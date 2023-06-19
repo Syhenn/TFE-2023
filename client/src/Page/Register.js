@@ -323,18 +323,18 @@ const Register = () => {
         <div className="w-1/2 p-4 bg-white rounded-lg shadow-md m-2">
           <input
             type="radio"
-            id="java"
+            id="JavaScript"
             name="language"
-            value="2"
+            value="1002"
             className="sr-only"
-            checked={selectedLanguage === 'java'}
-            onChange={() => setSelectedLanguage('java')}
+            checked={selectedLanguage === 'JavaScript'}
+            onChange={() => setSelectedLanguage('JavaScript')}
           />
-          <label htmlFor="java" className={`flex items-center p-4 cursor-pointer`}>
-            <span className={`flex-shrink-0 w-6 h-6 rounded-full border-2 border-indigo-500 mr-4 ${selectedLanguage === 'java' ? 'bg-indigo-500' : ''}`}></span>
-            <span className="text-lg font-medium text-gray-900">Java</span>
+          <label htmlFor="JavaScript" className={`flex items-center p-4 cursor-pointer`}>
+            <span className={`flex-shrink-0 w-6 h-6 rounded-full border-2 border-indigo-500 mr-4 ${selectedLanguage === 'JavaScript' ? 'bg-indigo-500' : ''}`}></span>
+            <span className="text-lg font-medium text-gray-900">JavaScript</span>
           </label>
-          <p className="text-gray-500">Utilisé dans les domaines tels que le développement d'applications Android, les services bancaires, etc.</p>
+          <p className="text-gray-500">Utilisé dans le développement web pour créer des fonctionnalités interactives et dynamiques sur les sites web.</p>
         </div>
       </div>
       <button

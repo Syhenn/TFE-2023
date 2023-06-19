@@ -9,6 +9,7 @@ const ManageInterface = () => {
   const [courseList, setCourseList] = useState([]);
   const [courseName, setCourseName] = useState("");
   const [courseTitle, setCourseTitle] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState("");
   const [courseDesc, setCourseDesc] = useState("");
   const [languages, setLanguages] = useState([]);
   const [selectedLanguage, setSelectedLanguage] = useState("");
@@ -36,18 +37,26 @@ const ManageInterface = () => {
           navigate('/dashboard');
         }
         setUserData(response);
-        fetchCourseList(response.id);
+        fetchCourseList(response.id, response.userRole);
       } catch (error) {
         console.error(error);
         navigate("/");
       }
     };
-    const fetchCourseList = async (userId) => {
+    const fetchCourseList = async (userId, userRole) => {
       try {
         const courseListResponse = await fetchData("/Course");
-        const userCourses = courseListResponse.filter((course) => course.createdBy === userId);
-        setCourseName(userCourses[0].title);
-        setCourseList(userCourses);
+        if(courseListResponse !== null){
+          if(userRole == 1){
+            const userCourses = courseListResponse.filter((course) => course.createdBy === userId);
+            setCourseName(userCourses[0].title);
+            setCourseList(userCourses);
+          }else if(userRole ==2){
+            setCourseName(courseListResponse[0].title);
+            setCourseList(courseListResponse);
+          }
+        }
+
       } catch (error) {
         console.error(error);
       }
@@ -73,28 +82,18 @@ const ManageInterface = () => {
   const handleAddChapter = () => {
     setShowAddChapterForm(true);
   };
-  const fetchChapterCreate = async (courseId) => {
+  const handleChapterSubmit = async () => {
     var createdChapter = {
       title: titleChapter,
-      courseId
+      courseId : selectedCourse
     };
+    console.log(createdChapter);
     try {
       var createChapterResult = await postData("/Chapter", createdChapter);
-      navigate('/dashboard');
+      navigate('/manageInterface');
     } catch (error) {
       console.log(error);
     } 
-  };
-  const handleChapterSubmit = async () => {
-    if (courseName === "") {
-      return;
-    }
-    try {
-      var courseResponse = await fetchData("/Course/getByName", { courseName });
-      fetchChapterCreate(courseResponse.id);
-    } catch (error) {
-      console.log(error);
-    }
   };
   const handleCourseSubmit = async () => {
     let courseDto = {
@@ -257,7 +256,7 @@ const ManageInterface = () => {
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mb-5 mt-5"
                   onClick={handleVerifyUser}
                 >
-                  Verifier un utilisateur
+                  Valider un utilisateur
                 </button>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 
@@ -265,7 +264,7 @@ const ManageInterface = () => {
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mb-5 mt-5"
                   onClick={handleVerifyCourse}
                 >
-                  Verifier un cours
+                  Valider un cours
                 </button>
               </>
             )}
@@ -281,7 +280,7 @@ const ManageInterface = () => {
           <h2 className="text-2xl font-bold mb-4">Demander la création d'un nouveau cours</h2>
           <div>
           <label htmlFor="courseName" className="label-t-input-form">
-              Pour le language :
+              Pour le langage :
             </label>
             <select onChange={(e) => setSelectedLanguage(e.target.value)} className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px]">
               {languages.map((lang) => (
@@ -359,7 +358,7 @@ const ManageInterface = () => {
           <label htmlFor="courseName" className="label-t-input-form">
               Pour le cours :
             </label>
-            <select onChange={(e) => setCourseName(e.target.value)} className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px]">
+            <select onChange={(e) => setSelectedCourse(e.target.value)} className="mt-1 block w-full rounded-md border-gray-300 shadow-md focus:ring-indigo-500 focus:border-indigo-500 p-[5px]">
               {courseList.map((course) =>(
                 <option
                  key={course.id} 

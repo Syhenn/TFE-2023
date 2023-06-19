@@ -36,24 +36,30 @@ const LessonUpdate = () => {
                 navigate('/dashboard');
               }
               setUserData(response);
+            fetchCourses(response.id, response.userRole);
             } catch (error) {
               console.error(error);
               navigate("/");
             }
         };   
-        const fetchCourses = async () => {
+        const fetchCourses = async (userId, userRole) => {
             try {
                 const coursesResponse = await fetchData("/Course");
                 if(coursesResponse !== null){
-                    setCourses(coursesResponse);
-                    setSelectedCourse(coursesResponse[0]);
+                    if(userRole == 1){
+                        const userCourses = coursesResponse.filter((course) => course.createdBy === userId);
+                        setCourses(userCourses);
+                        setSelectedCourse(userCourses[0]);
+                    }else if(userRole == 2){
+                        setCourses(coursesResponse);
+                        setSelectedCourse(coursesResponse[0]);
+                    }
                 }
             } catch (error) {   
                 console.log(error);
             }
         }
         fetchDataUser(); 
-        fetchCourses();
     }, []);
     const handleCourseChange = (e) => {
         setSelectedCourse(e);

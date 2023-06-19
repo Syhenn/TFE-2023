@@ -51,7 +51,7 @@ public class ChapterRepository : IChapterRepository
     public async Task<Chapter> DeleteChapter(Chapter chapter)
     {
         _context.Chapters.Remove(chapter);
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
         return chapter;
     }
 }

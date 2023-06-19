@@ -33,21 +33,30 @@ const CreateQuizForm = () => {
             navigate('/dashboard');
           }
           setUserData(response);
+          fetchCourses(response.id, response.userRole);
         } catch (error) {
           console.error(error);
           navigate("/");
         }
       };
-    const fetchCourses = async () => {
+    const fetchCourses = async (userId, userRole) => {
         try {
           const coursesResponse = await fetchData("/Course");
-          setSelectedCourse(coursesResponse[0])
-          setCourses(coursesResponse);
+          console.log(userData);
+          if (coursesResponse !== null) {       
+            if(userRole == 1){
+              const userCourses = coursesResponse.filter((course) => course.createdBy === userId);
+              setCourses(userCourses);
+              setSelectedCourse(userCourses[0]);
+            }else if(userRole == 2){
+              setCourses(coursesResponse);
+              setSelectedCourse(coursesResponse[0]);
+            }
+          }
         } catch (error) {
           console.log(error);
         }
       };
-      fetchCourses();
       fetchDataUser();
 }, []);
   const handleSubmit = async (e) => {
@@ -71,10 +80,15 @@ const CreateQuizForm = () => {
   return (
     <>
     {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}
-    <div className="container mx-auto mt-8">
-      <h2 className="text-2xl font-bold mb-4">Créer un quiz</h2>
+    <div className="container">
+    <div className="text-center">
+      <h2 className="text-3xl font-extrabold text-gray-900">
+        Création de question pour le Quiz
+      </h2>
+    </div>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
+        <div className="mb-4 mx-auto">
           <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
             Nom de la question
           </label>
@@ -88,7 +102,7 @@ const CreateQuizForm = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 mx-auto">
           <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
             Énoncé
           </label>
@@ -102,7 +116,7 @@ const CreateQuizForm = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 mx-auto">
           <label htmlFor="falseAnswerOne" className="block text-gray-700 font-bold mb-2">
             Première mauvaise réponse
           </label>
@@ -116,7 +130,7 @@ const CreateQuizForm = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 mx-auto">
           <label htmlFor="falseAnswerTwo" className="block text-gray-700 font-bold mb-2">
             Deuxième mauvaise réponse
           </label>
@@ -130,7 +144,7 @@ const CreateQuizForm = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 mx-auto">
           <label htmlFor="correctAnswer" className="block text-gray-700 font-bold mb-2">
             Bonne réponse
           </label>
@@ -144,7 +158,7 @@ const CreateQuizForm = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 mx-auto">
           <label htmlFor="courseId" className="block text-gray-700 font-bold mb-2">
             Pour quel cours créer le Quiz
           </label>
@@ -174,6 +188,7 @@ const CreateQuizForm = () => {
           Créer le quiz
         </button>
       </form>
+      </div>
     </div>
     <ToastContainer />
     </>

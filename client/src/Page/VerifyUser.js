@@ -73,14 +73,18 @@ const VerifyUser = () => {
           isVerify={userData.isVerify}
         />
       )}
-    <div>
-    <div>
+      <div className="flex items-center justify-center mb-4">
+          <h2 className="text-2xl font-semibold mr-2">
+            Vérifier un utilisateur
+          </h2>
+      </div>
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-100">
           <tr>
             <th className="py-2 px-4 text-left">Pseudo</th>
             <th className="py-2 px-4 text-left">Nom</th>
             <th className="py-2 px-4 text-left">Prénom</th>
+            <th className="py-2 px-4 text-left">Email</th>
             <th className="py-2 px-4 text-left">Verifications</th>
           </tr>
         </thead>
@@ -89,6 +93,7 @@ const VerifyUser = () => {
             <tr key={index}>
               <td className="py-2 px-4">{user.displayName}</td>
               <td className="py-2 px-4">{user.name}</td>
+              <td className="py-2 px-4">{user.email}</td>
               <td className="py-2 px-4">{user.surname}</td>
               <td className="py-2 px-4">
                 <button
@@ -102,8 +107,6 @@ const VerifyUser = () => {
           ))}
         </tbody>
       </table>
-      </div>
-      </div>
       <ToastContainer />
     </>
   );

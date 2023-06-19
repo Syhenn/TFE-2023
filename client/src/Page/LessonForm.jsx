@@ -9,12 +9,12 @@ import '../styleComponent/ckeditor.css';
 
 const LessonForm = () => {
   const [lessonContent, setLessonContent] = useState('');
-  const [courses, setCourses] = useState({});
-  const [selectedCourse, setSelectedCourse] = useState(null);
-  const [selectedChapter, setSelectedChapter] = useState(null);
-  const [chapterTitle, setChapterTitle] = useState(null);
-  const [chapters, setChapters] = useState({});
-  const [userData, setUserData] = useState(null);
+  const [courses, setCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [selectedChapter, setSelectedChapter] = useState("");
+  const [chapterTitle, setChapterTitle] = useState("");
+  const [chapters, setChapters] = useState([]);
+  const [userData, setUserData] = useState("");
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -34,19 +34,27 @@ const LessonForm = () => {
           navigate('/dashboard');
         }
         setUserData(response);  
-      fetchCourses(response.id);
+      fetchCourses(response.id, response.userRole);
       } catch (error) {
         console.error(error);
         navigate("/");
       }
     };
-    const fetchCourses = async (userId) => {
+    const fetchCourses = async (userId, userRole) => {
       try {
-        const responseCourses = await fetchData('/Course');
-        const userCourses = responseCourses.filter((course) => course.createdBy === userId);
-        setCourses(userCourses);
-        setSelectedCourse(userCourses[0]);
-        fetchChapters(userCourses[0].id);
+        const coursesResponse = await fetchData("/Course");
+        if(coursesResponse !== null){
+            if(userRole == 1){
+                const userCourses = coursesResponse.filter((course) => course.createdBy === userId);
+                setCourses(userCourses);
+                setSelectedCourse(userCourses[0]);
+                fetchChapters(userCourses[0].id);
+            }else if(userRole == 2){
+                setCourses(coursesResponse);
+                setSelectedCourse(coursesResponse[0]);
+              fetchChapters(coursesResponse[0].id);
+            }
+        }
       } catch (error) {
         console.log(error);
       }
@@ -66,6 +74,7 @@ const LessonForm = () => {
     try {
       const chaptersReponse = await fetchData('/Chapter', {courseId});
       setChapters(chaptersReponse);
+      setSelectedChapter(chaptersReponse[0].id);
     } catch (error) {
       console.log(error)
     }
@@ -77,20 +86,19 @@ const LessonForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    var selectedChapterId = selectedChapter.id;
+    var selectedChapterId = selectedChapter;
     let title = chapterTitle;
     var lessonDto = {
       Title: title,
       ChapterId: selectedChapterId,
       HtmlContent: lessonContent
     }
-    console.log(lessonDto);
     postData('/Lesson', lessonDto);
     navigate('/dashboard');
   };
 
   const handleCourseChange = async (course) => {
-    setSelectedCourse(course)
+    setSelectedCourse(course);
     fetchChapters(course);
   };
 
@@ -123,7 +131,7 @@ const LessonForm = () => {
           <p className="text-gray-700 mb-2">À quel chapitre de ce cours ajouter une leçon :</p>
           {selectedChapter !== null && (
             <select
-              value={selectedChapter}
+              value={selectedChapter ? selectedChapter.id : ""}
               onChange={(e) => setSelectedChapter(e.target.value)}
               className="border border-gray-300 rounded-md py-2 px-4 w-full"
             >

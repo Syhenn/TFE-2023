@@ -33,14 +33,19 @@ const Sandbox = () => {
       };
     
       const languageList = [
-        { id: 'vanilla', name: 'Vanilla' },
+        { id: 'vanilla', name: 'JavaScript' },
         { id: 'react', name: 'React' },
-        { id: 'vue', name: 'Vue' },
       ];
 
   return (
     <>
-{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}      <div className="container mx-auto mt-8">
+{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}      
+<div className="container mx-auto mt-8">
+<div className="text-center mb-10">
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              Bac à sable
+            </h2>
+          </div>
         <div className="flex justify-center space-x-4 mb-4">
           <ul className="flex space-x-4">
             {languageList.map((language) => (

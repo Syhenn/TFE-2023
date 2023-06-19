@@ -101,10 +101,16 @@ const VerifyCourse = () => {
       )}
       <div>
         <div>
+        <div className="text-center mb-10">
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              Validation d'un cours
+            </h2>
+          </div>
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-100">
               <tr>
                 <th className="py-2 px-4 text-left">Titre du cours</th>
+                <th className="py-2 px-4 text-left">Description du cours</th>
                 <th className="py-2 px-4 text-left">Créé par</th>
                 <th className="py-2 px-4 text-left">Validations</th>
               </tr>
@@ -113,6 +119,7 @@ const VerifyCourse = () => {
               {coursesToVerify.map((course, index) => (
                 <tr key={index}>
                   <td className="py-2 px-4">{course.title}</td>
+                  <td className="py-2 px-4">{course.description}</td>
                   <td className="py-2 px-4">{course.createdBy}</td>
                   <td className="py-2 px-4">
                     <button

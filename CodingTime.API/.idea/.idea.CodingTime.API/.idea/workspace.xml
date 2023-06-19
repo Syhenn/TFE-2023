@@ -7,6 +7,12 @@
   <component name="ChangeListManager">
     <list default="true" id="939fd523-186c-49c1-9345-6f427a25233e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CodingTime.API/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Repositories/ChapterRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Repositories/ChapterRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/DeleteChapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/DeleteChapter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/DeleteLesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/DeleteLesson.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/LessonForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/LessonForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/LessonUpdate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/LessonUpdate.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Page/ManageInterface.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Page/ManageInterface.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +124,7 @@
       <workItem from="1686662928063" duration="1382000" />
       <workItem from="1686755177857" duration="2023000" />
       <workItem from="1686821644008" duration="18996000" />
-      <workItem from="1687087271770" duration="10689000" />
+      <workItem from="1687087271770" duration="16641000" />
     </task>
     <task id="LOCAL-00001" summary="Clean Architecture Setup">
       <created>1682953273429</created>
@@ -207,19 +213,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/CodingTime.API/Controller/LessonController.cs</url>
-          <line>21</line>
-          <properties documentPath="C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\CodingTime.API\Controller\LessonController.cs" initialLine="21" containingFunctionPresentation="method 'CreateLesson'">
-            <startOffsets>
-              <option value="496" />
-            </startOffsets>
-            <endOffsets>
-              <option value="573" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

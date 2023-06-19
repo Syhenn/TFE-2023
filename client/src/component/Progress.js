@@ -26,6 +26,28 @@ const Progress = ({ courseId, userId }) => {
             ...prevLessons,
             [chapter.id]: lessonsResponse,
           }));
+
+          const firstLessonId = lessonsResponse[0]?.id;
+          const isLessonCompleted = completedLessons.some(
+            (completedLesson) => completedLesson.lessonId === firstLessonId
+          );
+            
+          if (!isLessonCompleted) {
+            const lessonCompleteResponse = await fetchData("/CompletedLesson", {
+              userId,
+            });
+            console.log(lessonCompleteResponse);
+            const firstLessonCompleted = lessonCompleteResponse.some(
+              (completedLesson) => completedLesson.lessonId === firstLessonId
+            );
+            if (!firstLessonCompleted) {
+              let lessonCompletedDto = {
+                userId,
+                lessonId: firstLessonId,
+              };
+              await postData("/CompletedLesson", lessonCompletedDto);
+            }
+          }
         });
       } catch (error) {
         console.log(error);
@@ -76,7 +98,7 @@ const Progress = ({ courseId, userId }) => {
   const getLessonStatusMessage = (lessonId, chapter) => {
     const status = getLessonStatus(lessonId, chapter);
     if (status === "locked") {
-      return "Complétez la leçon d'avant pour continuer";
+      return "Complétez la leçon précédente pour continuer";
     }
     return "";
   };
@@ -98,21 +120,23 @@ const Progress = ({ courseId, userId }) => {
                       key={indexLesson}
                     >
                       <button
-                      onClick={() => navigateToLesson(lesson.id)}
-                      className={`z-0 w-24 h-24 flex justify-center items-center rounded-full text-white text-5xl italic shadow-xl transform scale-105 perspective-100 ${
-                        isLessonCompleted(lesson.id)
-                          ? "bg-indigo-600 cursor-pointer"
-                          : "bg-gray-400"
-                      }`}
-                      disabled={!isLessonCompleted(lesson.id)}
-                      title={getLessonStatusMessage(lesson.id, chapter)}
-                    >
-                      {indexLesson + 1}
-                    </button>
+                        onClick={() => navigateToLesson(lesson.id)}
+                        className={`z-0 w-24 h-24 flex justify-center items-center rounded-full text-white text-5xl italic shadow-xl transform scale-105 perspective-100 ${
+                          isLessonCompleted(lesson.id)
+                            ? "bg-indigo-600 cursor-pointer"
+                            : "bg-gray-400"
+                        }`}
+                        disabled={!isLessonCompleted(lesson.id)}
+                        title={getLessonStatusMessage(lesson.id, chapter)}
+                      >
+                        {indexLesson + 1}
+                      </button>
                       <div className="m-5 text-2xl font-bold text-gray-900">
                         <h1>{lesson.title}</h1>
                       </div>
-                      <HiOutlineChevronDoubleDown className="text-5xl m-7" />
+                      {indexLesson !== lessons[chapter.id].length - 1 && (
+                        <HiOutlineChevronDoubleDown className="text-5xl m-7" />
+                      )}
                     </div>
                   ))}
                 </>

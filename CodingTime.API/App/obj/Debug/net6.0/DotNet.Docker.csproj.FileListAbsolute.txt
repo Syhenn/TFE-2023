@@ -1,0 +1,15 @@
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\bin\Debug\net6.0\DotNet.Docker.exe
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\bin\Debug\net6.0\DotNet.Docker.deps.json
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\bin\Debug\net6.0\DotNet.Docker.runtimeconfig.json
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\bin\Debug\net6.0\DotNet.Docker.dll
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\bin\Debug\net6.0\DotNet.Docker.pdb
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\obj\Debug\net6.0\DotNet.Docker.csproj.AssemblyReference.cache
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\obj\Debug\net6.0\DotNet.Docker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\obj\Debug\net6.0\DotNet.Docker.AssemblyInfoInputs.cache
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\obj\Debug\net6.0\DotNet.Docker.AssemblyInfo.cs
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\obj\Debug\net6.0\DotNet.Docker.csproj.CoreCompileInputs.cache
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\obj\Debug\net6.0\DotNet.Docker.dll
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\obj\Debug\net6.0\refint\DotNet.Docker.dll
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\obj\Debug\net6.0\DotNet.Docker.pdb
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\obj\Debug\net6.0\DotNet.Docker.genruntimeconfig.cache
+C:\Users\Henquin\Desktop\CodingTime\TFE-2023\CodingTime.API\App\obj\Debug\net6.0\ref\DotNet.Docker.dll

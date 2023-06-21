@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { putData, postData, fetchData, deleteData } from "../api/apiService";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import Navbar from "../component/Navbar";
 
@@ -87,10 +89,10 @@ const ManageInterface = () => {
       title: titleChapter,
       courseId : selectedCourse
     };
-    console.log(createdChapter);
     try {
       var createChapterResult = await postData("/Chapter", createdChapter);
-      navigate('/manageInterface');
+      toast.success(`Le chapitre ${titleChapter} a bien été crée.`, {autoClose:5000});
+      setShowAddChapterForm(false);
     } catch (error) {
       console.log(error);
     } 
@@ -102,9 +104,10 @@ const ManageInterface = () => {
       CreatedBy: userData.id,
       LanguageId: selectedLanguage
     };
-    console.log(courseDto);
     try {
       var courseCreatedResponse = await postData('/Course', courseDto);
+      toast.success(`Le cours ${courseTitle} a bien été demandé à la création.`, {autoClose:5000});
+      setShowAddCoursePopup(false);
     } catch (error) {
       console.log(error);
     }
@@ -336,7 +339,7 @@ const ManageInterface = () => {
       )}
       {showAddChapterForm && (
         <>
-        <div className="absolute inset-0 bg-gray-500 opacity-75">
+        <div className="absolute inset-0 bg-gray-500 opacity-75 h-full">
         </div>
         <div className="fixed inset-0 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8 max-w-md shadow-2xl">
@@ -429,6 +432,7 @@ const ManageInterface = () => {
               </button>
             </div>
           </div>
+          <ToastContainer/>
         </div>
         </>
       )}

@@ -88,6 +88,7 @@ const QuizPage = () => {
     setCurrentQuestionIndex(prevIndex => prevIndex + 1);
   };
   
+  
 
   const handleOnComplete = (survey) => {
     const quiz = quizData[currentQuestionIndex];

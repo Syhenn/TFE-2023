@@ -64,8 +64,18 @@ const Register = () => {
       toast.error(errorMessage, { autoClose: 5000 });
       return;
     }
-    if (password.length < 6) {
-      let errorMessage = 'Le mot de passe doit faire au moins 6 caractères.';
+    if (password.length < 12) {
+      let errorMessage = 'Le mot de passe doit faire au moins 12 caractères avec une majuscule et un caractère spécial.';
+      toast.error(errorMessage, { autoClose: 5000 });
+      return;
+    }
+    if (!/(?=.*[A-Z])/.test(password)) {
+      let errorMessage = 'Le mot de passe doit contenir au moins une majuscule.';
+      toast.error(errorMessage, { autoClose: 5000 });
+      return;
+    }
+    if (!/(?=.*[!@#$%^&*])/.test(password)) {
+      let errorMessage = 'Le mot de passe doit contenir au moins un caractère spécial.';
       toast.error(errorMessage, { autoClose: 5000 });
       return;
     }

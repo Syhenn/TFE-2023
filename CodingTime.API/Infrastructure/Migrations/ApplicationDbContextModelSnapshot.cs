@@ -67,6 +67,32 @@ namespace Infrastructure.Migrations
                     b.ToTable("CompletedLessons");
                 });
 
+            modelBuilder.Entity("Application.Entities.CorrectAnswer", b =>
+                {
+                    b.Property<int>("CorrectAnswerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CorrectAnswerId"));
+
+                    b.Property<DateTime>("AnswerAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("QuizId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CorrectAnswerId");
+
+                    b.HasIndex("QuizId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CorrectAnswers");
+                });
+
             modelBuilder.Entity("Application.Entities.Course", b =>
                 {
                     b.Property<int>("Id")
@@ -347,6 +373,25 @@ namespace Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Application.Entities.CorrectAnswer", b =>
+                {
+                    b.HasOne("Application.Entities.Quiz", "Quiz")
+                        .WithMany("CorrectAnswers")
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quiz");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Application.Entities.Course", b =>
                 {
                     b.HasOne("Application.Entities.Language", "Language")
@@ -450,6 +495,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Application.Entities.Quiz", b =>
                 {
+                    b.Navigation("CorrectAnswers");
+
                     b.Navigation("QuizAnswers");
                 });
 

@@ -34,7 +34,6 @@ const Sandbox = () => {
     
       const languageList = [
         { id: 'vanilla', name: 'JavaScript' },
-        { id: 'react', name: 'React' },
       ];
 
   return (

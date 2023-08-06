@@ -21,6 +21,7 @@ builder.Services.AddScoped<ILessonRepository, LessonRepository>();
 builder.Services.AddScoped<IQuizAnswerRepository, QuizAnswerRepository>();
 builder.Services.AddScoped<ICompletedLessonRepository, CompletedLessonRepository>();
 builder.Services.AddScoped<IQuizRepository, QuizRepository>();
+builder.Services.AddScoped<ICorrectAnswerRepository, CorrectAnswerRepository>();
 builder.Services.AddControllers();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddMediatR(typeof(Application.Context.User.CreateUserHandler));

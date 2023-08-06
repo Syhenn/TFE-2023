@@ -1,7 +1,6 @@
 ﻿using Application.Repositories;
 using Domain.Dtos;
 using MediatR;
-using BCrypt.Net;
 using Domain.Enum;
 
 namespace Application.Context.User

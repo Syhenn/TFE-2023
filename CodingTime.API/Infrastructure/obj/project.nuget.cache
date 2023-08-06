@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sHQ4Qc7YVVgv+00ya3mv0OfuPKujkEPCbs242zvrzfUGhAsoy9TalMb6iRWLHq/9+o5gC0ed8yPy6RiA7XZ5NQ==",
+  "dgSpecHash": "A0NnjPjQI8LXGjjD0hukLUVEX4FUELnmNTRwkifRxqyqCz1JEpZ/nqrARqBy66Dm2dTfpsbO12ge0WAAAYnBOQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Henquin\\Desktop\\CodingTime\\TFE-2023\\CodingTime.API\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Henquin\\Desktop\\TFE\\CodingTime\\TFE-2023\\CodingTime.API\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Henquin\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Henquin\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

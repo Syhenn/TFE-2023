@@ -118,22 +118,22 @@ const Progress = ({ courseId, userId }) => {
                       className="w-full flex flex-col justify-center items-center"
                       key={indexLesson}
                     >
-                      <button
-                        onClick={() => navigateToLesson(lesson.id)}
-                        className={`z-0 w-24 h-24 flex justify-center items-center rounded-full text-white text-5xl italic shadow-xl transform scale-105 perspective-100 ${
-                          isLessonCompleted(lesson.id)
-                            ? "bg-indigo-600 cursor-pointer"
-                            : "bg-gray-400"
-                        }`}
-                        disabled={!isLessonCompleted(lesson.id)}
-                        title={getLessonStatusMessage(lesson.id, chapter)}
-                      >
-                        {indexLesson + 1}
-                      </button>
+                    <button
+                      onClick={() => navigateToLesson(lesson.id)}
+                      className={`z-0 w-24 h-24 flex justify-center items-center rounded-full text-white text-5xl italic shadow-xl transform transition-transform scale-105 ${
+                        isLessonCompleted(lesson.id)
+                          ? "bg-indigo-600 cursor-pointer hover:rotate-1 hover:shadow-[2px_2px_4px_2px_rgba(0,0,150,0.6)] hover:scale-110 perspective-100"
+                          : "bg-gray-400"
+                      }`}
+                      disabled={!isLessonCompleted(lesson.id)}
+                      title={getLessonStatusMessage(lesson.id, chapter)}
+                    >
+                      {indexLesson + 1}
+                    </button>
                       <div className="m-5 text-2xl font-bold text-gray-900">
                         <h1>{lesson.title}</h1>
                       </div>
-                      <HiOutlineChevronDoubleDown className="text-5xl m-7" />
+                      <HiOutlineChevronDoubleDown className="text-5xl m-7 animate-bounce w-7.5 h-7.5" />
                     </div>
                   ))}
                 </>

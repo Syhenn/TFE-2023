@@ -9,10 +9,3 @@ services:
       - 3000:3000
     volumes:
       - ./client:/app
-
-  backend:
-    build:
-      context: ./CodingTime.API  
-      dockerfile: Dockerfile 
-    ports:
-      - 7227:7227

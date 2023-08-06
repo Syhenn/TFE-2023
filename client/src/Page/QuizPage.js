@@ -30,25 +30,36 @@ const QuizPage = () => {
       try {
         const response = await fetchData('/User/current-user');
         setUserData(response);
+        fetchQuizData(response);
       } catch (error) {
         console.error(error);
         navigate('/');
       }
     };
 
-    const fetchQuizData = async () => {
+    const fetchQuizData = async (data) => {
       try {
         const quizzesResponse = await fetchData(`/Course/getIncluded`, { courseId: courseId });
-        console.log(quizzesResponse);
-        setQuizData(quizzesResponse.quizzes);
+        const quizzes = quizzesResponse.quizzes;
+        const unansweredQuizzes = [];
+
+        for (const quiz of quizzes) {
+          const response = await axios.get(`/CorrectAnswer/GetByQuizAndUser?quizId=${quiz.id}&userId=${data.id}`);
+          const correctAnswer = response.data;
+          console.log(correctAnswer);
+          if (!correctAnswer) {
+            unansweredQuizzes.push(quiz);
+          }
+        }
+
+        setQuizData(unansweredQuizzes);
         startTimer(120);
       } catch (error) {
         console.log(error);
       }
     };
-    
+
     fetchDataUser();
-    fetchQuizData();
   }, [courseId, navigate]);
 
   const startTimer = (timeLimitInSeconds) => {
@@ -66,28 +77,30 @@ const QuizPage = () => {
 
   const handleNextQuestion = (survey) => {
     const quiz = quizData[currentQuestionIndex];
-    const userAnswer = survey && survey.valuesHash ? survey.valuesHash[quiz.name] : '';
-    const correctAnswer = quiz && quiz.correctAnswer ? quiz.correctAnswer : '';
-    const points = userAnswer === correctAnswer ? 15 : 0;
+    if (quiz && quiz.id) {
+      const userAnswer = survey && survey.valuesHash ? survey.valuesHash[quiz.name] : '';
+      const correctAnswer = quiz.correctAnswer || '';
+      const points = userAnswer === correctAnswer ? 15 : 0;
   
-    const updatedTotalScore = totalScore + points;
-    setTotalScore(updatedTotalScore);
+      const updatedTotalScore = totalScore + points;
+      setTotalScore(updatedTotalScore);
   
-    const quizAnswerDto = {
-      UserId: userData.id,
-      QuizId: quiz.id,
-      Points: points,
-    };
+      if (userAnswer === correctAnswer) {
+        const correctAnswerDto = {
+          UserId: userData.id,
+          QuizId: quiz.id,
+        };
   
-    try {
-      postData('/QuizAnswer', quizAnswerDto);
-    } catch (error) {
-      console.log(error);
+        try {
+          postData('/CorrectAnswer', correctAnswerDto);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+  
+      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
     }
-  
-    setCurrentQuestionIndex(prevIndex => prevIndex + 1);
   };
-  
   
 
   const handleOnComplete = (survey) => {
@@ -95,25 +108,30 @@ const QuizPage = () => {
     const userAnswer = survey.valuesHash[quiz.name];
     const correctAnswer = quiz.correctAnswer;
     const points = userAnswer === correctAnswer ? 15 : 0;
-  
-    const quizAnswerDto = {
-      UserId: userData.id,
-      QuizId: quiz.id,
-      Points: points,
-    };
-    try {
-      postData('/QuizAnswer', quizAnswerDto);
-    } catch (error) {
-      console.log(error);
+
+    if (userAnswer === correctAnswer) {
+      const correctAnswerDto = {
+        UserId: userData.id,
+        QuizId: quiz.id,
+      };
+
+      try {
+        postData('/CorrectAnswer', correctAnswerDto);
+      } catch (error) {
+        console.log(error);
+      }
     }
+
+    const updatedTotalScore = totalScore + points;
+    setTotalScore(updatedTotalScore);
+
     if (currentQuestionIndex === quizData.length - 1) {
-      const scoreMessage = `Quiz terminé! Votre score est de ${totalScore+points} points`;
+      const scoreMessage = `Quiz terminé! Votre score est de ${totalScore + points} points`;
       setQuizCompletedMessage(scoreMessage);
     } else {
       handleNextQuestion(survey);
     }
   };
-  
 
   const generateQuizDataForm = (quizData) => {
     const choices = [
@@ -122,7 +140,7 @@ const QuizPage = () => {
       quizData.correctAnswer
     ];
     choices.sort(() => 0.5 - Math.random());
-  
+
     const quizDataJson = {
       id: quizData.id,
       name: quizData.name,
@@ -136,28 +154,36 @@ const QuizPage = () => {
         },
       ],
     };
-  
+
     setQuizDataForm(quizDataJson);
   };
-  
 
   useEffect(() => {
     if (quizData.length > 0 && currentQuestionIndex < quizData.length) {
       generateQuizDataForm(quizData[currentQuestionIndex]);
+    } else {
+      setQuizDataForm(null); // Réinitialiser le formulaire si le quiz est vide
+      setQuizCompletedMessage("Vous avez déjà répondu à toutes les questions du quiz."); // Définir le message d'erreur
     }
   }, [quizData, currentQuestionIndex]);
-  const handleToDashboard =() => {
+
+  const handleToDashboard = () => {
     navigate('/dashboard');
-  }
+  };
+
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   };
+
   return (
     <>
-{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}      <div className="container mx-auto mt-8">
-        {quizDataForm != null && (
+      {userData != null && (
+        <Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify} />
+      )}
+      <div className="container mx-auto mt-8">
+        {quizDataForm != null ? (
           <>
             {quizCompletedMessage ? (
               <div className="text-center flex justify-center flex-col items-center">
@@ -181,6 +207,18 @@ const QuizPage = () => {
               </>
             )}
           </>
+        ) : (
+          <div className="text-center flex justify-center items-center flex-col">
+            <h2 className="text-3xl font-bold mb-5">Aucune question de quiz disponible.</h2>
+            <button
+              className="group relative w-1/2 flex justify-center py-2 px-4 border 
+              border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
+              onClick={handleToDashboard}
+            >
+              Revenir à l'accueil
+            </button>
+          </div>
         )}
       </div>
     </>

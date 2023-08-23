@@ -99,14 +99,14 @@ const VerifyCourse = () => {
           isVerify={userData.isVerify}
         />
       )}
-      <div>
+      <div className="m-8">
         <div>
         <div className="text-center mb-10">
             <h2 className="text-3xl font-extrabold text-gray-900">
               Validation d'un cours
             </h2>
           </div>
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="min-w-full divide-y divide-gray-200 border">
             <thead className="bg-gray-100">
               <tr>
                 <th className="py-2 px-4 text-left">Titre du cours</th>
@@ -124,13 +124,13 @@ const VerifyCourse = () => {
                   <td className="py-2 px-4">
                     <button
                       onClick={() => handleVerifyCourse(course.id)}
-                      className="text-white bg-green-500 px-2 py-1 rounded-md mr-5"
+                      className="text-white bg-green-500 px-2 py-1 rounded-md"
                     >
                       Vérifier
                     </button>
                     <button
                       onClick={() => handleRefuseCourse(course.id)}
-                      className="text-white bg-red-500 px-2 py-1 rounded-md"
+                      className="text-white bg-red-500 px-2 py-1 rounded-md ml-5"
                     >
                       Refuser
                     </button>

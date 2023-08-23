@@ -155,27 +155,34 @@ const ManageInterface = () => {
     navigate('/verifyCourse');
   }
   return(
-    <>
-{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}      
-<div className="flex justify-center items-center w-full h-full mt-10">
-        <div className="max-w-md w-full space-y-8">
-          <div>
+    <div className="bg-gray-100 min-h-screen">
+    {userData!=null &&(
+    <Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>
+    )}      
+      <div className="flex justify-center items-center w-full h-full mt-10">
+        <div className="max-w-md w-full">
+          <div className="flex flex-col">
             <h2 className="text-center text-3xl font-extrabold text-gray-900">Interface de gestion</h2>
             <h3 className="text-center text-2xl font-extrabold text-gray-500">Gestion des cours</h3>
+            <div className="flex flex-row items-start justify-around">
+            
             {(userData && userData.userRole > 0) && (
               <>
+              <div className="m-5 p-5 rounded-lg border border-gray-300 shadow-2xl">
                 <h4 className="text-center text-xl font-extrabold text-gray-400">Cours</h4>
                 <button
-                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  className="group relative w-48 flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={showAddCourse}
                 >
                   Demander la création d'un cours
                 </button>
+              </div>
+              <div className="m-5 p-5 rounded-lg border border-gray-300 shadow-2xl">
                 <h4 className="text-center text-xl font-extrabold text-gray-400">Chapitre</h4>
                 <button
-                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  className="group relative w-48 flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={handleAddChapter}
@@ -183,16 +190,18 @@ const ManageInterface = () => {
                   Ajouter un chapitre à un cours
                 </button>
                 <button
-                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  className="group relative w-48 flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-purple-950 hover:bg-purple-700 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mb-5 mt-5"
                   onClick={handleDeleteChapter}
                 >
                   Supprimer un chapitre
                 </button>
+              </div>
+              <div className="m-5 p-5 rounded-lg border border-gray-300 shadow-2xl">
                 <h4 className="text-center text-xl font-extrabold text-gray-400">Quiz</h4>
                 <button
-                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  className="group relative w-48 flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={handleAddQuiz}
@@ -200,16 +209,18 @@ const ManageInterface = () => {
                   Ajouter un nouveau quiz
                 </button>
                 <button
-                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  className="group relative w-48 flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={handleUpdateQuiz}
                 >
                   Modifier un quiz
                 </button>
+              </div>
+              <div className="m-5 p-5 rounded-lg border border-gray-300 shadow-2xl">
                 <h4 className="text-center text-xl font-extrabold text-gray-400">Leçon</h4>
                 <button
-                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  className="group relative w-48 flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-400 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-5 mt-5"
                   onClick={handleAddCours}
@@ -217,7 +228,7 @@ const ManageInterface = () => {
                   Ajouter une nouvelle leçon
                 </button>
                 <button
-                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  className="group relative w-48 flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-cyan-700 hover:bg-cyan-500 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-5 mt-5"
                   onClick={handleUpdateLesson}
@@ -225,17 +236,20 @@ const ManageInterface = () => {
                   Modifier une leçon
                 </button>
                 <button
-                  className="group relative w-full flex justify-center py-2 px-4 border 
+                  className="group relative w-48 flex justify-center py-2 px-4 border 
                   border-transparent text-sm font-medium rounded-md text-white bg-purple-950 hover:bg-purple-700 
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mb-5 mt-5"
                   onClick={handleDeleteLesson}
                 >
                   Supprimer une leçon
                 </button>
+              </div>
               </>
             )}
+            </div>
+            <div>
             {(userData && userData.userRole > 1) && (
-              <>
+              <div className="p-5 rounded-lg border border-gray-300 shadow-2xl">
                 <h3 className="text-center text-2xl font-extrabold text-gray-500">Interface administrateur</h3>
                 <button
                   className="group relative w-full flex justify-center py-2 px-4 border 
@@ -269,8 +283,9 @@ const ManageInterface = () => {
                 >
                   Valider un cours
                 </button>
-              </>
+              </div>
             )}
+            </div>
           </div>
         </div>
       </div>
@@ -436,7 +451,7 @@ const ManageInterface = () => {
         </div>
         </>
       )}
-    </>
+    </div>
   );
 }
 

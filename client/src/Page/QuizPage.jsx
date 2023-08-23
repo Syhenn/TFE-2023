@@ -162,8 +162,8 @@ const QuizPage = () => {
     if (quizData.length > 0 && currentQuestionIndex < quizData.length) {
       generateQuizDataForm(quizData[currentQuestionIndex]);
     } else {
-      setQuizDataForm(null); // Réinitialiser le formulaire si le quiz est vide
-      setQuizCompletedMessage("Vous avez déjà répondu à toutes les questions du quiz."); // Définir le message d'erreur
+      setQuizDataForm(null);
+      setQuizCompletedMessage("Vous avez déjà répondu à toutes les questions du quiz.");
     }
   }, [quizData, currentQuestionIndex]);
 

@@ -4,6 +4,7 @@ import Navbar from "../component/Navbar";
 import { useNavigate } from 'react-router-dom';
 import { fetchData } from '../api/apiService';
 import Progress from "../component/progress";
+import { BsChevronCompactDown } from 'react-icons/bs';
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
@@ -73,37 +74,47 @@ const Dashboard = () => {
 
   return (
     <>
-      {userData != null && (
+      {userData !== null && (
         <Navbar
           displayName={userData.displayName}
           role={userData.userRole}
           isVerify={userData.isVerify}
         />
       )}
-      <div className="container mx-auto mt-8">
-        <div className="flex justify-center mb-4">
+      <div className="w-full pt-8 bg-gradient-to-b from-blue-200 to-blue-400">
+        <div className="flex justify-center mb-4 relative">
           {courses.length > 0 && (
-            <select
-              className="block appearance-none bg-white border border-indigo-600 rounded-md px-4 py-2 text-indigo-600 focus:outline-none focus:border-indigo-400"
-              value={selectedCourse?.id.toString() || ''}
-              onChange={(e) => handleCourseChange(e.target.value)}
-            >
-              {courses
-                .filter((course) => course.isVerify)
-                .map((course) => (
-                  <option key={course.id} value={course.id} className="text-center">
-                    {course.title}
-                  </option>
-                ))}
-            </select>
+            <div className="relative">
+              <select
+                className="block appearance-none bg-white border border-indigo-600 rounded-md px-4 py-2 text-indigo-600 focus:outline-none focus:border-indigo-400 shadow-md pr-8" // Ajout de 'pr-8'
+                value={selectedCourse?.id.toString() || ''}
+                onChange={(e) => handleCourseChange(e.target.value)}
+              >
+                <option disabled value="">
+                  Sélectionnez un cours
+                </option>
+                {courses
+                  .filter((course) => course.isVerify)
+                  .map((course) => (
+                    <option key={course.id} value={course.id}>
+                      {course.title}
+                    </option>
+                  ))}
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <BsChevronCompactDown className="h-5 w-5 text-indigo-600" />
+              </div>
+            </div>
           )}
         </div>
-        {selectedCourse != null && (
+        {selectedCourse !== null && (
           <Progress courseId={selectedCourse.id} userId={userData.id} />
         )}
       </div>
     </>
   );
+  
+  
 };
 
 export default Dashboard;

@@ -42,7 +42,7 @@ const Navbar = ({ displayName , role, isVerify}) => {
   }, [displayName, role]);
 
   return (
-    <nav className="bg-indigo-600 py-4 px-8 flex justify-between items-center">
+    <nav className="bg-[#7E77FC] py-4 px-8 flex flex-col justify-between items-center sm:flex-row">
       <div className="flex items-center">
         <Link
           to="/dashboard"

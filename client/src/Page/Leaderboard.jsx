@@ -55,14 +55,15 @@ const LeaderBoard = () => {
 
   return (
     <>
-{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}      <div className="container mx-auto mt-8">
+{userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}      
+  <div className="m-8">
         <div className="flex items-center justify-center mb-4">
           <h2 className="text-2xl font-semibold mr-2">
             <GiPodiumWinner className="inline-block mr-2 text-4xl text-yellow-500" />
             Classement général
           </h2>
         </div>
-        <table className="min-w-full divide-y divide-gray-200">
+        <table className="min-w-full divide-gray-200 border">
           <thead className="bg-gray-100">
             <tr>
               <th className="py-2 px-4 text-left">Pseudo</th>

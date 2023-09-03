@@ -84,7 +84,7 @@ const LessonPage = () => {
         </div>
         <div className="text-center mt-4">
           <button
-            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
+            className="px-4 py-2 mb-5 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
             onClick={handleLessonCompletion}
           >
             J'ai terminé cette leçon

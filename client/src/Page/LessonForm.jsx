@@ -6,6 +6,8 @@ import { fetchData, postData } from '../api/apiService';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../component/Navbar';
 import '../styleComponent/ckeditor.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LessonForm = () => {
   const [lessonContent, setLessonContent] = useState('');
@@ -15,8 +17,20 @@ const LessonForm = () => {
   const [chapterTitle, setChapterTitle] = useState("");
   const [chapters, setChapters] = useState([]);
   const [userData, setUserData] = useState("");
-  const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
+  const [importMode, setImportMode] = useState(false);
+
+  const navigate = useNavigate();
+
+  const fetchChapters = async (courseId) => {
+    try {
+      const chaptersReponse = await fetchData('/Chapter', { courseId });
+      setChapters(chaptersReponse);
+      setSelectedChapter(chaptersReponse[0]);
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -33,13 +47,14 @@ const LessonForm = () => {
         if(response.isVerify === false){
           navigate('/dashboard');
         }
-        setUserData(response);  
-      fetchCourses(response.id, response.userRole);
+        setUserData(response);
+        fetchCourses(response.id, response.userRole);
       } catch (error) {
         console.error(error);
         navigate("/");
       }
     };
+
     const fetchCourses = async (userId, userRole) => {
       try {
         const coursesResponse = await fetchData("/Course");
@@ -52,33 +67,17 @@ const LessonForm = () => {
             }else if(userRole == 2){
                 setCourses(coursesResponse);
                 setSelectedCourse(coursesResponse[0]);
-              fetchChapters(coursesResponse[0].id);
+                fetchChapters(coursesResponse[0].id);
             }
         }
       } catch (error) {
         console.log(error);
       }
-    }
-    const fetchChapters = async (courseId) => {
-      try {
-        const chaptersReponse = await fetchData('/Chapter', { courseId });
-        setChapters(chaptersReponse);
-        setSelectedChapter(chaptersReponse[0])
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    };
+
     fetchDataUser();
   }, []);
-  const fetchChapters = async (courseId) => {
-    try {
-      const chaptersReponse = await fetchData('/Chapter', {courseId});
-      setChapters(chaptersReponse);
-      setSelectedChapter(chaptersReponse[0].id);
-    } catch (error) {
-      console.log(error)
-    }
-  }
+
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
     setLessonContent(data);
@@ -86,15 +85,16 @@ const LessonForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    var selectedChapterId = selectedChapter;
+    var selectedChapterId = selectedChapter.id;
     let title = chapterTitle;
     var lessonDto = {
       Title: title,
       ChapterId: selectedChapterId,
       HtmlContent: lessonContent
-    }
+    };
+    console.log(lessonDto);
     postData('/Lesson', lessonDto);
-    navigate('/dashboard');
+    //navigate('/dashboard');
   };
 
   const handleCourseChange = async (course) => {
@@ -105,10 +105,22 @@ const LessonForm = () => {
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if(file != null){
+      if(file.type!='application/pdf'){
+        toast.error("Le fichier doit être en format PDF",{autoClose:5000});
+        e.target.value = null;
+      }
+    }
+    else if (file) {
+      alert(`Fichier sélectionné : ${file.name}`);
 
+    }
+  };
   return (
     <div className="min-h-screen">
-    {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}
+      {userData!=null &&(<Navbar displayName={userData.displayName} role={userData.userRole} isVerify={userData.isVerify}/>)}
       <div className="container mx-auto py-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-extrabold text-gray-900">Création d'un cours</h2>
@@ -152,11 +164,24 @@ const LessonForm = () => {
         </div>
         <div className="flex justify-center w-full text-left">
           <form id='ckeditor' onSubmit={handleSubmit} className="w-full max-w-screen-xl">
-            <CKEditor
-              editor={ClassicEditor}
-              data={lessonContent}
-              onChange={handleEditorChange}
-            />
+            {!importMode && (
+              <CKEditor
+                editor={ClassicEditor}
+                data={lessonContent}
+                onChange={handleEditorChange}
+              />
+            )}
+            {importMode && (
+              <div>
+                <label className="text-gray-700 mb-2 block">Sélectionnez un fichier PDF :</label>
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleFileUpload}
+                  className="border border-gray-300 rounded-md py-2 px-4 w-full"
+                />
+              </div>
+            )}
             <div className="mt-8 flex justify-center">
               <button
                 type="submit"
@@ -167,7 +192,16 @@ const LessonForm = () => {
             </div>
           </form>
         </div>
+        <div className="flex justify-center">
+          <button
+            onClick={() => setImportMode(!importMode)}
+            className="group relative w-1/2 flex justify-center mt-4 py-2 px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-900 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            {importMode ? "Annuler l'importation PDF" : "Importer depuis un PDF"}
+          </button>
+        </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

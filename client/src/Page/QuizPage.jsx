@@ -159,11 +159,8 @@ const QuizPage = () => {
   };
 
   useEffect(() => {
-    if (quizData.length > 0 && currentQuestionIndex < quizData.length) {
+    if (quizData.length > 0) {
       generateQuizDataForm(quizData[currentQuestionIndex]);
-    } else {
-      setQuizDataForm(null);
-      setQuizCompletedMessage("Vous avez déjà répondu à toutes les questions du quiz.");
     }
   }, [quizData, currentQuestionIndex]);
 

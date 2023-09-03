@@ -10,10 +10,12 @@ namespace Application.Context.User
     public class CreateUserHandler : IRequestHandler<CreateUserCommand, Entities.User>
     {
         private readonly IUserRepository _userRepository;
+        private readonly IEmailService _emailService;
 
-        public CreateUserHandler(IUserRepository userRepository)
+        public CreateUserHandler(IUserRepository userRepository, IEmailService emailService)
         {
             _userRepository = userRepository;
+            _emailService = emailService;
         }
 
         public async Task<Entities.User> Handle(CreateUserCommand command, CancellationToken cancellationToken)
@@ -33,11 +35,23 @@ namespace Application.Context.User
                 Surname = command.UserDto.Surname,
                 UserRole = command.UserDto.UserRole
             };
-            if (user.UserRole == UserRole.Student)
-            {
-                user.IsVerify = true;
-            }
+
+            var verificationToken = Guid.NewGuid().ToString();
+
+            user.VerificationToken = verificationToken;
+
+            // if (user.UserRole == UserRole.Student)
+            // {
+            //     user.IsVerify = true;
+            // }
+
             var resultCreate = await _userRepository.CreateUserAsync(user);
+
+            if (!user.IsVerify)
+            {
+                await _emailService.SendVerificationEmail(user.Email, verificationToken);
+            }
+
             return resultCreate;
         }
     }

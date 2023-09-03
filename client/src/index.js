@@ -22,6 +22,7 @@ import DeleteChapter from "./Page/DeleteChapter";
 import UpdateQuiz from "./Page/UpdateQuiz";
 import VerifyUser from "./Page/VerifyUser";
 import VerifyCourse from "./Page/VerifyCourse";
+import ForgotPassword from "./Page/ForgotPassword";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -46,6 +47,7 @@ root.render(
     <Route path="updateQuiz" element={<UpdateQuiz/>}/>
     <Route path='verifyUser' element={<VerifyUser/>}/>
     <Route path='verifyCourse' element={<VerifyCourse/>}/>
+    <Route path="forgot-password" element={<ForgotPassword/>}/>
   </Routes>
 </BrowserRouter>
 );

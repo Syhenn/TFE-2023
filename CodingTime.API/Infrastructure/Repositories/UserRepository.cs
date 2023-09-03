@@ -74,4 +74,9 @@ public class UserRepository : IUserRepository
 
         return new List<Language>();
     }
+
+    public async Task<User> GetUserByVerificationToken(string token)
+    {
+        return await _context.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
+    }
 }

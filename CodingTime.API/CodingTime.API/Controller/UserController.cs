@@ -39,6 +39,17 @@ public class UserController : ControllerBase
         var commandResult = await _mediator.Send(new GetUserByMailCommand(email), new CancellationToken());
         return Ok(commandResult);
     }
+    [HttpGet("verify")]
+    public async Task<IActionResult> VerifyAccount(string verificationToken)
+    {
+        var commandResult = await _mediator.Send(new GetByVerificationTokenCommand(verificationToken));
+        if (commandResult == null)
+            return BadRequest("email non vérifié");
+        if (commandResult.IsVerify)
+            return Content("Email déjà vérifié");
+        var verifyUserResult = await _mediator.Send(new VerifyUserCommand(commandResult.Id));
+        return Ok("Email vérifié avec succès");
+    }
     [HttpPost]
     public async Task<ActionResult<User>> CreateUser(UserDto userDto)
     {

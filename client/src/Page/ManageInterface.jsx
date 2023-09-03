@@ -178,6 +178,14 @@ const ManageInterface = () => {
                 >
                   Demander la création d'un cours
                 </button>
+                <button
+                  className="group relative w-48 flex justify-center py-2 px-4 border 
+                  border-transparent text-sm font-medium rounded-md text-white bg-purple-950 hover:bg-purple-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mb-5 mt-5"
+                  onClick={showAddCourse}
+                >
+                  Supprimer un cours
+                </button>
               </div>
               <div className="m-5 p-5 rounded-lg border border-gray-300 shadow-2xl">
                 <h4 className="text-center text-xl font-extrabold text-gray-400">Chapitre</h4>
@@ -215,6 +223,14 @@ const ManageInterface = () => {
                   onClick={handleUpdateQuiz}
                 >
                   Modifier un quiz
+                </button>
+                <button
+                  className="group relative w-48 flex justify-center py-2 px-4 border 
+                  border-transparent text-sm font-medium rounded-md text-white bg-purple-950 hover:bg-purple-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mb-5 mt-5"
+                  onClick={handleUpdateQuiz}
+                >
+                  Supprimer un quiz
                 </button>
               </div>
               <div className="m-5 p-5 rounded-lg border border-gray-300 shadow-2xl">

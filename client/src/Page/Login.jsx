@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import {postData} from '../api/apiService'
+import { postData } from '../api/apiService'
 import '../styleComponent/LoginRegisterStyle.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,10 +17,10 @@ const Login = () => {
     };
     try {
       var response = await postData('/token', userCredentials);
-        localStorage.setItem("token", response);
-        navigate("/dashboard");
+      localStorage.setItem("token", response);
+      navigate("/dashboard");
     } catch (error) {
-      toast.error("Email ou mot de passe incorrect.", {autoClose: 5000})
+      toast.error("L'adresse email doit être vérifiée. Vous avez reçu un email de vérification dans votre boîte mail.", { autoClose: 5000 })
     }
   };
 
@@ -63,7 +64,7 @@ const Login = () => {
             >
               Se connecter
             </button>
-            </div>
+          </div>
         </form>
         <div className="text-sm text-center">
           <p className="text-gray-600">Tu n'as pas de compte ?</p>
@@ -73,12 +74,19 @@ const Login = () => {
           >
             S'enregistrer
           </a>
+          <p className="text-gray-600 mt-2">
+            <a
+              href="/forgot-password"
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Mot de passe oublié ?
+            </a>
+          </p>
         </div>
         <h1 className="text-center">TFE - HENQUIN Sylvain - 2023</h1>
       </div>
       <ToastContainer />
     </div>
-    
   )
 };
 export default Login;

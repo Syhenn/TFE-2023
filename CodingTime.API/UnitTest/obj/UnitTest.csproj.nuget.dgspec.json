@@ -102,6 +102,10 @@
             "OneOf": {
               "target": "Package",
               "version": "[3.0.243, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.28.1, )"
             }
           },
           "imports": [

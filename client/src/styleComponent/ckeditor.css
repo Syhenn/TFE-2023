@@ -13,13 +13,13 @@
   #ckeditor h3 {
     font-size: 35px;
     width: 100%;
-    margin: 5px 0px 5px 5vw;
+    margin: 5px 10px 5px 5px;
     font-family: "Open-sans", sans-serif; 
   }
   #ckeditor h4 {
     font-size: 30px;
     width: 100%;
-    margin: 5px 0px 5px 5vw;
+    margin: 5px 10px 5px 5px;
     font-family: "Open-sans", sans-serif; 
   }
   #ckeditor param {
@@ -28,7 +28,7 @@
   }
   
   #ckeditor blockquote {
-    margin: 20px 0 10px 50px;
+    margin: 20px 10px 10px 50px;
     padding: 10px;
     border-radius: 2px;
     font-size: 25px;

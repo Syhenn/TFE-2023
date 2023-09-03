@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { fetchData, postData } from "../api/apiService";
 import { useEffect } from "react";
-import { useState } from "react";
 import { HiLockOpen, HiLockClosed } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
@@ -111,20 +110,24 @@ const Progress = ({ courseId, userId }) => {
               key={index}
             >
               <div className="m-4 text-3xl font-extrabold text-gray-900">
-                <h1>Chapitre {index+1} : {chapter.title}</h1>
+                <h1>Chapitre {index + 1} : {chapter.title}</h1>
               </div>
               {lessons[chapter.id] !== undefined && (
                 <div className="flex justify-center flex-col sm:flex-row">
                   {lessons[chapter.id].map((lesson, indexLesson) => (
                     <div
-                      className="flex flex-col items-center p-4 bg-gray-100 rounded-md border border-gray-200 shadow-md hover:bg-gray-200 transition duration-300 m-2"
+                      className={`flex flex-col items-center p-4 bg-gray-100 rounded-md border border-gray-200 shadow-md hover:bg-gray-200 transition duration-300 m-2 ${
+                        isLessonCompleted(lesson.id)
+                          ? "cursor-pointer"
+                          : "opacity-50"
+                      }`}
                       key={indexLesson}
                     >
                       <button
                         onClick={() => navigateToLesson(lesson.id)}
-                        className={`w-16 h-16 flex justify-center items-center rounded-full text-white text-2xl italic transform hover:scale-105 ${
+                        className={`w-16 h-16 flex justify-center items-center rounded-full text-white text-2xl italic ${
                           isLessonCompleted(lesson.id)
-                            ? "bg-indigo-600 cursor-pointer"
+                            ? "bg-indigo-600"
                             : "bg-gray-400"
                         }`}
                         disabled={!isLessonCompleted(lesson.id)}
@@ -137,6 +140,7 @@ const Progress = ({ courseId, userId }) => {
                         )}
                       </button>
                       <div className="mt-3 text-lg text-center font-semibold text-gray-700">
+                        <h1 className="font-bold">Leçon {indexLesson + 1}</h1>
                         <h1>{lesson.title}</h1>
                       </div>
                     </div>
@@ -148,9 +152,7 @@ const Progress = ({ courseId, userId }) => {
         </>
       )}
     </div>
-  );  
-  
-  
+  );
 };
 
 export default Progress;

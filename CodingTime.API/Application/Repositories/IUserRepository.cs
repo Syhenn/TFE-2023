@@ -12,5 +12,5 @@ public interface IUserRepository
     Task<User> CreateUserAsync(User user);
     Task<User> DeleteUserAsync(User userId);
     Task<List<Language>> GetUserLanguagesAsync(int userId);
-
+    Task<User> GetUserByVerificationToken(string token);
 }

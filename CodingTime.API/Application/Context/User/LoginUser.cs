@@ -17,6 +17,10 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, Entities.User>
     public async Task<Entities.User> Handle(LoginUserCommand command, CancellationToken cancellationToken)
     {
         var userByMail = await _userRepository.GetUserByMailAsync(command.email);
+        if (userByMail.IsVerify == false)
+        {
+            return null;
+        }
         if (userByMail == null)
             return null;
 

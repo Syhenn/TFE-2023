@@ -315,6 +315,10 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("UserRole")
                         .HasColumnType("int");
 
+                    b.Property<string>("VerificationToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");

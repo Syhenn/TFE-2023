@@ -18,6 +18,8 @@ public class User
     public DateTime UpdateAt { get; set; }
     public bool IsVerify { get; set; }
 
+    public string VerificationToken { get; set; }
+
     [JsonIgnore] public ICollection<UserLanguage> UserLanguages { get; set; } = new List<UserLanguage>();
     [JsonIgnore] public ICollection<QuizAnswer> QuizAnswers { get; set; } = new List<QuizAnswer>();
     [JsonIgnore] public ICollection<LeaderboardEntry> LeaderboardEntries { get; set; } = new List<LeaderboardEntry>();

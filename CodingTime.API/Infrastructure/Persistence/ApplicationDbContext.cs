@@ -19,7 +19,7 @@ namespace Infrastructure.Persistence
         public DbSet<QuizAnswer> QuizAnswers { get; set; }
         public DbSet<CompletedLesson> CompletedLessons { get; set; }
         public DbSet<CorrectAnswer> CorrectAnswers { get; set; }
-
+        public DbSet<DocumentPdf> DocumentPdfs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasKey(u => u.Id);
@@ -92,6 +92,11 @@ namespace Infrastructure.Persistence
                 .HasOne(ca => ca.Quiz)
                 .WithMany(q => q.CorrectAnswers)
                 .HasForeignKey(ca => ca.QuizId);
+            modelBuilder.Entity<Lesson>()
+                .HasOne(l => l.DocumentPdf)
+                .WithOne(d => d.Lesson)
+                .HasForeignKey<DocumentPdf>(d => d.LessonId)
+                .OnDelete(DeleteBehavior.SetNull); 
         }
     }
 }

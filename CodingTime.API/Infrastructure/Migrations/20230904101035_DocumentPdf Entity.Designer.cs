@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230902155815_Verification-Token")]
-    partial class VerificationToken
+    [Migration("20230904101035_DocumentPdf Entity")]
+    partial class DocumentPdfEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,6 +128,30 @@ namespace Infrastructure.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("Application.Entities.DocumentPdf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("PdfData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonId")
+                        .IsUnique()
+                        .HasFilter("[LessonId] IS NOT NULL");
+
+                    b.ToTable("DocumentPdfs");
+                });
+
             modelBuilder.Entity("Application.Entities.Language", b =>
                 {
                     b.Property<int>("Id")
@@ -187,8 +211,10 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("DocumentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("HtmlContent")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -410,6 +436,16 @@ namespace Infrastructure.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("Application.Entities.DocumentPdf", b =>
+                {
+                    b.HasOne("Application.Entities.Lesson", "Lesson")
+                        .WithOne("DocumentPdf")
+                        .HasForeignKey("Application.Entities.DocumentPdf", "LessonId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Lesson");
+                });
+
             modelBuilder.Entity("Application.Entities.LeaderboardEntry", b =>
                 {
                     b.HasOne("Application.Entities.User", "User")
@@ -498,6 +534,11 @@ namespace Infrastructure.Migrations
                     b.Navigation("Courses");
 
                     b.Navigation("UserLanguages");
+                });
+
+            modelBuilder.Entity("Application.Entities.Lesson", b =>
+                {
+                    b.Navigation("DocumentPdf");
                 });
 
             modelBuilder.Entity("Application.Entities.Quiz", b =>

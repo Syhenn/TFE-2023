@@ -23,6 +23,7 @@ import UpdateQuiz from "./Page/UpdateQuiz";
 import VerifyUser from "./Page/VerifyUser";
 import VerifyCourse from "./Page/VerifyCourse";
 import ForgotPassword from "./Page/ForgotPassword";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>

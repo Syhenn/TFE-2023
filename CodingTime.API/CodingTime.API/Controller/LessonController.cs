@@ -23,6 +23,13 @@ public class LessonController : ControllerBase
         return Ok(commandResult);
     }
 
+    [HttpPost]
+    [Route("lessonPdf")]
+    public async Task<ActionResult<Lesson>> CreateLessonPdf(LessonPdfDto lessonPdfDto)
+    {
+        var commandResult = await _mediator.Send(new CreateLessonPdfCommand(lessonPdfDto));
+        return Ok(commandResult);
+    }
     [HttpGet]
     public async Task<ActionResult<Lesson>> GetLesson(int lessonId)
     {

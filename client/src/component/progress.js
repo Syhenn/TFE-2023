@@ -15,7 +15,6 @@ const Progress = ({ courseId, userId }) => {
       try {
         const chaptersResponse = await fetchData("/Chapter", { courseId });
         setChapters(chaptersResponse);
-
         chaptersResponse.forEach(async (chapter, index) => {
           const lessonsResponse = await fetchData("/Lesson/getByChapter", {
             chapterId: chapter.id,

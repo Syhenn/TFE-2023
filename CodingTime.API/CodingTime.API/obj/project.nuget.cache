@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "b0EJIYF0mc/FcOE6Qsy4qyaF9ovblRflSMuILwddVFWjbdD4G4sESd9Rcfg2mAeEwn0su7kIeIqSrvXqf1he/w==",
+  "dgSpecHash": "gMllX7/laSgEZM6hKXk452b+YBkYqkanj4opXp8asNZgloh1S9IGmq3vg8NkoStRV1hEfXm2FtysycEfZYtRSQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Henquin\\Desktop\\TFE\\CodingTime\\TFE-2023\\CodingTime.API\\CodingTime.API\\CodingTime.API.csproj",
   "expectedPackageFiles": [
@@ -127,6 +127,7 @@
     "C:\\Users\\Henquin\\.nuget\\packages\\sendgrid\\9.28.1\\sendgrid.9.28.1.nupkg.sha512",
     "C:\\Users\\Henquin\\.nuget\\packages\\starkbank-ecdsa\\1.3.3\\starkbank-ecdsa.1.3.3.nupkg.sha512",
     "C:\\Users\\Henquin\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\Henquin\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.5.0\\swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
     "C:\\Users\\Henquin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\Henquin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\Henquin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",

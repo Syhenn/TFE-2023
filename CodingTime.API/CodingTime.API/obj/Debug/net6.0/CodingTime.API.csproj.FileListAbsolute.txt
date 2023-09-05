@@ -306,3 +306,4 @@ C:\Users\Henquin\Desktop\TFE\CodingTime\TFE-2023\CodingTime.API\CodingTime.API\o
 C:\Users\Henquin\Desktop\TFE\CodingTime\TFE-2023\CodingTime.API\CodingTime.API\obj\Debug\net6.0\ref\CodingTime.API.dll
 C:\Users\Henquin\Desktop\TFE\CodingTime\TFE-2023\CodingTime.API\CodingTime.API\bin\Debug\net6.0\SendGrid.dll
 C:\Users\Henquin\Desktop\TFE\CodingTime\TFE-2023\CodingTime.API\CodingTime.API\bin\Debug\net6.0\StarkbankEcdsa.dll
+C:\Users\Henquin\Desktop\TFE\CodingTime\TFE-2023\CodingTime.API\CodingTime.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll

@@ -2,7 +2,7 @@
 /bin/
 /obj/
 
-/CodingTime.API/CodingTime.API/appsettings.json
+CodingTime.API/CodingTime.API/appsettings.json
 
 # Ignorer les fichiers de l'environnement
 .vscode/
